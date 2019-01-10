@@ -1,0 +1,30 @@
+{
+    "name": "Airport",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "city",
+            "otherEntityName": "city",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190110011411",
+    "entityTableName": "airport",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

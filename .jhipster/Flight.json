@@ -1,0 +1,70 @@
+{
+    "name": "Flight",
+    "fields": [
+        {
+            "fieldName": "departureTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "arrivalTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "flightDuration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "flightDistance",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stopsCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "flightStop",
+            "otherEntityName": "flightStop",
+            "otherEntityRelationshipName": "flight"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "departureAirport",
+            "otherEntityName": "airport",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "arrivalAirport",
+            "otherEntityName": "airport",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "plane",
+            "otherEntityName": "plane",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "company",
+            "otherEntityName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190110011412",
+    "entityTableName": "flight",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

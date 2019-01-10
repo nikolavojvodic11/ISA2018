@@ -1,0 +1,27 @@
+{
+    "name": "FlightStop",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "airport",
+            "otherEntityName": "airport",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "flight",
+            "otherEntityName": "flight",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190110011414",
+    "entityTableName": "flight_stop",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

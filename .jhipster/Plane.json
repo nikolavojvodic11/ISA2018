@@ -1,0 +1,42 @@
+{
+    "name": "Plane",
+    "fields": [
+        {
+            "fieldName": "manufacturer",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "model",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registration",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rowsCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "colsCount",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "company",
+            "otherEntityName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190110011413",
+    "entityTableName": "plane",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

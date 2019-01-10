@@ -1,0 +1,89 @@
+///////////////////////////
+// ENTITIES
+entity IsaUser {
+	phone String
+}
+entity City {
+	name String
+}
+entity CompanyType {
+	name String
+}
+entity Company {
+	name String
+    description String
+}
+entity CompanyLocation {
+	address String
+}
+entity Airport {
+	name String
+    address String
+}
+entity Flight {
+	departureTime ZonedDateTime
+    arrivalTime ZonedDateTime
+    flightDuration Integer
+    flightDistance Integer
+    stopsCount Integer
+    price Double
+}
+entity Plane {
+	manufacturer String
+    model String
+    registration String
+    rowsCount Integer
+    colsCount Integer
+}
+entity FlightStop {
+}
+entity FlightTicket {
+	seatRow Integer
+    seatCol Integer
+}
+// RELATIONSHIPS
+relationship OneToOne {
+	IsaUser{jhiUser} to User
+}
+relationship ManyToOne {
+	IsaUser{city} to City
+    IsaUser{company} to Company
+}
+relationship OneToMany {
+	City{airport} to Airport{city}
+}
+relationship ManyToOne {
+	Company{companyType} to CompanyType
+}
+relationship OneToMany {
+	Company{companyLocation} to CompanyLocation{parentCompany}
+	Company{plane} to Plane{company}
+}
+relationship ManyToOne {
+	CompanyLocation{city} to City
+}
+relationship OneToMany {
+	Flight{flightStop} to FlightStop{flight}
+}
+relationship ManyToOne {
+	Flight{departureAirport} to Airport
+    Flight{arrivalAirport} to Airport
+    Flight{plane} to Plane
+    Flight{company} to Company
+}
+relationship ManyToOne {
+	FlightStop{airport} to Airport
+}
+relationship ManyToOne {
+	FlightTicket{flight} to Flight
+    FlightTicket{user} to IsaUser
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<div>
+    <h2 id="page-heading">
+        <span>Flight Stops</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-flight-stop" [routerLink]="['/flight-stop/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Flight Stop
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="flightStops">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Airport</span></th>
+            <th><span>Flight</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let flightStop of flightStops ;trackBy: trackId">
+                <td><a [routerLink]="['/flight-stop', flightStop.id, 'view' ]">{{flightStop.id}}</a></td>
+                <td>
+                    <div *ngIf="flightStop.airport">
+                        <a [routerLink]="['../airport', flightStop.airport?.id, 'view' ]" >{{flightStop.airport?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="flightStop.flight">
+                        <a [routerLink]="['../flight', flightStop.flight?.id, 'view' ]" >{{flightStop.flight?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/flight-stop', flightStop.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/flight-stop', flightStop.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'flight-stop/'+ flightStop.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

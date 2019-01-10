@@ -1,0 +1,42 @@
+{
+    "name": "Company",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "companyLocation",
+            "otherEntityName": "companyLocation",
+            "otherEntityRelationshipName": "parentCompany"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "plane",
+            "otherEntityName": "plane",
+            "otherEntityRelationshipName": "company"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "companyType",
+            "otherEntityName": "companyType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190110011409",
+    "entityTableName": "company",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

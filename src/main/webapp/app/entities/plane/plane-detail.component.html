@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="plane">
+            <h2><span>Plane</span> {{plane.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Manufacturer</span></dt>
+                <dd>
+                    <span>{{plane.manufacturer}}</span>
+                </dd>
+                <dt><span>Model</span></dt>
+                <dd>
+                    <span>{{plane.model}}</span>
+                </dd>
+                <dt><span>Registration</span></dt>
+                <dd>
+                    <span>{{plane.registration}}</span>
+                </dd>
+                <dt><span>Rows Count</span></dt>
+                <dd>
+                    <span>{{plane.rowsCount}}</span>
+                </dd>
+                <dt><span>Cols Count</span></dt>
+                <dd>
+                    <span>{{plane.colsCount}}</span>
+                </dd>
+                <dt><span>Company</span></dt>
+                <dd>
+                    <div *ngIf="plane.company">
+                        <a [routerLink]="['/company', plane.company?.id, 'view']">{{plane.company?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plane', plane.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

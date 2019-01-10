@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-plane-heading">Create or edit a Plane</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!plane.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="plane.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_manufacturer">Manufacturer</label>
+                    <input type="text" class="form-control" name="manufacturer" id="field_manufacturer"
+                        [(ngModel)]="plane.manufacturer" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_model">Model</label>
+                    <input type="text" class="form-control" name="model" id="field_model"
+                        [(ngModel)]="plane.model" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_registration">Registration</label>
+                    <input type="text" class="form-control" name="registration" id="field_registration"
+                        [(ngModel)]="plane.registration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rowsCount">Rows Count</label>
+                    <input type="number" class="form-control" name="rowsCount" id="field_rowsCount"
+                        [(ngModel)]="plane.rowsCount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_colsCount">Cols Count</label>
+                    <input type="number" class="form-control" name="colsCount" id="field_colsCount"
+                        [(ngModel)]="plane.colsCount" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" [(ngModel)]="plane.company" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id === plane.company?.id ? plane.company : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

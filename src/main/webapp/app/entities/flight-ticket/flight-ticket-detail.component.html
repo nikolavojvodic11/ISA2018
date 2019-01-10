@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="flightTicket">
+            <h2><span>Flight Ticket</span> {{flightTicket.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Seat Row</span></dt>
+                <dd>
+                    <span>{{flightTicket.seatRow}}</span>
+                </dd>
+                <dt><span>Seat Col</span></dt>
+                <dd>
+                    <span>{{flightTicket.seatCol}}</span>
+                </dd>
+                <dt><span>Flight</span></dt>
+                <dd>
+                    <div *ngIf="flightTicket.flight">
+                        <a [routerLink]="['/flight', flightTicket.flight?.id, 'view']">{{flightTicket.flight?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    <div *ngIf="flightTicket.user">
+                        <a [routerLink]="['/isa-user', flightTicket.user?.id, 'view']">{{flightTicket.user?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/flight-ticket', flightTicket.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

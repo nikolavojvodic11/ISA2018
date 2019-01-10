@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="isaUser">
+            <h2><span>Isa User</span> {{isaUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{isaUser.phone}}</span>
+                </dd>
+                <dt><span>Jhi User</span></dt>
+                <dd>
+                    {{isaUser.jhiUser?.id}}
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <div *ngIf="isaUser.city">
+                        <a [routerLink]="['/city', isaUser.city?.id, 'view']">{{isaUser.city?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Company</span></dt>
+                <dd>
+                    <div *ngIf="isaUser.company">
+                        <a [routerLink]="['/company', isaUser.company?.id, 'view']">{{isaUser.company?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/isa-user', isaUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

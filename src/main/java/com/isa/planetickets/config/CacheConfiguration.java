@@ -38,6 +38,20 @@ public class CacheConfiguration {
             cm.createCache(com.isa.planetickets.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.IsaUser.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.City.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.City.class.getName() + ".airports", jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.CompanyType.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Company.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Company.class.getName() + ".companyLocations", jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Company.class.getName() + ".planes", jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.CompanyLocation.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Airport.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Flight.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Flight.class.getName() + ".flightStops", jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.Plane.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.FlightStop.class.getName(), jcacheConfiguration);
+            cm.createCache(com.isa.planetickets.domain.FlightTicket.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
