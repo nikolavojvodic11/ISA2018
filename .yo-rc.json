@@ -1,0 +1,33 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.isa.planetickets"
+        },
+        "jhipsterVersion": "5.7.2",
+        "applicationType": "monolith",
+        "baseName": "PlaneTickets",
+        "packageName": "com.isa.planetickets",
+        "packageFolder": "com/isa/planetickets",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "NDNlNzY1NzkwNjk0Nzc5OTc4OTZjODZmMTUzNTkzMjA0YjkxNjM5NWQ5OTg2ZTE5NjIxYzk3YjEzMmRhMzZjYTE0NjA3NGQ0NTBhZWU1ZTk5YjhiZWNlNDBhZjM5MGY3MzgyMzExMzBiNmU4NDdjYjlhZmMwM2Y2ZTcwY2Q5Nzg=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "otherModules": [],
+        "enableTranslation": false
+    }
+}
