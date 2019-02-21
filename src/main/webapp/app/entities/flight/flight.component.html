@@ -21,6 +21,8 @@
             <th><span>Flight Distance</span></th>
             <th><span>Stops Count</span></th>
             <th><span>Price</span></th>
+            <th><span>Discount</span></th>
+            <th><span>Code</span></th>
             <th><span>Departure Airport</span></th>
             <th><span>Arrival Airport</span></th>
             <th><span>Plane</span></th>
@@ -37,6 +39,8 @@
                 <td>{{flight.flightDistance}}</td>
                 <td>{{flight.stopsCount}}</td>
                 <td>{{flight.price}}</td>
+                <td>{{flight.discount}}</td>
+                <td>{{flight.code}}</td>
                 <td>
                     <div *ngIf="flight.departureAirport">
                         <a [routerLink]="['../airport', flight.departureAirport?.id, 'view' ]" >{{flight.departureAirport?.id}}</a>

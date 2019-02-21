@@ -9,16 +9,24 @@
                 <dd>
                     <span>{{companyLocation.address}}</span>
                 </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{companyLocation.phone}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{companyLocation.email}}</span>
+                </dd>
                 <dt><span>City</span></dt>
                 <dd>
                     <div *ngIf="companyLocation.city">
                         <a [routerLink]="['/city', companyLocation.city?.id, 'view']">{{companyLocation.city?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Parent Company</span></dt>
+                <dt><span>Company</span></dt>
                 <dd>
-                    <div *ngIf="companyLocation.parentCompany">
-                        <a [routerLink]="['/company', companyLocation.parentCompany?.id, 'view']">{{companyLocation.parentCompany?.id}}</a>
+                    <div *ngIf="companyLocation.company">
+                        <a [routerLink]="['/company', companyLocation.company?.id, 'view']">{{companyLocation.company?.id}}</a>
                     </div>
                 </dd>
             </dl>

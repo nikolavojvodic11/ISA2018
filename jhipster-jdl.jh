@@ -2,31 +2,39 @@
 // ENTITIES
 entity IsaUser {
 	phone String
+    firstLogin Boolean
 }
 entity City {
 	name String
 }
-entity CompanyType {
-	name String
-}
+
 entity Company {
 	name String
     description String
+    website String
+    phone String
+    email String
+    type CompanyType
 }
 entity CompanyLocation {
 	address String
+    phone String
+    email String
 }
 entity Airport {
 	name String
+    code String
     address String
 }
 entity Flight {
-	departureTime ZonedDateTime
-    arrivalTime ZonedDateTime
+	departureTime Instant
+    arrivalTime Instant
     flightDuration Integer
     flightDistance Integer
     stopsCount Integer
     price Double
+    discount Integer
+    code String
 }
 entity Plane {
 	manufacturer String
@@ -35,11 +43,109 @@ entity Plane {
     rowsCount Integer
     colsCount Integer
 }
-entity FlightStop {
+
+entity Seat {
+	row Integer
+    col Integer
 }
-entity FlightTicket {
-	seatRow Integer
-    seatCol Integer
+
+entity FlightStop {
+	stopNumber Integer
+}
+
+entity Car {
+	manufacturer String
+    model String
+    registration String
+    seats Integer
+    type CarType
+    price Double
+    discount Integer    
+}
+
+enum CarType {
+	HATCHBACK, LIMOUSINE, SUV
+}
+
+entity Hotel {
+	name String
+    description String
+    address String
+    stars Integer
+}
+
+entity Room {
+	bedsCount Integer
+    label String
+}
+
+entity RoomPricelist {
+	dateFrom Instant
+    dateTo Instant
+    price Double
+}
+
+entity Reservation {
+    discount Integer
+    type ReservationType
+    total Double
+}
+
+enum ReservationType {
+	STANDARD, QUICK
+}
+
+enum ReservationStatus {
+	RESERVED, CONFIRMED, DELETED
+}
+
+enum CompanyType {
+	AIRLINE, HOTEL, CAR_RENTAL
+}
+
+entity FriendRequest {
+	accepted Boolean
+}
+
+entity Image {
+	path String
+}
+
+entity HotelService {
+	serviceName String
+    serviceDescription String
+}
+
+entity AvailableHotelService {
+	price Double
+    discount Integer
+}
+
+entity HotelServiceReservation {
+	quantity Integer
+    price Double
+    status ReservationStatus
+}
+
+entity HotelRoomReservation {
+	dateFrom Instant
+    dateTo Instant
+    status ReservationStatus
+    price Double
+}
+
+entity FlightSeatReservation {
+	firstName String
+    lastName String
+    passportNumber String
+    status ReservationStatus
+    price Double
+}
+
+entity CarReservation {
+	dateFrom Instant
+    dateTo Instant  
+    price Double
 }
 // RELATIONSHIPS
 relationship OneToOne {
@@ -52,12 +158,11 @@ relationship ManyToOne {
 relationship OneToMany {
 	City{airport} to Airport{city}
 }
-relationship ManyToOne {
-	Company{companyType} to CompanyType
-}
+
 relationship OneToMany {
-	Company{companyLocation} to CompanyLocation{parentCompany}
+	Company{companyLocation} to CompanyLocation{company}
 	Company{plane} to Plane{company}
+    Company{image} to Image{company}
 }
 relationship ManyToOne {
 	CompanyLocation{city} to City
@@ -71,13 +176,99 @@ relationship ManyToOne {
     Flight{plane} to Plane
     Flight{company} to Company
 }
+
+relationship OneToMany {
+	Plane{seat} to Seat{plane}
+}
 relationship ManyToOne {
 	FlightStop{airport} to Airport
 }
-relationship ManyToOne {
-	FlightTicket{flight} to Flight
-    FlightTicket{user} to IsaUser
+relationship OneToMany {
+	CompanyLocation{car} to Car{companyLocation}
+    CompanyLocation{hotel} to Hotel{companyLocation}
 }
+
+relationship OneToMany {
+	Car{image} to Image{car}
+}
+
+relationship OneToMany {
+	Hotel{room} to Room{hotel}
+    Hotel{image} to Image{hotel}
+    Hotel{availableHotelService} to AvailableHotelService{hotel}
+}
+
+relationship ManyToOne {
+	AvailableHotelService{hotelServiceReservation} to HotelService
+}
+
+relationship OneToMany {
+	Room{roomPricelist} to RoomPricelist{room}
+}
+
+relationship OneToMany {
+	Room{image} to Image{room}
+}
+
+relationship ManyToOne {
+	HotelRoomReservation{room} to Room
+}
+
+relationship ManyToOne {
+	HotelServiceReservation{availableHotelService} to AvailableHotelService
+}
+
+relationship ManyToOne {
+	CarReservation{car} to Car
+}
+
+relationship OneToMany {
+    Reservation{hotelServiceReservation} to HotelServiceReservation{reservation}
+	Reservation{hotelRoomReservation} to HotelRoomReservation{reservation}
+    Reservation{flightSeatReservation} to FlightSeatReservation{reservation}
+	Reservation{carReservation} to CarReservation{carReservation}
+}
+
+relationship ManyToOne {
+	Reservation{user} to IsaUser{reservation}
+}
+
+relationship ManyToOne {	
+	FriendRequest{sender} to IsaUser
+	FriendRequest{reciver} to IsaUser
+}
+
+relationship ManyToOne {
+    FlightSeatReservation{seat} to Seat
+    FlightSeatReservation{flight} to Flight
+    FlightSeatReservation{friendRequest} to FriendRequest
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

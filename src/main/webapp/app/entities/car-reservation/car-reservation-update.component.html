@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-car-reservation-heading">Create or edit a Car Reservation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!carReservation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="carReservation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateFrom">Date From</label>
+                    <div class="d-flex">
+                        <input id="field_dateFrom" type="datetime-local" class="form-control" name="dateFrom" [(ngModel)]="dateFrom"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateTo">Date To</label>
+                    <div class="d-flex">
+                        <input id="field_dateTo" type="datetime-local" class="form-control" name="dateTo" [(ngModel)]="dateTo"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="carReservation.price" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_car">Car</label>
+                    <select class="form-control" id="field_car" name="car" [(ngModel)]="carReservation.car" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="carOption.id === carReservation.car?.id ? carReservation.car : carOption" *ngFor="let carOption of cars; trackBy: trackCarById">{{carOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_carReservation">Car Reservation</label>
+                    <select class="form-control" id="field_carReservation" name="carReservation" [(ngModel)]="carReservation.carReservation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="reservationOption.id === carReservation.carReservation?.id ? carReservation.carReservation : reservationOption" *ngFor="let reservationOption of reservations; trackBy: trackReservationById">{{reservationOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

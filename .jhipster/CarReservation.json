@@ -1,0 +1,40 @@
+{
+    "name": "CarReservation",
+    "fields": [
+        {
+            "fieldName": "dateFrom",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateTo",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "carReservation",
+            "otherEntityName": "reservation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024422",
+    "entityTableName": "car_reservation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

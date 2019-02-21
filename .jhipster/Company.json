@@ -8,6 +8,23 @@
         {
             "fieldName": "description",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "website",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "CompanyType",
+            "fieldValues": "AIRLINE,HOTEL,CAR_RENTAL"
         }
     ],
     "relationships": [
@@ -15,7 +32,7 @@
             "relationshipType": "one-to-many",
             "relationshipName": "companyLocation",
             "otherEntityName": "companyLocation",
-            "otherEntityRelationshipName": "parentCompany"
+            "otherEntityRelationshipName": "company"
         },
         {
             "relationshipType": "one-to-many",
@@ -24,13 +41,13 @@
             "otherEntityRelationshipName": "company"
         },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "companyType",
-            "otherEntityName": "companyType",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "otherEntityRelationshipName": "company"
         }
     ],
-    "changelogDate": "20190110011409",
+    "changelogDate": "20190206024403",
     "entityTableName": "company",
     "dto": "no",
     "pagination": "no",

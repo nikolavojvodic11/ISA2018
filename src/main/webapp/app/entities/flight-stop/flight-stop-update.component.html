@@ -9,6 +9,11 @@
                     <input type="text" class="form-control" id="id" name="id"
                         [(ngModel)]="flightStop.id" readonly />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_stopNumber">Stop Number</label>
+                    <input type="number" class="form-control" name="stopNumber" id="field_stopNumber"
+                        [(ngModel)]="flightStop.stopNumber" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_airport">Airport</label>

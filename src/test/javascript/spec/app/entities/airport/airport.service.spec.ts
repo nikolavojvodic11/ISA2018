@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(AirportService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Airport(0, 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Airport(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -56,6 +56,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         name: 'BBBBBB',
+                        code: 'BBBBBB',
                         address: 'BBBBBB'
                     },
                     elemDefault
@@ -74,6 +75,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         name: 'BBBBBB',
+                        code: 'BBBBBB',
                         address: 'BBBBBB'
                     },
                     elemDefault

@@ -6,6 +6,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "address",
             "fieldType": "String"
         }
@@ -18,7 +22,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190110011411",
+    "changelogDate": "20190206024405",
     "entityTableName": "airport",
     "dto": "no",
     "pagination": "no",

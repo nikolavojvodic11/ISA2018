@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="availableHotelService">
+            <h2><span>Available Hotel Service</span> {{availableHotelService.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{availableHotelService.price}}</span>
+                </dd>
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <span>{{availableHotelService.discount}}</span>
+                </dd>
+                <dt><span>Hotel Service Reservation</span></dt>
+                <dd>
+                    <div *ngIf="availableHotelService.hotelServiceReservation">
+                        <a [routerLink]="['/hotel-service', availableHotelService.hotelServiceReservation?.id, 'view']">{{availableHotelService.hotelServiceReservation?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Hotel</span></dt>
+                <dd>
+                    <div *ngIf="availableHotelService.hotel">
+                        <a [routerLink]="['/hotel', availableHotelService.hotel?.id, 'view']">{{availableHotelService.hotel?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/available-hotel-service', availableHotelService.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

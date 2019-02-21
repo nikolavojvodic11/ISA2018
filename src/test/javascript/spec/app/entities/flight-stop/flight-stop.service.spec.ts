@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(FlightStopService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new FlightStop(0);
+            elemDefault = new FlightStop(0, 0);
         });
 
         describe('Service methods', async () => {
@@ -53,7 +53,12 @@ describe('Service Tests', () => {
             });
 
             it('should update a FlightStop', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
+                const returnedFromService = Object.assign(
+                    {
+                        stopNumber: 1
+                    },
+                    elemDefault
+                );
 
                 const expected = Object.assign({}, returnedFromService);
                 service
@@ -65,7 +70,12 @@ describe('Service Tests', () => {
             });
 
             it('should return a list of FlightStop', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
+                const returnedFromService = Object.assign(
+                    {
+                        stopNumber: 1
+                    },
+                    elemDefault
+                );
                 const expected = Object.assign({}, returnedFromService);
                 service
                     .query(expected)

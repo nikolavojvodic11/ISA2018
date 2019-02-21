@@ -24,13 +24,19 @@
     ],
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "relationshipName": "seat",
+            "otherEntityName": "seat",
+            "otherEntityRelationshipName": "plane"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "company",
             "otherEntityName": "company",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190110011413",
+    "changelogDate": "20190206024407",
     "entityTableName": "plane",
     "dto": "no",
     "pagination": "no",

@@ -16,6 +16,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Phone</span></th>
+            <th><span>First Login</span></th>
             <th><span>Jhi User</span></th>
             <th><span>City</span></th>
             <th><span>Company</span></th>
@@ -26,6 +27,7 @@
             <tr *ngFor="let isaUser of isaUsers ;trackBy: trackId">
                 <td><a [routerLink]="['/isa-user', isaUser.id, 'view' ]">{{isaUser.id}}</a></td>
                 <td>{{isaUser.phone}}</td>
+                <td>{{isaUser.firstLogin}}</td>
                 <td>
                     {{isaUser.jhiUser?.id}}
                 </td>

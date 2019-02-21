@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Flight(0, currentDate, currentDate, 0, 0, 0, 0);
+            elemDefault = new Flight(0, currentDate, currentDate, 0, 0, 0, 0, 0, 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -78,7 +78,9 @@ describe('Service Tests', () => {
                         flightDuration: 1,
                         flightDistance: 1,
                         stopsCount: 1,
-                        price: 1
+                        price: 1,
+                        discount: 1,
+                        code: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -106,7 +108,9 @@ describe('Service Tests', () => {
                         flightDuration: 1,
                         flightDistance: 1,
                         stopsCount: 1,
-                        price: 1
+                        price: 1,
+                        discount: 1,
+                        code: 'BBBBBB'
                     },
                     elemDefault
                 );

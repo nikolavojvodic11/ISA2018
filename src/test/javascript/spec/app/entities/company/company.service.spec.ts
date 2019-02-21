@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { CompanyService } from 'app/entities/company/company.service';
-import { ICompany, Company } from 'app/shared/model/company.model';
+import { ICompany, Company, CompanyType } from 'app/shared/model/company.model';
 
 describe('Service Tests', () => {
     describe('Company Service', () => {
@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(CompanyService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Company(0, 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Company(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', CompanyType.AIRLINE);
         });
 
         describe('Service methods', async () => {
@@ -56,7 +56,11 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         name: 'BBBBBB',
-                        description: 'BBBBBB'
+                        description: 'BBBBBB',
+                        website: 'BBBBBB',
+                        phone: 'BBBBBB',
+                        email: 'BBBBBB',
+                        type: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -74,7 +78,11 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         name: 'BBBBBB',
-                        description: 'BBBBBB'
+                        description: 'BBBBBB',
+                        website: 'BBBBBB',
+                        phone: 'BBBBBB',
+                        email: 'BBBBBB',
+                        type: 'BBBBBB'
                     },
                     elemDefault
                 );

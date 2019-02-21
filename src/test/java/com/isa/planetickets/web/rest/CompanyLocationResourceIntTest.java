@@ -43,6 +43,12 @@ public class CompanyLocationResourceIntTest {
     private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
     @Autowired
     private CompanyLocationRepository companyLocationRepository;
 
@@ -85,7 +91,9 @@ public class CompanyLocationResourceIntTest {
      */
     public static CompanyLocation createEntity(EntityManager em) {
         CompanyLocation companyLocation = new CompanyLocation()
-            .address(DEFAULT_ADDRESS);
+            .address(DEFAULT_ADDRESS)
+            .phone(DEFAULT_PHONE)
+            .email(DEFAULT_EMAIL);
         return companyLocation;
     }
 
@@ -110,6 +118,8 @@ public class CompanyLocationResourceIntTest {
         assertThat(companyLocationList).hasSize(databaseSizeBeforeCreate + 1);
         CompanyLocation testCompanyLocation = companyLocationList.get(companyLocationList.size() - 1);
         assertThat(testCompanyLocation.getAddress()).isEqualTo(DEFAULT_ADDRESS);
+        assertThat(testCompanyLocation.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testCompanyLocation.getEmail()).isEqualTo(DEFAULT_EMAIL);
     }
 
     @Test
@@ -142,7 +152,9 @@ public class CompanyLocationResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(companyLocation.getId().intValue())))
-            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())));
+            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
     }
     
     @Test
@@ -156,7 +168,9 @@ public class CompanyLocationResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(companyLocation.getId().intValue()))
-            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()));
+            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
     }
 
     @Test
@@ -180,7 +194,9 @@ public class CompanyLocationResourceIntTest {
         // Disconnect from session so that the updates on updatedCompanyLocation are not directly saved in db
         em.detach(updatedCompanyLocation);
         updatedCompanyLocation
-            .address(UPDATED_ADDRESS);
+            .address(UPDATED_ADDRESS)
+            .phone(UPDATED_PHONE)
+            .email(UPDATED_EMAIL);
 
         restCompanyLocationMockMvc.perform(put("/api/company-locations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +208,8 @@ public class CompanyLocationResourceIntTest {
         assertThat(companyLocationList).hasSize(databaseSizeBeforeUpdate);
         CompanyLocation testCompanyLocation = companyLocationList.get(companyLocationList.size() - 1);
         assertThat(testCompanyLocation.getAddress()).isEqualTo(UPDATED_ADDRESS);
+        assertThat(testCompanyLocation.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testCompanyLocation.getEmail()).isEqualTo(UPDATED_EMAIL);
     }
 
     @Test

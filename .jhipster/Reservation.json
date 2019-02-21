@@ -1,0 +1,59 @@
+{
+    "name": "Reservation",
+    "fields": [
+        {
+            "fieldName": "discount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ReservationType",
+            "fieldValues": "STANDARD,QUICK"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "hotelServiceReservation",
+            "otherEntityName": "hotelServiceReservation",
+            "otherEntityRelationshipName": "reservation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "hotelRoomReservation",
+            "otherEntityName": "hotelRoomReservation",
+            "otherEntityRelationshipName": "reservation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "flightSeatReservation",
+            "otherEntityName": "flightSeatReservation",
+            "otherEntityRelationshipName": "reservation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "carReservation",
+            "otherEntityName": "carReservation",
+            "otherEntityRelationshipName": "carReservation"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "isaUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024414",
+    "entityTableName": "reservation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

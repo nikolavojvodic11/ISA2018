@@ -43,6 +43,9 @@ public class AirportResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_CODE = "BBBBBBBBBB";
+
     private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
 
@@ -89,6 +92,7 @@ public class AirportResourceIntTest {
     public static Airport createEntity(EntityManager em) {
         Airport airport = new Airport()
             .name(DEFAULT_NAME)
+            .code(DEFAULT_CODE)
             .address(DEFAULT_ADDRESS);
         return airport;
     }
@@ -114,6 +118,7 @@ public class AirportResourceIntTest {
         assertThat(airportList).hasSize(databaseSizeBeforeCreate + 1);
         Airport testAirport = airportList.get(airportList.size() - 1);
         assertThat(testAirport.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testAirport.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testAirport.getAddress()).isEqualTo(DEFAULT_ADDRESS);
     }
 
@@ -148,6 +153,7 @@ public class AirportResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(airport.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())));
     }
     
@@ -163,6 +169,7 @@ public class AirportResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(airport.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()));
     }
 
@@ -188,6 +195,7 @@ public class AirportResourceIntTest {
         em.detach(updatedAirport);
         updatedAirport
             .name(UPDATED_NAME)
+            .code(UPDATED_CODE)
             .address(UPDATED_ADDRESS);
 
         restAirportMockMvc.perform(put("/api/airports")
@@ -200,6 +208,7 @@ public class AirportResourceIntTest {
         assertThat(airportList).hasSize(databaseSizeBeforeUpdate);
         Airport testAirport = airportList.get(airportList.size() - 1);
         assertThat(testAirport.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testAirport.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testAirport.getAddress()).isEqualTo(UPDATED_ADDRESS);
     }
 

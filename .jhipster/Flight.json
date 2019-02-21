@@ -3,11 +3,11 @@
     "fields": [
         {
             "fieldName": "departureTime",
-            "fieldType": "ZonedDateTime"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "arrivalTime",
-            "fieldType": "ZonedDateTime"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "flightDuration",
@@ -24,6 +24,14 @@
         {
             "fieldName": "price",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -58,7 +66,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190110011412",
+    "changelogDate": "20190206024406",
     "entityTableName": "flight",
     "dto": "no",
     "pagination": "no",

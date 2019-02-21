@@ -1,0 +1,42 @@
+{
+    "name": "Room",
+    "fields": [
+        {
+            "fieldName": "bedsCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "label",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "roomPricelist",
+            "otherEntityName": "roomPricelist",
+            "otherEntityRelationshipName": "room"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "otherEntityRelationshipName": "room"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "hotel",
+            "otherEntityName": "hotel",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024412",
+    "entityTableName": "room",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

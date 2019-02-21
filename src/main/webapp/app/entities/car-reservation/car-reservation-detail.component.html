@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="carReservation">
+            <h2><span>Car Reservation</span> {{carReservation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Date From</span></dt>
+                <dd>
+                    <span>{{carReservation.dateFrom}}</span>
+                </dd>
+                <dt><span>Date To</span></dt>
+                <dd>
+                    <span>{{carReservation.dateTo}}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{carReservation.price}}</span>
+                </dd>
+                <dt><span>Car</span></dt>
+                <dd>
+                    <div *ngIf="carReservation.car">
+                        <a [routerLink]="['/car', carReservation.car?.id, 'view']">{{carReservation.car?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Car Reservation</span></dt>
+                <dd>
+                    <div *ngIf="carReservation.carReservation">
+                        <a [routerLink]="['/reservation', carReservation.carReservation?.id, 'view']">{{carReservation.carReservation?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/car-reservation', carReservation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

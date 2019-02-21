@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-image-heading">Create or edit a Image</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!image.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="image.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_path">Path</label>
+                    <input type="text" class="form-control" name="path" id="field_path"
+                        [(ngModel)]="image.path" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" [(ngModel)]="image.company" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id === image.company?.id ? image.company : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_car">Car</label>
+                    <select class="form-control" id="field_car" name="car" [(ngModel)]="image.car" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="carOption.id === image.car?.id ? image.car : carOption" *ngFor="let carOption of cars; trackBy: trackCarById">{{carOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_hotel">Hotel</label>
+                    <select class="form-control" id="field_hotel" name="hotel" [(ngModel)]="image.hotel" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="hotelOption.id === image.hotel?.id ? image.hotel : hotelOption" *ngFor="let hotelOption of hotels; trackBy: trackHotelById">{{hotelOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_room">Room</label>
+                    <select class="form-control" id="field_room" name="room" [(ngModel)]="image.room" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="roomOption.id === image.room?.id ? image.room : roomOption" *ngFor="let roomOption of rooms; trackBy: trackRoomById">{{roomOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,6 +1,11 @@
 {
     "name": "FlightStop",
-    "fields": [],
+    "fields": [
+        {
+            "fieldName": "stopNumber",
+            "fieldType": "Integer"
+        }
+    ],
     "relationships": [
         {
             "relationshipType": "many-to-one",
@@ -15,7 +20,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190110011414",
+    "changelogDate": "20190206024409",
     "entityTableName": "flight_stop",
     "dto": "no",
     "pagination": "no",

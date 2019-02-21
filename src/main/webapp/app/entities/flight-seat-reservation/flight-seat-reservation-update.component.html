@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-flight-seat-reservation-heading">Create or edit a Flight Seat Reservation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!flightSeatReservation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="flightSeatReservation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="flightSeatReservation.firstName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="flightSeatReservation.lastName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_passportNumber">Passport Number</label>
+                    <input type="text" class="form-control" name="passportNumber" id="field_passportNumber"
+                        [(ngModel)]="flightSeatReservation.passportNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="flightSeatReservation.status" id="field_status" >
+                        <option value="RESERVED">RESERVED</option>
+                        <option value="CONFIRMED">CONFIRMED</option>
+                        <option value="DELETED">DELETED</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="flightSeatReservation.price" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_seat">Seat</label>
+                    <select class="form-control" id="field_seat" name="seat" [(ngModel)]="flightSeatReservation.seat" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="seatOption.id === flightSeatReservation.seat?.id ? flightSeatReservation.seat : seatOption" *ngFor="let seatOption of seats; trackBy: trackSeatById">{{seatOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_flight">Flight</label>
+                    <select class="form-control" id="field_flight" name="flight" [(ngModel)]="flightSeatReservation.flight" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="flightOption.id === flightSeatReservation.flight?.id ? flightSeatReservation.flight : flightOption" *ngFor="let flightOption of flights; trackBy: trackFlightById">{{flightOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_friendRequest">Friend Request</label>
+                    <select class="form-control" id="field_friendRequest" name="friendRequest" [(ngModel)]="flightSeatReservation.friendRequest" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="friendRequestOption.id === flightSeatReservation.friendRequest?.id ? flightSeatReservation.friendRequest : friendRequestOption" *ngFor="let friendRequestOption of friendrequests; trackBy: trackFriendRequestById">{{friendRequestOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reservation">Reservation</label>
+                    <select class="form-control" id="field_reservation" name="reservation" [(ngModel)]="flightSeatReservation.reservation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="reservationOption.id === flightSeatReservation.reservation?.id ? flightSeatReservation.reservation : reservationOption" *ngFor="let reservationOption of reservations; trackBy: trackReservationById">{{reservationOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reservation">
+            <h2><span>Reservation</span> {{reservation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <span>{{reservation.discount}}</span>
+                </dd>
+                <dt><span>Type</span></dt>
+                <dd>
+                    <span>{{reservation.type}}</span>
+                </dd>
+                <dt><span>Total</span></dt>
+                <dd>
+                    <span>{{reservation.total}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    <div *ngIf="reservation.user">
+                        <a [routerLink]="['/isa-user', reservation.user?.id, 'view']">{{reservation.user?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/reservation', reservation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

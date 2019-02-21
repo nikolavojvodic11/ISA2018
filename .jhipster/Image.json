@@ -1,0 +1,44 @@
+{
+    "name": "Image",
+    "fields": [
+        {
+            "fieldName": "path",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "company",
+            "otherEntityName": "company",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "hotel",
+            "otherEntityName": "hotel",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "room",
+            "otherEntityName": "room",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024416",
+    "entityTableName": "image",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

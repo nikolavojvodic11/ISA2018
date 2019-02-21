@@ -8,7 +8,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -28,10 +28,10 @@ public class Flight implements Serializable {
     private Long id;
 
     @Column(name = "departure_time")
-    private ZonedDateTime departureTime;
+    private Instant departureTime;
 
     @Column(name = "arrival_time")
-    private ZonedDateTime arrivalTime;
+    private Instant arrivalTime;
 
     @Column(name = "flight_duration")
     private Integer flightDuration;
@@ -44,6 +44,12 @@ public class Flight implements Serializable {
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "discount")
+    private Integer discount;
+
+    @Column(name = "code")
+    private String code;
 
     @OneToMany(mappedBy = "flight")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -73,29 +79,29 @@ public class Flight implements Serializable {
         this.id = id;
     }
 
-    public ZonedDateTime getDepartureTime() {
+    public Instant getDepartureTime() {
         return departureTime;
     }
 
-    public Flight departureTime(ZonedDateTime departureTime) {
+    public Flight departureTime(Instant departureTime) {
         this.departureTime = departureTime;
         return this;
     }
 
-    public void setDepartureTime(ZonedDateTime departureTime) {
+    public void setDepartureTime(Instant departureTime) {
         this.departureTime = departureTime;
     }
 
-    public ZonedDateTime getArrivalTime() {
+    public Instant getArrivalTime() {
         return arrivalTime;
     }
 
-    public Flight arrivalTime(ZonedDateTime arrivalTime) {
+    public Flight arrivalTime(Instant arrivalTime) {
         this.arrivalTime = arrivalTime;
         return this;
     }
 
-    public void setArrivalTime(ZonedDateTime arrivalTime) {
+    public void setArrivalTime(Instant arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -149,6 +155,32 @@ public class Flight implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public Flight discount(Integer discount) {
+        this.discount = discount;
+        return this;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public Flight code(String code) {
+        this.code = code;
+        return this;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Set<FlightStop> getFlightStops() {
@@ -259,6 +291,8 @@ public class Flight implements Serializable {
             ", flightDistance=" + getFlightDistance() +
             ", stopsCount=" + getStopsCount() +
             ", price=" + getPrice() +
+            ", discount=" + getDiscount() +
+            ", code='" + getCode() + "'" +
             "}";
     }
 }

@@ -43,6 +43,9 @@ public class IsaUserResourceIntTest {
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_FIRST_LOGIN = false;
+    private static final Boolean UPDATED_FIRST_LOGIN = true;
+
     @Autowired
     private IsaUserRepository isaUserRepository;
 
@@ -85,7 +88,8 @@ public class IsaUserResourceIntTest {
      */
     public static IsaUser createEntity(EntityManager em) {
         IsaUser isaUser = new IsaUser()
-            .phone(DEFAULT_PHONE);
+            .phone(DEFAULT_PHONE)
+            .firstLogin(DEFAULT_FIRST_LOGIN);
         return isaUser;
     }
 
@@ -110,6 +114,7 @@ public class IsaUserResourceIntTest {
         assertThat(isaUserList).hasSize(databaseSizeBeforeCreate + 1);
         IsaUser testIsaUser = isaUserList.get(isaUserList.size() - 1);
         assertThat(testIsaUser.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testIsaUser.isFirstLogin()).isEqualTo(DEFAULT_FIRST_LOGIN);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class IsaUserResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(isaUser.getId().intValue())))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())));
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].firstLogin").value(hasItem(DEFAULT_FIRST_LOGIN.booleanValue())));
     }
     
     @Test
@@ -156,7 +162,8 @@ public class IsaUserResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(isaUser.getId().intValue()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()));
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.firstLogin").value(DEFAULT_FIRST_LOGIN.booleanValue()));
     }
 
     @Test
@@ -180,7 +187,8 @@ public class IsaUserResourceIntTest {
         // Disconnect from session so that the updates on updatedIsaUser are not directly saved in db
         em.detach(updatedIsaUser);
         updatedIsaUser
-            .phone(UPDATED_PHONE);
+            .phone(UPDATED_PHONE)
+            .firstLogin(UPDATED_FIRST_LOGIN);
 
         restIsaUserMockMvc.perform(put("/api/isa-users")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +200,7 @@ public class IsaUserResourceIntTest {
         assertThat(isaUserList).hasSize(databaseSizeBeforeUpdate);
         IsaUser testIsaUser = isaUserList.get(isaUserList.size() - 1);
         assertThat(testIsaUser.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testIsaUser.isFirstLogin()).isEqualTo(UPDATED_FIRST_LOGIN);
     }
 
     @Test

@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-hotel-service-reservation-heading">Create or edit a Hotel Service Reservation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!hotelServiceReservation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="hotelServiceReservation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quantity">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" id="field_quantity"
+                        [(ngModel)]="hotelServiceReservation.quantity" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="hotelServiceReservation.price" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="hotelServiceReservation.status" id="field_status" >
+                        <option value="RESERVED">RESERVED</option>
+                        <option value="CONFIRMED">CONFIRMED</option>
+                        <option value="DELETED">DELETED</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_availableHotelService">Available Hotel Service</label>
+                    <select class="form-control" id="field_availableHotelService" name="availableHotelService" [(ngModel)]="hotelServiceReservation.availableHotelService" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="availableHotelServiceOption.id === hotelServiceReservation.availableHotelService?.id ? hotelServiceReservation.availableHotelService : availableHotelServiceOption" *ngFor="let availableHotelServiceOption of availablehotelservices; trackBy: trackAvailableHotelServiceById">{{availableHotelServiceOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reservation">Reservation</label>
+                    <select class="form-control" id="field_reservation" name="reservation" [(ngModel)]="hotelServiceReservation.reservation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="reservationOption.id === hotelServiceReservation.reservation?.id ? hotelServiceReservation.reservation : reservationOption" *ngFor="let reservationOption of reservations; trackBy: trackReservationById">{{reservationOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

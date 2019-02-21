@@ -1,5 +1,6 @@
 package com.isa.planetickets.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -7,6 +8,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,13 +29,25 @@ public class CompanyLocation implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany(mappedBy = "companyLocation")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Car> cars = new HashSet<>();
+    @OneToMany(mappedBy = "companyLocation")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Hotel> hotels = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("")
     private City city;
 
     @ManyToOne
     @JsonIgnoreProperties("companyLocations")
-    private Company parentCompany;
+    private Company company;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -56,6 +71,82 @@ public class CompanyLocation implements Serializable {
         this.address = address;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public CompanyLocation phone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public CompanyLocation email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public CompanyLocation cars(Set<Car> cars) {
+        this.cars = cars;
+        return this;
+    }
+
+    public CompanyLocation addCar(Car car) {
+        this.cars.add(car);
+        car.setCompanyLocation(this);
+        return this;
+    }
+
+    public CompanyLocation removeCar(Car car) {
+        this.cars.remove(car);
+        car.setCompanyLocation(null);
+        return this;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
+    }
+
+    public Set<Hotel> getHotels() {
+        return hotels;
+    }
+
+    public CompanyLocation hotels(Set<Hotel> hotels) {
+        this.hotels = hotels;
+        return this;
+    }
+
+    public CompanyLocation addHotel(Hotel hotel) {
+        this.hotels.add(hotel);
+        hotel.setCompanyLocation(this);
+        return this;
+    }
+
+    public CompanyLocation removeHotel(Hotel hotel) {
+        this.hotels.remove(hotel);
+        hotel.setCompanyLocation(null);
+        return this;
+    }
+
+    public void setHotels(Set<Hotel> hotels) {
+        this.hotels = hotels;
+    }
+
     public City getCity() {
         return city;
     }
@@ -69,17 +160,17 @@ public class CompanyLocation implements Serializable {
         this.city = city;
     }
 
-    public Company getParentCompany() {
-        return parentCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public CompanyLocation parentCompany(Company company) {
-        this.parentCompany = company;
+    public CompanyLocation company(Company company) {
+        this.company = company;
         return this;
     }
 
-    public void setParentCompany(Company company) {
-        this.parentCompany = company;
+    public void setCompany(Company company) {
+        this.company = company;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -108,6 +199,8 @@ public class CompanyLocation implements Serializable {
         return "CompanyLocation{" +
             "id=" + getId() +
             ", address='" + getAddress() + "'" +
+            ", phone='" + getPhone() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

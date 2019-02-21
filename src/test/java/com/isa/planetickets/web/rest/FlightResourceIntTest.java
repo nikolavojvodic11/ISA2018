@@ -23,13 +23,10 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
-import static com.isa.planetickets.web.rest.TestUtil.sameInstant;
 import static com.isa.planetickets.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -45,11 +42,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PlaneTicketsApp.class)
 public class FlightResourceIntTest {
 
-    private static final ZonedDateTime DEFAULT_DEPARTURE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_DEPARTURE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final Instant DEFAULT_DEPARTURE_TIME = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DEPARTURE_TIME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final ZonedDateTime DEFAULT_ARRIVAL_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_ARRIVAL_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final Instant DEFAULT_ARRIVAL_TIME = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_ARRIVAL_TIME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Integer DEFAULT_FLIGHT_DURATION = 1;
     private static final Integer UPDATED_FLIGHT_DURATION = 2;
@@ -62,6 +59,12 @@ public class FlightResourceIntTest {
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
+
+    private static final Integer DEFAULT_DISCOUNT = 1;
+    private static final Integer UPDATED_DISCOUNT = 2;
+
+    private static final String DEFAULT_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_CODE = "BBBBBBBBBB";
 
     @Autowired
     private FlightRepository flightRepository;
@@ -110,7 +113,9 @@ public class FlightResourceIntTest {
             .flightDuration(DEFAULT_FLIGHT_DURATION)
             .flightDistance(DEFAULT_FLIGHT_DISTANCE)
             .stopsCount(DEFAULT_STOPS_COUNT)
-            .price(DEFAULT_PRICE);
+            .price(DEFAULT_PRICE)
+            .discount(DEFAULT_DISCOUNT)
+            .code(DEFAULT_CODE);
         return flight;
     }
 
@@ -140,6 +145,8 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getFlightDistance()).isEqualTo(DEFAULT_FLIGHT_DISTANCE);
         assertThat(testFlight.getStopsCount()).isEqualTo(DEFAULT_STOPS_COUNT);
         assertThat(testFlight.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testFlight.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
+        assertThat(testFlight.getCode()).isEqualTo(DEFAULT_CODE);
     }
 
     @Test
@@ -172,12 +179,14 @@ public class FlightResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(flight.getId().intValue())))
-            .andExpect(jsonPath("$.[*].departureTime").value(hasItem(sameInstant(DEFAULT_DEPARTURE_TIME))))
-            .andExpect(jsonPath("$.[*].arrivalTime").value(hasItem(sameInstant(DEFAULT_ARRIVAL_TIME))))
+            .andExpect(jsonPath("$.[*].departureTime").value(hasItem(DEFAULT_DEPARTURE_TIME.toString())))
+            .andExpect(jsonPath("$.[*].arrivalTime").value(hasItem(DEFAULT_ARRIVAL_TIME.toString())))
             .andExpect(jsonPath("$.[*].flightDuration").value(hasItem(DEFAULT_FLIGHT_DURATION)))
             .andExpect(jsonPath("$.[*].flightDistance").value(hasItem(DEFAULT_FLIGHT_DISTANCE)))
             .andExpect(jsonPath("$.[*].stopsCount").value(hasItem(DEFAULT_STOPS_COUNT)))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
+            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())));
     }
     
     @Test
@@ -191,12 +200,14 @@ public class FlightResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(flight.getId().intValue()))
-            .andExpect(jsonPath("$.departureTime").value(sameInstant(DEFAULT_DEPARTURE_TIME)))
-            .andExpect(jsonPath("$.arrivalTime").value(sameInstant(DEFAULT_ARRIVAL_TIME)))
+            .andExpect(jsonPath("$.departureTime").value(DEFAULT_DEPARTURE_TIME.toString()))
+            .andExpect(jsonPath("$.arrivalTime").value(DEFAULT_ARRIVAL_TIME.toString()))
             .andExpect(jsonPath("$.flightDuration").value(DEFAULT_FLIGHT_DURATION))
             .andExpect(jsonPath("$.flightDistance").value(DEFAULT_FLIGHT_DISTANCE))
             .andExpect(jsonPath("$.stopsCount").value(DEFAULT_STOPS_COUNT))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
+            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()));
     }
 
     @Test
@@ -225,7 +236,9 @@ public class FlightResourceIntTest {
             .flightDuration(UPDATED_FLIGHT_DURATION)
             .flightDistance(UPDATED_FLIGHT_DISTANCE)
             .stopsCount(UPDATED_STOPS_COUNT)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .discount(UPDATED_DISCOUNT)
+            .code(UPDATED_CODE);
 
         restFlightMockMvc.perform(put("/api/flights")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -242,6 +255,8 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getFlightDistance()).isEqualTo(UPDATED_FLIGHT_DISTANCE);
         assertThat(testFlight.getStopsCount()).isEqualTo(UPDATED_STOPS_COUNT);
         assertThat(testFlight.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testFlight.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
+        assertThat(testFlight.getCode()).isEqualTo(UPDATED_CODE);
     }
 
     @Test

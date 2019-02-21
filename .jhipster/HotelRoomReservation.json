@@ -1,0 +1,45 @@
+{
+    "name": "HotelRoomReservation",
+    "fields": [
+        {
+            "fieldName": "dateFrom",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateTo",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ReservationStatus",
+            "fieldValues": "RESERVED,CONFIRMED,DELETED"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "room",
+            "otherEntityName": "room",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "reservation",
+            "otherEntityName": "reservation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024420",
+    "entityTableName": "hotel_room_reservation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,70 @@
+<div>
+    <h2 id="page-heading">
+        <span>Hotel Service Reservations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-hotel-service-reservation" [routerLink]="['/hotel-service-reservation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Hotel Service Reservation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="hotelServiceReservations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Quantity</span></th>
+            <th><span>Price</span></th>
+            <th><span>Status</span></th>
+            <th><span>Available Hotel Service</span></th>
+            <th><span>Reservation</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let hotelServiceReservation of hotelServiceReservations ;trackBy: trackId">
+                <td><a [routerLink]="['/hotel-service-reservation', hotelServiceReservation.id, 'view' ]">{{hotelServiceReservation.id}}</a></td>
+                <td>{{hotelServiceReservation.quantity}}</td>
+                <td>{{hotelServiceReservation.price}}</td>
+                <td>{{hotelServiceReservation.status}}</td>
+                <td>
+                    <div *ngIf="hotelServiceReservation.availableHotelService">
+                        <a [routerLink]="['../available-hotel-service', hotelServiceReservation.availableHotelService?.id, 'view' ]" >{{hotelServiceReservation.availableHotelService?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="hotelServiceReservation.reservation">
+                        <a [routerLink]="['../reservation', hotelServiceReservation.reservation?.id, 'view' ]" >{{hotelServiceReservation.reservation?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/hotel-service-reservation', hotelServiceReservation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/hotel-service-reservation', hotelServiceReservation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'hotel-service-reservation/'+ hotelServiceReservation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

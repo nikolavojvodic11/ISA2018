@@ -16,8 +16,10 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Address</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Email</span></th>
             <th><span>City</span></th>
-            <th><span>Parent Company</span></th>
+            <th><span>Company</span></th>
             <th></th>
             </tr>
             </thead>
@@ -25,14 +27,16 @@
             <tr *ngFor="let companyLocation of companyLocations ;trackBy: trackId">
                 <td><a [routerLink]="['/company-location', companyLocation.id, 'view' ]">{{companyLocation.id}}</a></td>
                 <td>{{companyLocation.address}}</td>
+                <td>{{companyLocation.phone}}</td>
+                <td>{{companyLocation.email}}</td>
                 <td>
                     <div *ngIf="companyLocation.city">
                         <a [routerLink]="['../city', companyLocation.city?.id, 'view' ]" >{{companyLocation.city?.id}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="companyLocation.parentCompany">
-                        <a [routerLink]="['../company', companyLocation.parentCompany?.id, 'view' ]" >{{companyLocation.parentCompany?.id}}</a>
+                    <div *ngIf="companyLocation.company">
+                        <a [routerLink]="['../company', companyLocation.company?.id, 'view' ]" >{{companyLocation.company?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

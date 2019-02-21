@@ -1,0 +1,41 @@
+{
+    "name": "HotelServiceReservation",
+    "fields": [
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ReservationStatus",
+            "fieldValues": "RESERVED,CONFIRMED,DELETED"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "availableHotelService",
+            "otherEntityName": "availableHotelService",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "reservation",
+            "otherEntityName": "reservation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024419",
+    "entityTableName": "hotel_service_reservation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

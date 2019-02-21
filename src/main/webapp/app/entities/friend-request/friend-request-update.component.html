@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-friend-request-heading">Create or edit a Friend Request</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!friendRequest.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="friendRequest.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_accepted">Accepted</label>
+                    <input type="checkbox" class="form-control" name="accepted" id="field_accepted"
+                        [(ngModel)]="friendRequest.accepted" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sender">Sender</label>
+                    <select class="form-control" id="field_sender" name="sender" [(ngModel)]="friendRequest.sender" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="isaUserOption.id === friendRequest.sender?.id ? friendRequest.sender : isaUserOption" *ngFor="let isaUserOption of isausers; trackBy: trackIsaUserById">{{isaUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reciver">Reciver</label>
+                    <select class="form-control" id="field_reciver" name="reciver" [(ngModel)]="friendRequest.reciver" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="isaUserOption.id === friendRequest.reciver?.id ? friendRequest.reciver : isaUserOption" *ngFor="let isaUserOption of isausers; trackBy: trackIsaUserById">{{isaUserOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{
+    "name": "Hotel",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stars",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "room",
+            "otherEntityName": "room",
+            "otherEntityRelationshipName": "hotel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "otherEntityRelationshipName": "hotel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "availableHotelService",
+            "otherEntityName": "availableHotelService",
+            "otherEntityRelationshipName": "hotel"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "companyLocation",
+            "otherEntityName": "companyLocation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024411",
+    "entityTableName": "hotel",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

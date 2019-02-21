@@ -1,0 +1,32 @@
+{
+    "name": "FriendRequest",
+    "fields": [
+        {
+            "fieldName": "accepted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sender",
+            "otherEntityName": "isaUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "reciver",
+            "otherEntityName": "isaUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024415",
+    "entityTableName": "friend_request",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

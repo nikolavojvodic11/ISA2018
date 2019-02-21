@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity FriendRequest.
+    -->
+    <changeSet id="20190206024415-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="sender_id"
+                                 baseTableName="friend_request"
+                                 constraintName="fk_friend_request_sender_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="isa_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="reciver_id"
+                                 baseTableName="friend_request"
+                                 constraintName="fk_friend_request_reciver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="isa_user"/>
+
+    </changeSet>
+</databaseChangeLog>

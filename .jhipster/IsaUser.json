@@ -4,6 +4,10 @@
         {
             "fieldName": "phone",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "firstLogin",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [
@@ -26,9 +30,15 @@
             "relationshipName": "company",
             "otherEntityName": "company",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "reservation",
+            "otherEntityName": "reservation",
+            "otherEntityRelationshipName": "user"
         }
     ],
-    "changelogDate": "20190110011406",
+    "changelogDate": "20190206024401",
     "entityTableName": "isa_user",
     "dto": "no",
     "pagination": "no",

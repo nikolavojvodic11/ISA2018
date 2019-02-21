@@ -1,0 +1,36 @@
+{
+    "name": "AvailableHotelService",
+    "fields": [
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "hotelServiceReservation",
+            "otherEntityName": "hotelService",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "hotel",
+            "otherEntityName": "hotel",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024418",
+    "entityTableName": "available_hotel_service",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

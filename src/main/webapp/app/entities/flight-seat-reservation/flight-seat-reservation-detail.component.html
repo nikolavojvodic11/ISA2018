@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="flightSeatReservation">
+            <h2><span>Flight Seat Reservation</span> {{flightSeatReservation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>First Name</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.firstName}}</span>
+                </dd>
+                <dt><span>Last Name</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.lastName}}</span>
+                </dd>
+                <dt><span>Passport Number</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.passportNumber}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.status}}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.price}}</span>
+                </dd>
+                <dt><span>Seat</span></dt>
+                <dd>
+                    <div *ngIf="flightSeatReservation.seat">
+                        <a [routerLink]="['/seat', flightSeatReservation.seat?.id, 'view']">{{flightSeatReservation.seat?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Flight</span></dt>
+                <dd>
+                    <div *ngIf="flightSeatReservation.flight">
+                        <a [routerLink]="['/flight', flightSeatReservation.flight?.id, 'view']">{{flightSeatReservation.flight?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Friend Request</span></dt>
+                <dd>
+                    <div *ngIf="flightSeatReservation.friendRequest">
+                        <a [routerLink]="['/friend-request', flightSeatReservation.friendRequest?.id, 'view']">{{flightSeatReservation.friendRequest?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Reservation</span></dt>
+                <dd>
+                    <div *ngIf="flightSeatReservation.reservation">
+                        <a [routerLink]="['/reservation', flightSeatReservation.reservation?.id, 'view']">{{flightSeatReservation.reservation?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

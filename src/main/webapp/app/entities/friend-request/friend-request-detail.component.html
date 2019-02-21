@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="friendRequest">
+            <h2><span>Friend Request</span> {{friendRequest.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Accepted</span></dt>
+                <dd>
+                    <span>{{friendRequest.accepted}}</span>
+                </dd>
+                <dt><span>Sender</span></dt>
+                <dd>
+                    <div *ngIf="friendRequest.sender">
+                        <a [routerLink]="['/isa-user', friendRequest.sender?.id, 'view']">{{friendRequest.sender?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Reciver</span></dt>
+                <dd>
+                    <div *ngIf="friendRequest.reciver">
+                        <a [routerLink]="['/isa-user', friendRequest.reciver?.id, 'view']">{{friendRequest.reciver?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/friend-request', friendRequest.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

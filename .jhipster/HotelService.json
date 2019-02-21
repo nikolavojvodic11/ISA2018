@@ -1,0 +1,23 @@
+{
+    "name": "HotelService",
+    "fields": [
+        {
+            "fieldName": "serviceName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceDescription",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190206024417",
+    "entityTableName": "hotel_service",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

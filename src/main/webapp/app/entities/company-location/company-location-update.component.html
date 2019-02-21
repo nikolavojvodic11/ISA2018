@@ -14,6 +14,16 @@
                     <input type="text" class="form-control" name="address" id="field_address"
                         [(ngModel)]="companyLocation.address" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="companyLocation.phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="companyLocation.email" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_city">City</label>
@@ -23,10 +33,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_parentCompany">Parent Company</label>
-                    <select class="form-control" id="field_parentCompany" name="parentCompany" [(ngModel)]="companyLocation.parentCompany" >
+                    <label class="form-control-label" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" [(ngModel)]="companyLocation.company" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="companyOption.id === companyLocation.parentCompany?.id ? companyLocation.parentCompany : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
+                        <option [ngValue]="companyOption.id === companyLocation.company?.id ? companyLocation.company : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
                     </select>
                 </div>
             </div>

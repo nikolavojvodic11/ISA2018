@@ -38,7 +38,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/planetickets?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root
-        password:
+        password: glavonja1992
         hikari:
             auto-commit: false
             data-source-properties:
@@ -97,7 +97,7 @@ jhipster:
         authentication:
             jwt:
                 # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-                base64-secret: NDNlNzY1NzkwNjk0Nzc5OTc4OTZjODZmMTUzNTkzMjA0YjkxNjM5NWQ5OTg2ZTE5NjIxYzk3YjEzMmRhMzZjYTE0NjA3NGQ0NTBhZWU1ZTk5YjhiZWNlNDBhZjM5MGY3MzgyMzExMzBiNmU4NDdjYjlhZmMwM2Y2ZTcwY2Q5Nzg=
+                base64-secret: NWZjZWJjYzRiMDJhOTZjMGMxNDBkMGI1Yzc0ODhlMTg3YmVmZWY0YzhkNGE2NzdjMGRjYzI1M2Y2OThiMjE1YWY3YjQzMmE0ZjEzZTY4NjdlNjQ4OTU0M2M0MjhjYTRjNTIyYWM5OWY2OGJiOTQyZDMyMDk4OThhMjg1ZWE2OGY=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000

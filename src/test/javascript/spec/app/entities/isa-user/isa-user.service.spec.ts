@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(IsaUserService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new IsaUser(0, 'AAAAAAA');
+            elemDefault = new IsaUser(0, 'AAAAAAA', false);
         });
 
         describe('Service methods', async () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
             it('should update a IsaUser', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        phone: 'BBBBBB'
+                        phone: 'BBBBBB',
+                        firstLogin: true
                     },
                     elemDefault
                 );
@@ -72,7 +73,8 @@ describe('Service Tests', () => {
             it('should return a list of IsaUser', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        phone: 'BBBBBB'
+                        phone: 'BBBBBB',
+                        firstLogin: true
                     },
                     elemDefault
                 );

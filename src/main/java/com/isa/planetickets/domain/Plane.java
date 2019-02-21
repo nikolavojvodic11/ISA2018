@@ -1,5 +1,6 @@
 package com.isa.planetickets.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -7,6 +8,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -38,6 +41,9 @@ public class Plane implements Serializable {
     @Column(name = "cols_count")
     private Integer colsCount;
 
+    @OneToMany(mappedBy = "plane")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Seat> seats = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("planes")
     private Company company;
@@ -114,6 +120,31 @@ public class Plane implements Serializable {
 
     public void setColsCount(Integer colsCount) {
         this.colsCount = colsCount;
+    }
+
+    public Set<Seat> getSeats() {
+        return seats;
+    }
+
+    public Plane seats(Set<Seat> seats) {
+        this.seats = seats;
+        return this;
+    }
+
+    public Plane addSeat(Seat seat) {
+        this.seats.add(seat);
+        seat.setPlane(this);
+        return this;
+    }
+
+    public Plane removeSeat(Seat seat) {
+        this.seats.remove(seat);
+        seat.setPlane(null);
+        return this;
+    }
+
+    public void setSeats(Set<Seat> seats) {
+        this.seats = seats;
     }
 
     public Company getCompany() {

@@ -1,7 +1,6 @@
 package com.isa.planetickets.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,6 +10,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+
+import com.isa.planetickets.domain.enumeration.CompanyType;
 
 /**
  * A Company.
@@ -32,16 +33,28 @@ public class Company implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "parentCompany")
+    @Column(name = "website")
+    private String website;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jhi_type")
+    private CompanyType type;
+
+    @OneToMany(mappedBy = "company")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CompanyLocation> companyLocations = new HashSet<>();
     @OneToMany(mappedBy = "company")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Plane> planes = new HashSet<>();
-    @ManyToOne
-    @JsonIgnoreProperties("")
-    private CompanyType companyType;
-
+    @OneToMany(mappedBy = "company")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Image> images = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -77,6 +90,58 @@ public class Company implements Serializable {
         this.description = description;
     }
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public Company website(String website) {
+        this.website = website;
+        return this;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Company phone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Company email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public CompanyType getType() {
+        return type;
+    }
+
+    public Company type(CompanyType type) {
+        this.type = type;
+        return this;
+    }
+
+    public void setType(CompanyType type) {
+        this.type = type;
+    }
+
     public Set<CompanyLocation> getCompanyLocations() {
         return companyLocations;
     }
@@ -88,13 +153,13 @@ public class Company implements Serializable {
 
     public Company addCompanyLocation(CompanyLocation companyLocation) {
         this.companyLocations.add(companyLocation);
-        companyLocation.setParentCompany(this);
+        companyLocation.setCompany(this);
         return this;
     }
 
     public Company removeCompanyLocation(CompanyLocation companyLocation) {
         this.companyLocations.remove(companyLocation);
-        companyLocation.setParentCompany(null);
+        companyLocation.setCompany(null);
         return this;
     }
 
@@ -127,17 +192,29 @@ public class Company implements Serializable {
         this.planes = planes;
     }
 
-    public CompanyType getCompanyType() {
-        return companyType;
+    public Set<Image> getImages() {
+        return images;
     }
 
-    public Company companyType(CompanyType companyType) {
-        this.companyType = companyType;
+    public Company images(Set<Image> images) {
+        this.images = images;
         return this;
     }
 
-    public void setCompanyType(CompanyType companyType) {
-        this.companyType = companyType;
+    public Company addImage(Image image) {
+        this.images.add(image);
+        image.setCompany(this);
+        return this;
+    }
+
+    public Company removeImage(Image image) {
+        this.images.remove(image);
+        image.setCompany(null);
+        return this;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -167,6 +244,10 @@ public class Company implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
+            ", website='" + getWebsite() + "'" +
+            ", phone='" + getPhone() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", type='" + getType() + "'" +
             "}";
     }
 }

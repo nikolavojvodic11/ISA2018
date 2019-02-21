@@ -13,11 +13,21 @@
                 <dd>
                     <span>{{company.description}}</span>
                 </dd>
-                <dt><span>Company Type</span></dt>
+                <dt><span>Website</span></dt>
                 <dd>
-                    <div *ngIf="company.companyType">
-                        <a [routerLink]="['/company-type', company.companyType?.id, 'view']">{{company.companyType?.id}}</a>
-                    </div>
+                    <span>{{company.website}}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{company.phone}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{company.email}}</span>
+                </dd>
+                <dt><span>Type</span></dt>
+                <dd>
+                    <span>{{company.type}}</span>
                 </dd>
             </dl>
 

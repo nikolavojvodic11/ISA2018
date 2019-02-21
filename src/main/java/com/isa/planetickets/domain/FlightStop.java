@@ -23,6 +23,9 @@ public class FlightStop implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "stop_number")
+    private Integer stopNumber;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private Airport airport;
@@ -38,6 +41,19 @@ public class FlightStop implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getStopNumber() {
+        return stopNumber;
+    }
+
+    public FlightStop stopNumber(Integer stopNumber) {
+        this.stopNumber = stopNumber;
+        return this;
+    }
+
+    public void setStopNumber(Integer stopNumber) {
+        this.stopNumber = stopNumber;
     }
 
     public Airport getAirport() {
@@ -91,6 +107,7 @@ public class FlightStop implements Serializable {
     public String toString() {
         return "FlightStop{" +
             "id=" + getId() +
+            ", stopNumber=" + getStopNumber() +
             "}";
     }
 }

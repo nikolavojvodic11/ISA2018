@@ -12,6 +12,8 @@ export interface IFlight {
     flightDistance?: number;
     stopsCount?: number;
     price?: number;
+    discount?: number;
+    code?: string;
     flightStops?: IFlightStop[];
     departureAirport?: IAirport;
     arrivalAirport?: IAirport;
@@ -28,6 +30,8 @@ export class Flight implements IFlight {
         public flightDistance?: number,
         public stopsCount?: number,
         public price?: number,
+        public discount?: number,
+        public code?: string,
         public flightStops?: IFlightStop[],
         public departureAirport?: IAirport,
         public arrivalAirport?: IAirport,

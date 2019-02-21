@@ -31,6 +31,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.isa.planetickets.domain.enumeration.CompanyType;
 /**
  * Test class for the CompanyResource REST controller.
  *
@@ -45,6 +46,18 @@ public class CompanyResourceIntTest {
 
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_WEBSITE = "AAAAAAAAAA";
+    private static final String UPDATED_WEBSITE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final CompanyType DEFAULT_TYPE = CompanyType.AIRLINE;
+    private static final CompanyType UPDATED_TYPE = CompanyType.HOTEL;
 
     @Autowired
     private CompanyRepository companyRepository;
@@ -89,7 +102,11 @@ public class CompanyResourceIntTest {
     public static Company createEntity(EntityManager em) {
         Company company = new Company()
             .name(DEFAULT_NAME)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .website(DEFAULT_WEBSITE)
+            .phone(DEFAULT_PHONE)
+            .email(DEFAULT_EMAIL)
+            .type(DEFAULT_TYPE);
         return company;
     }
 
@@ -115,6 +132,10 @@ public class CompanyResourceIntTest {
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCompany.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testCompany.getWebsite()).isEqualTo(DEFAULT_WEBSITE);
+        assertThat(testCompany.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testCompany.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testCompany.getType()).isEqualTo(DEFAULT_TYPE);
     }
 
     @Test
@@ -148,7 +169,11 @@ public class CompanyResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].website").value(hasItem(DEFAULT_WEBSITE.toString())))
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
     }
     
     @Test
@@ -163,7 +188,11 @@ public class CompanyResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(company.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.website").value(DEFAULT_WEBSITE.toString()))
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
     }
 
     @Test
@@ -188,7 +217,11 @@ public class CompanyResourceIntTest {
         em.detach(updatedCompany);
         updatedCompany
             .name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .website(UPDATED_WEBSITE)
+            .phone(UPDATED_PHONE)
+            .email(UPDATED_EMAIL)
+            .type(UPDATED_TYPE);
 
         restCompanyMockMvc.perform(put("/api/companies")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +234,10 @@ public class CompanyResourceIntTest {
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCompany.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testCompany.getWebsite()).isEqualTo(UPDATED_WEBSITE);
+        assertThat(testCompany.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testCompany.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testCompany.getType()).isEqualTo(UPDATED_TYPE);
     }
 
     @Test

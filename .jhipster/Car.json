@@ -1,0 +1,57 @@
+{
+    "name": "Car",
+    "fields": [
+        {
+            "fieldName": "manufacturer",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "model",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registration",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "seats",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "CarType",
+            "fieldValues": "HATCHBACK,LIMOUSINE,SUV"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "otherEntityRelationshipName": "car"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "companyLocation",
+            "otherEntityName": "companyLocation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024410",
+    "entityTableName": "car",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

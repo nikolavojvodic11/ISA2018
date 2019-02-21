@@ -1,0 +1,61 @@
+{
+    "name": "FlightSeatReservation",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "passportNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ReservationStatus",
+            "fieldValues": "RESERVED,CONFIRMED,DELETED"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "seat",
+            "otherEntityName": "seat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "flight",
+            "otherEntityName": "flight",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "friendRequest",
+            "otherEntityName": "friendRequest",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "reservation",
+            "otherEntityName": "reservation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024421",
+    "entityTableName": "flight_seat_reservation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

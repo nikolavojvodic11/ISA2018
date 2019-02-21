@@ -1,5 +1,6 @@
 package com.isa.planetickets.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -7,6 +8,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,6 +29,9 @@ public class IsaUser implements Serializable {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "first_login")
+    private Boolean firstLogin;
+
     @OneToOne    @JoinColumn(unique = true)
     private User jhiUser;
 
@@ -37,6 +43,9 @@ public class IsaUser implements Serializable {
     @JsonIgnoreProperties("")
     private Company company;
 
+    @OneToMany(mappedBy = "user")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Reservation> reservations = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -57,6 +66,19 @@ public class IsaUser implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Boolean isFirstLogin() {
+        return firstLogin;
+    }
+
+    public IsaUser firstLogin(Boolean firstLogin) {
+        this.firstLogin = firstLogin;
+        return this;
+    }
+
+    public void setFirstLogin(Boolean firstLogin) {
+        this.firstLogin = firstLogin;
     }
 
     public User getJhiUser() {
@@ -97,6 +119,31 @@ public class IsaUser implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public IsaUser reservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+        return this;
+    }
+
+    public IsaUser addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+        reservation.setUser(this);
+        return this;
+    }
+
+    public IsaUser removeReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+        reservation.setUser(null);
+        return this;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -124,6 +171,7 @@ public class IsaUser implements Serializable {
         return "IsaUser{" +
             "id=" + getId() +
             ", phone='" + getPhone() + "'" +
+            ", firstLogin='" + isFirstLogin() + "'" +
             "}";
     }
 }

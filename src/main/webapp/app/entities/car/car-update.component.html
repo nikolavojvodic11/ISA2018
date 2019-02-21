@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-car-heading">Create or edit a Car</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!car.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="car.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_manufacturer">Manufacturer</label>
+                    <input type="text" class="form-control" name="manufacturer" id="field_manufacturer"
+                        [(ngModel)]="car.manufacturer" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_model">Model</label>
+                    <input type="text" class="form-control" name="model" id="field_model"
+                        [(ngModel)]="car.model" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_registration">Registration</label>
+                    <input type="text" class="form-control" name="registration" id="field_registration"
+                        [(ngModel)]="car.registration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_seats">Seats</label>
+                    <input type="number" class="form-control" name="seats" id="field_seats"
+                        [(ngModel)]="car.seats" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_type">Type</label>
+                    <select class="form-control" name="type" [(ngModel)]="car.type" id="field_type" >
+                        <option value="HATCHBACK">HATCHBACK</option>
+                        <option value="LIMOUSINE">LIMOUSINE</option>
+                        <option value="SUV">SUV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="car.price" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_discount">Discount</label>
+                    <input type="number" class="form-control" name="discount" id="field_discount"
+                        [(ngModel)]="car.discount" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyLocation">Company Location</label>
+                    <select class="form-control" id="field_companyLocation" name="companyLocation" [(ngModel)]="car.companyLocation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyLocationOption.id === car.companyLocation?.id ? car.companyLocation : companyLocationOption" *ngFor="let companyLocationOption of companylocations; trackBy: trackCompanyLocationById">{{companyLocationOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

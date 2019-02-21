@@ -17,7 +17,10 @@
             <th><span>ID</span></th>
             <th><span>Name</span></th>
             <th><span>Description</span></th>
-            <th><span>Company Type</span></th>
+            <th><span>Website</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Email</span></th>
+            <th><span>Type</span></th>
             <th></th>
             </tr>
             </thead>
@@ -26,11 +29,10 @@
                 <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>
                 <td>{{company.name}}</td>
                 <td>{{company.description}}</td>
-                <td>
-                    <div *ngIf="company.companyType">
-                        <a [routerLink]="['../company-type', company.companyType?.id, 'view' ]" >{{company.companyType?.id}}</a>
-                    </div>
-                </td>
+                <td>{{company.website}}</td>
+                <td>{{company.phone}}</td>
+                <td>{{company.email}}</td>
+                <td>{{company.type}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -4,9 +4,29 @@
         {
             "fieldName": "address",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityRelationshipName": "companyLocation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "hotel",
+            "otherEntityName": "hotel",
+            "otherEntityRelationshipName": "companyLocation"
+        },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "city",
@@ -15,12 +35,12 @@
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "parentCompany",
+            "relationshipName": "company",
             "otherEntityName": "company",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190110011410",
+    "changelogDate": "20190206024404",
     "entityTableName": "company_location",
     "dto": "no",
     "pagination": "no",

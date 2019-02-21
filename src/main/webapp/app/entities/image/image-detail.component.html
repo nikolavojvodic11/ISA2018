@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="image">
+            <h2><span>Image</span> {{image.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Path</span></dt>
+                <dd>
+                    <span>{{image.path}}</span>
+                </dd>
+                <dt><span>Company</span></dt>
+                <dd>
+                    <div *ngIf="image.company">
+                        <a [routerLink]="['/company', image.company?.id, 'view']">{{image.company?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Car</span></dt>
+                <dd>
+                    <div *ngIf="image.car">
+                        <a [routerLink]="['/car', image.car?.id, 'view']">{{image.car?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Hotel</span></dt>
+                <dd>
+                    <div *ngIf="image.hotel">
+                        <a [routerLink]="['/hotel', image.hotel?.id, 'view']">{{image.hotel?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Room</span></dt>
+                <dd>
+                    <div *ngIf="image.room">
+                        <a [routerLink]="['/room', image.room?.id, 'view']">{{image.room?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/image', image.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

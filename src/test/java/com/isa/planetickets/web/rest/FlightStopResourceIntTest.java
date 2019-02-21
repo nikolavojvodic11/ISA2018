@@ -40,6 +40,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PlaneTicketsApp.class)
 public class FlightStopResourceIntTest {
 
+    private static final Integer DEFAULT_STOP_NUMBER = 1;
+    private static final Integer UPDATED_STOP_NUMBER = 2;
+
     @Autowired
     private FlightStopRepository flightStopRepository;
 
@@ -81,7 +84,8 @@ public class FlightStopResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static FlightStop createEntity(EntityManager em) {
-        FlightStop flightStop = new FlightStop();
+        FlightStop flightStop = new FlightStop()
+            .stopNumber(DEFAULT_STOP_NUMBER);
         return flightStop;
     }
 
@@ -105,6 +109,7 @@ public class FlightStopResourceIntTest {
         List<FlightStop> flightStopList = flightStopRepository.findAll();
         assertThat(flightStopList).hasSize(databaseSizeBeforeCreate + 1);
         FlightStop testFlightStop = flightStopList.get(flightStopList.size() - 1);
+        assertThat(testFlightStop.getStopNumber()).isEqualTo(DEFAULT_STOP_NUMBER);
     }
 
     @Test
@@ -136,7 +141,8 @@ public class FlightStopResourceIntTest {
         restFlightStopMockMvc.perform(get("/api/flight-stops?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(flightStop.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(flightStop.getId().intValue())))
+            .andExpect(jsonPath("$.[*].stopNumber").value(hasItem(DEFAULT_STOP_NUMBER)));
     }
     
     @Test
@@ -149,7 +155,8 @@ public class FlightStopResourceIntTest {
         restFlightStopMockMvc.perform(get("/api/flight-stops/{id}", flightStop.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(flightStop.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(flightStop.getId().intValue()))
+            .andExpect(jsonPath("$.stopNumber").value(DEFAULT_STOP_NUMBER));
     }
 
     @Test
@@ -172,6 +179,8 @@ public class FlightStopResourceIntTest {
         FlightStop updatedFlightStop = flightStopRepository.findById(flightStop.getId()).get();
         // Disconnect from session so that the updates on updatedFlightStop are not directly saved in db
         em.detach(updatedFlightStop);
+        updatedFlightStop
+            .stopNumber(UPDATED_STOP_NUMBER);
 
         restFlightStopMockMvc.perform(put("/api/flight-stops")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -182,6 +191,7 @@ public class FlightStopResourceIntTest {
         List<FlightStop> flightStopList = flightStopRepository.findAll();
         assertThat(flightStopList).hasSize(databaseSizeBeforeUpdate);
         FlightStop testFlightStop = flightStopList.get(flightStopList.size() - 1);
+        assertThat(testFlightStop.getStopNumber()).isEqualTo(UPDATED_STOP_NUMBER);
     }
 
     @Test

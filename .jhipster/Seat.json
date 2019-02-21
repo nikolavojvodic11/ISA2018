@@ -1,0 +1,30 @@
+{
+    "name": "Seat",
+    "fields": [
+        {
+            "fieldName": "row",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "col",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "plane",
+            "otherEntityName": "plane",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190206024408",
+    "entityTableName": "seat",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

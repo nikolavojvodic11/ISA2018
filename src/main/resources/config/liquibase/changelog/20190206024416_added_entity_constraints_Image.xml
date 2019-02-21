@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Image.
+    -->
+    <changeSet id="20190206024416-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="image"
+                                 constraintName="fk_image_company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+
+        <addForeignKeyConstraint baseColumnNames="car_id"
+                                 baseTableName="image"
+                                 constraintName="fk_image_car_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="car"/>
+
+        <addForeignKeyConstraint baseColumnNames="hotel_id"
+                                 baseTableName="image"
+                                 constraintName="fk_image_hotel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hotel"/>
+
+        <addForeignKeyConstraint baseColumnNames="room_id"
+                                 baseTableName="image"
+                                 constraintName="fk_image_room_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="room"/>
+
+    </changeSet>
+</databaseChangeLog>

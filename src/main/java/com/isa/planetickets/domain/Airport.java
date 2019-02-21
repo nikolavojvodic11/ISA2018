@@ -26,6 +26,9 @@ public class Airport implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "code")
+    private String code;
+
     @Column(name = "address")
     private String address;
 
@@ -53,6 +56,19 @@ public class Airport implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public Airport code(String code) {
+        this.code = code;
+        return this;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getAddress() {
@@ -107,6 +123,7 @@ public class Airport implements Serializable {
         return "Airport{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", code='" + getCode() + "'" +
             ", address='" + getAddress() + "'" +
             "}";
     }
