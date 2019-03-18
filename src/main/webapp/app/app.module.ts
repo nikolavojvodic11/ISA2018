@@ -17,9 +17,13 @@ import { PlaneTicketsAppRoutingModule } from './app-routing.module';
 import { PlaneTicketsHomeModule } from './home/home.module';
 import { PlaneTicketsAccountModule } from './account/account.module';
 import { PlaneTicketsEntityModule } from './entities/entity.module';
+
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+
+import { FlightsTabComponent } from './components/tabs/flights-tab/flights-tab.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
     imports: [
@@ -33,6 +37,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         }),
         PlaneTicketsSharedModule.forRoot(),
         PlaneTicketsCoreModule,
+        // ComponentsModule,
         PlaneTicketsHomeModule,
         PlaneTicketsAccountModule,
         // jhipster-needle-angular-add-module JHipster will add new module here

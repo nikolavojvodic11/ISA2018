@@ -1,7 +1,12 @@
 <div class="row" style="height: auto">
+
     <div class="col-md-12">
         <ngb-tabset>
-            <flight-tab></flight-tab>
+            <ngb-tab title="Flight">
+              <ng-template ngbTabContent>
+                <jhi-flights-tab></jhi-flights-tab>
+              <ng-template>
+            </ngb-tab>
             <ngb-tab title="Hotel">
                 <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
                 <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
