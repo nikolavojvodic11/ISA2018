@@ -20,6 +20,10 @@
         {
             "fieldName": "colsCount",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

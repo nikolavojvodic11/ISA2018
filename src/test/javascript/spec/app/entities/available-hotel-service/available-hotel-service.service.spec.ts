@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(AvailableHotelServiceService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new AvailableHotelService(0, 0, 0);
+            elemDefault = new AvailableHotelService(0, 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -56,7 +56,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         price: 1,
-                        discount: 1
+                        discount: 1,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -74,7 +75,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         price: 1,
-                        discount: 1
+                        discount: 1,
+                        deleted: true
                     },
                     elemDefault
                 );

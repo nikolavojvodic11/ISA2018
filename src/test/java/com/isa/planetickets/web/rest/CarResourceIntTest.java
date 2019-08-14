@@ -62,6 +62,9 @@ public class CarResourceIntTest {
     private static final Integer DEFAULT_DISCOUNT = 1;
     private static final Integer UPDATED_DISCOUNT = 2;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private CarRepository carRepository;
 
@@ -110,7 +113,8 @@ public class CarResourceIntTest {
             .seats(DEFAULT_SEATS)
             .type(DEFAULT_TYPE)
             .price(DEFAULT_PRICE)
-            .discount(DEFAULT_DISCOUNT);
+            .discount(DEFAULT_DISCOUNT)
+            .deleted(DEFAULT_DELETED);
         return car;
     }
 
@@ -141,6 +145,7 @@ public class CarResourceIntTest {
         assertThat(testCar.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testCar.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testCar.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
+        assertThat(testCar.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -179,7 +184,8 @@ public class CarResourceIntTest {
             .andExpect(jsonPath("$.[*].seats").value(hasItem(DEFAULT_SEATS)))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
-            .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)));
+            .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -199,7 +205,8 @@ public class CarResourceIntTest {
             .andExpect(jsonPath("$.seats").value(DEFAULT_SEATS))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
-            .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT));
+            .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -229,7 +236,8 @@ public class CarResourceIntTest {
             .seats(UPDATED_SEATS)
             .type(UPDATED_TYPE)
             .price(UPDATED_PRICE)
-            .discount(UPDATED_DISCOUNT);
+            .discount(UPDATED_DISCOUNT)
+            .deleted(UPDATED_DELETED);
 
         restCarMockMvc.perform(put("/api/cars")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -247,6 +255,7 @@ public class CarResourceIntTest {
         assertThat(testCar.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCar.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testCar.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
+        assertThat(testCar.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

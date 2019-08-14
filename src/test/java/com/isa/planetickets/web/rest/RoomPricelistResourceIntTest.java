@@ -51,6 +51,9 @@ public class RoomPricelistResourceIntTest {
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private RoomPricelistRepository roomPricelistRepository;
 
@@ -95,7 +98,8 @@ public class RoomPricelistResourceIntTest {
         RoomPricelist roomPricelist = new RoomPricelist()
             .dateFrom(DEFAULT_DATE_FROM)
             .dateTo(DEFAULT_DATE_TO)
-            .price(DEFAULT_PRICE);
+            .price(DEFAULT_PRICE)
+            .deleted(DEFAULT_DELETED);
         return roomPricelist;
     }
 
@@ -122,6 +126,7 @@ public class RoomPricelistResourceIntTest {
         assertThat(testRoomPricelist.getDateFrom()).isEqualTo(DEFAULT_DATE_FROM);
         assertThat(testRoomPricelist.getDateTo()).isEqualTo(DEFAULT_DATE_TO);
         assertThat(testRoomPricelist.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testRoomPricelist.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -156,7 +161,8 @@ public class RoomPricelistResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(roomPricelist.getId().intValue())))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(DEFAULT_DATE_FROM.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(DEFAULT_DATE_TO.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -172,7 +178,8 @@ public class RoomPricelistResourceIntTest {
             .andExpect(jsonPath("$.id").value(roomPricelist.getId().intValue()))
             .andExpect(jsonPath("$.dateFrom").value(DEFAULT_DATE_FROM.toString()))
             .andExpect(jsonPath("$.dateTo").value(DEFAULT_DATE_TO.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -198,7 +205,8 @@ public class RoomPricelistResourceIntTest {
         updatedRoomPricelist
             .dateFrom(UPDATED_DATE_FROM)
             .dateTo(UPDATED_DATE_TO)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .deleted(UPDATED_DELETED);
 
         restRoomPricelistMockMvc.perform(put("/api/room-pricelists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -212,6 +220,7 @@ public class RoomPricelistResourceIntTest {
         assertThat(testRoomPricelist.getDateFrom()).isEqualTo(UPDATED_DATE_FROM);
         assertThat(testRoomPricelist.getDateTo()).isEqualTo(UPDATED_DATE_TO);
         assertThat(testRoomPricelist.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testRoomPricelist.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

@@ -43,6 +43,9 @@ public class FriendRequestResourceIntTest {
     private static final Boolean DEFAULT_ACCEPTED = false;
     private static final Boolean UPDATED_ACCEPTED = true;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private FriendRequestRepository friendRequestRepository;
 
@@ -85,7 +88,8 @@ public class FriendRequestResourceIntTest {
      */
     public static FriendRequest createEntity(EntityManager em) {
         FriendRequest friendRequest = new FriendRequest()
-            .accepted(DEFAULT_ACCEPTED);
+            .accepted(DEFAULT_ACCEPTED)
+            .deleted(DEFAULT_DELETED);
         return friendRequest;
     }
 
@@ -110,6 +114,7 @@ public class FriendRequestResourceIntTest {
         assertThat(friendRequestList).hasSize(databaseSizeBeforeCreate + 1);
         FriendRequest testFriendRequest = friendRequestList.get(friendRequestList.size() - 1);
         assertThat(testFriendRequest.isAccepted()).isEqualTo(DEFAULT_ACCEPTED);
+        assertThat(testFriendRequest.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class FriendRequestResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(friendRequest.getId().intValue())))
-            .andExpect(jsonPath("$.[*].accepted").value(hasItem(DEFAULT_ACCEPTED.booleanValue())));
+            .andExpect(jsonPath("$.[*].accepted").value(hasItem(DEFAULT_ACCEPTED.booleanValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -156,7 +162,8 @@ public class FriendRequestResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(friendRequest.getId().intValue()))
-            .andExpect(jsonPath("$.accepted").value(DEFAULT_ACCEPTED.booleanValue()));
+            .andExpect(jsonPath("$.accepted").value(DEFAULT_ACCEPTED.booleanValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -180,7 +187,8 @@ public class FriendRequestResourceIntTest {
         // Disconnect from session so that the updates on updatedFriendRequest are not directly saved in db
         em.detach(updatedFriendRequest);
         updatedFriendRequest
-            .accepted(UPDATED_ACCEPTED);
+            .accepted(UPDATED_ACCEPTED)
+            .deleted(UPDATED_DELETED);
 
         restFriendRequestMockMvc.perform(put("/api/friend-requests")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +200,7 @@ public class FriendRequestResourceIntTest {
         assertThat(friendRequestList).hasSize(databaseSizeBeforeUpdate);
         FriendRequest testFriendRequest = friendRequestList.get(friendRequestList.size() - 1);
         assertThat(testFriendRequest.isAccepted()).isEqualTo(UPDATED_ACCEPTED);
+        assertThat(testFriendRequest.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

@@ -16,6 +16,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Stop Number</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Airport</span></th>
             <th><span>Flight</span></th>
             <th></th>
@@ -25,6 +26,7 @@
             <tr *ngFor="let flightStop of flightStops ;trackBy: trackId">
                 <td><a [routerLink]="['/flight-stop', flightStop.id, 'view' ]">{{flightStop.id}}</a></td>
                 <td>{{flightStop.stopNumber}}</td>
+                <td>{{flightStop.deleted}}</td>
                 <td>
                     <div *ngIf="flightStop.airport">
                         <a [routerLink]="['../airport', flightStop.airport?.id, 'view' ]" >{{flightStop.airport?.id}}</a>

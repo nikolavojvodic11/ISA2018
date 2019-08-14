@@ -19,6 +19,10 @@
             <th><span>Date To</span></th>
             <th><span>Status</span></th>
             <th><span>Price</span></th>
+            <th><span>Discount</span></th>
+            <th><span>Hotel Rating</span></th>
+            <th><span>Room Rating</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Room</span></th>
             <th><span>Reservation</span></th>
             <th></th>
@@ -31,6 +35,10 @@
                 <td>{{hotelRoomReservation.dateTo | date:'medium'}}</td>
                 <td>{{hotelRoomReservation.status}}</td>
                 <td>{{hotelRoomReservation.price}}</td>
+                <td>{{hotelRoomReservation.discount}}</td>
+                <td>{{hotelRoomReservation.hotelRating}}</td>
+                <td>{{hotelRoomReservation.roomRating}}</td>
+                <td>{{hotelRoomReservation.deleted}}</td>
                 <td>
                     <div *ngIf="hotelRoomReservation.room">
                         <a [routerLink]="['../room', hotelRoomReservation.room?.id, 'view' ]" >{{hotelRoomReservation.room?.id}}</a>

@@ -16,6 +16,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Accepted</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Sender</span></th>
             <th><span>Reciver</span></th>
             <th></th>
@@ -25,6 +26,7 @@
             <tr *ngFor="let friendRequest of friendRequests ;trackBy: trackId">
                 <td><a [routerLink]="['/friend-request', friendRequest.id, 'view' ]">{{friendRequest.id}}</a></td>
                 <td>{{friendRequest.accepted}}</td>
+                <td>{{friendRequest.deleted}}</td>
                 <td>
                     <div *ngIf="friendRequest.sender">
                         <a [routerLink]="['../isa-user', friendRequest.sender?.id, 'view' ]" >{{friendRequest.sender?.id}}</a>

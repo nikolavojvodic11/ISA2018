@@ -46,6 +46,9 @@ public class AvailableHotelServiceResourceIntTest {
     private static final Integer DEFAULT_DISCOUNT = 1;
     private static final Integer UPDATED_DISCOUNT = 2;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private AvailableHotelServiceRepository availableHotelServiceRepository;
 
@@ -89,7 +92,8 @@ public class AvailableHotelServiceResourceIntTest {
     public static AvailableHotelService createEntity(EntityManager em) {
         AvailableHotelService availableHotelService = new AvailableHotelService()
             .price(DEFAULT_PRICE)
-            .discount(DEFAULT_DISCOUNT);
+            .discount(DEFAULT_DISCOUNT)
+            .deleted(DEFAULT_DELETED);
         return availableHotelService;
     }
 
@@ -115,6 +119,7 @@ public class AvailableHotelServiceResourceIntTest {
         AvailableHotelService testAvailableHotelService = availableHotelServiceList.get(availableHotelServiceList.size() - 1);
         assertThat(testAvailableHotelService.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testAvailableHotelService.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
+        assertThat(testAvailableHotelService.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class AvailableHotelServiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(availableHotelService.getId().intValue())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
-            .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)));
+            .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -163,7 +169,8 @@ public class AvailableHotelServiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(availableHotelService.getId().intValue()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
-            .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT));
+            .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -188,7 +195,8 @@ public class AvailableHotelServiceResourceIntTest {
         em.detach(updatedAvailableHotelService);
         updatedAvailableHotelService
             .price(UPDATED_PRICE)
-            .discount(UPDATED_DISCOUNT);
+            .discount(UPDATED_DISCOUNT)
+            .deleted(UPDATED_DELETED);
 
         restAvailableHotelServiceMockMvc.perform(put("/api/available-hotel-services")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +209,7 @@ public class AvailableHotelServiceResourceIntTest {
         AvailableHotelService testAvailableHotelService = availableHotelServiceList.get(availableHotelServiceList.size() - 1);
         assertThat(testAvailableHotelService.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testAvailableHotelService.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
+        assertThat(testAvailableHotelService.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

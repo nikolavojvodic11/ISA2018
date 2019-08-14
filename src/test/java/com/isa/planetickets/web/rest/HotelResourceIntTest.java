@@ -52,6 +52,15 @@ public class HotelResourceIntTest {
     private static final Integer DEFAULT_STARS = 1;
     private static final Integer UPDATED_STARS = 2;
 
+    private static final Double DEFAULT_LAT = 1D;
+    private static final Double UPDATED_LAT = 2D;
+
+    private static final Double DEFAULT_LNG = 1D;
+    private static final Double UPDATED_LNG = 2D;
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private HotelRepository hotelRepository;
 
@@ -97,7 +106,10 @@ public class HotelResourceIntTest {
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
             .address(DEFAULT_ADDRESS)
-            .stars(DEFAULT_STARS);
+            .stars(DEFAULT_STARS)
+            .lat(DEFAULT_LAT)
+            .lng(DEFAULT_LNG)
+            .deleted(DEFAULT_DELETED);
         return hotel;
     }
 
@@ -125,6 +137,9 @@ public class HotelResourceIntTest {
         assertThat(testHotel.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testHotel.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testHotel.getStars()).isEqualTo(DEFAULT_STARS);
+        assertThat(testHotel.getLat()).isEqualTo(DEFAULT_LAT);
+        assertThat(testHotel.getLng()).isEqualTo(DEFAULT_LNG);
+        assertThat(testHotel.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -160,7 +175,10 @@ public class HotelResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
-            .andExpect(jsonPath("$.[*].stars").value(hasItem(DEFAULT_STARS)));
+            .andExpect(jsonPath("$.[*].stars").value(hasItem(DEFAULT_STARS)))
+            .andExpect(jsonPath("$.[*].lat").value(hasItem(DEFAULT_LAT.doubleValue())))
+            .andExpect(jsonPath("$.[*].lng").value(hasItem(DEFAULT_LNG.doubleValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -177,7 +195,10 @@ public class HotelResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
-            .andExpect(jsonPath("$.stars").value(DEFAULT_STARS));
+            .andExpect(jsonPath("$.stars").value(DEFAULT_STARS))
+            .andExpect(jsonPath("$.lat").value(DEFAULT_LAT.doubleValue()))
+            .andExpect(jsonPath("$.lng").value(DEFAULT_LNG.doubleValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -204,7 +225,10 @@ public class HotelResourceIntTest {
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
             .address(UPDATED_ADDRESS)
-            .stars(UPDATED_STARS);
+            .stars(UPDATED_STARS)
+            .lat(UPDATED_LAT)
+            .lng(UPDATED_LNG)
+            .deleted(UPDATED_DELETED);
 
         restHotelMockMvc.perform(put("/api/hotels")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -219,6 +243,9 @@ public class HotelResourceIntTest {
         assertThat(testHotel.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testHotel.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testHotel.getStars()).isEqualTo(UPDATED_STARS);
+        assertThat(testHotel.getLat()).isEqualTo(UPDATED_LAT);
+        assertThat(testHotel.getLng()).isEqualTo(UPDATED_LNG);
+        assertThat(testHotel.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

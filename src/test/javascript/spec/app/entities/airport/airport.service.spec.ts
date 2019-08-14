@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(AirportService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Airport(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Airport(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -57,7 +57,10 @@ describe('Service Tests', () => {
                     {
                         name: 'BBBBBB',
                         code: 'BBBBBB',
-                        address: 'BBBBBB'
+                        address: 'BBBBBB',
+                        lat: 1,
+                        lng: 1,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -76,7 +79,10 @@ describe('Service Tests', () => {
                     {
                         name: 'BBBBBB',
                         code: 'BBBBBB',
-                        address: 'BBBBBB'
+                        address: 'BBBBBB',
+                        lat: 1,
+                        lng: 1,
+                        deleted: true
                     },
                     elemDefault
                 );

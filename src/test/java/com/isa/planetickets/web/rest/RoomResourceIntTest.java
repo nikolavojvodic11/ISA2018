@@ -46,6 +46,9 @@ public class RoomResourceIntTest {
     private static final String DEFAULT_LABEL = "AAAAAAAAAA";
     private static final String UPDATED_LABEL = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private RoomRepository roomRepository;
 
@@ -89,7 +92,8 @@ public class RoomResourceIntTest {
     public static Room createEntity(EntityManager em) {
         Room room = new Room()
             .bedsCount(DEFAULT_BEDS_COUNT)
-            .label(DEFAULT_LABEL);
+            .label(DEFAULT_LABEL)
+            .deleted(DEFAULT_DELETED);
         return room;
     }
 
@@ -115,6 +119,7 @@ public class RoomResourceIntTest {
         Room testRoom = roomList.get(roomList.size() - 1);
         assertThat(testRoom.getBedsCount()).isEqualTo(DEFAULT_BEDS_COUNT);
         assertThat(testRoom.getLabel()).isEqualTo(DEFAULT_LABEL);
+        assertThat(testRoom.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class RoomResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(room.getId().intValue())))
             .andExpect(jsonPath("$.[*].bedsCount").value(hasItem(DEFAULT_BEDS_COUNT)))
-            .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL.toString())));
+            .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -163,7 +169,8 @@ public class RoomResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(room.getId().intValue()))
             .andExpect(jsonPath("$.bedsCount").value(DEFAULT_BEDS_COUNT))
-            .andExpect(jsonPath("$.label").value(DEFAULT_LABEL.toString()));
+            .andExpect(jsonPath("$.label").value(DEFAULT_LABEL.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -188,7 +195,8 @@ public class RoomResourceIntTest {
         em.detach(updatedRoom);
         updatedRoom
             .bedsCount(UPDATED_BEDS_COUNT)
-            .label(UPDATED_LABEL);
+            .label(UPDATED_LABEL)
+            .deleted(UPDATED_DELETED);
 
         restRoomMockMvc.perform(put("/api/rooms")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +209,7 @@ public class RoomResourceIntTest {
         Room testRoom = roomList.get(roomList.size() - 1);
         assertThat(testRoom.getBedsCount()).isEqualTo(UPDATED_BEDS_COUNT);
         assertThat(testRoom.getLabel()).isEqualTo(UPDATED_LABEL);
+        assertThat(testRoom.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

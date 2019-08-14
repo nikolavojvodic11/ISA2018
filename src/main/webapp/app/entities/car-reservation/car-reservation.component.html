@@ -18,6 +18,10 @@
             <th><span>Date From</span></th>
             <th><span>Date To</span></th>
             <th><span>Price</span></th>
+            <th><span>Discount</span></th>
+            <th><span>Hotel Rating</span></th>
+            <th><span>Room Rating</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Car</span></th>
             <th><span>Car Reservation</span></th>
             <th></th>
@@ -29,6 +33,10 @@
                 <td>{{carReservation.dateFrom | date:'medium'}}</td>
                 <td>{{carReservation.dateTo | date:'medium'}}</td>
                 <td>{{carReservation.price}}</td>
+                <td>{{carReservation.discount}}</td>
+                <td>{{carReservation.hotelRating}}</td>
+                <td>{{carReservation.roomRating}}</td>
+                <td>{{carReservation.deleted}}</td>
                 <td>
                     <div *ngIf="carReservation.car">
                         <a [routerLink]="['../car', carReservation.car?.id, 'view' ]" >{{carReservation.car?.id}}</a>

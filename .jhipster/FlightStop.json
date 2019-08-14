@@ -4,6 +4,10 @@
         {
             "fieldName": "stopNumber",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

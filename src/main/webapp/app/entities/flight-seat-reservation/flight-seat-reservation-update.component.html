@@ -37,6 +37,31 @@
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="flightSeatReservation.price" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_discount">Discount</label>
+                    <input type="number" class="form-control" name="discount" id="field_discount"
+                        [(ngModel)]="flightSeatReservation.discount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_hotelRating">Hotel Rating</label>
+                    <input type="number" class="form-control" name="hotelRating" id="field_hotelRating"
+                        [(ngModel)]="flightSeatReservation.hotelRating" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roomRating">Room Rating</label>
+                    <input type="number" class="form-control" name="roomRating" id="field_roomRating"
+                        [(ngModel)]="flightSeatReservation.roomRating" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pointsEarned">Points Earned</label>
+                    <input type="number" class="form-control" name="pointsEarned" id="field_pointsEarned"
+                        [(ngModel)]="flightSeatReservation.pointsEarned" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                        [(ngModel)]="flightSeatReservation.deleted" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_seat">Seat</label>

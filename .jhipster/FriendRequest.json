@@ -4,6 +4,10 @@
         {
             "fieldName": "accepted",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

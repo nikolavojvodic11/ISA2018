@@ -8,6 +8,10 @@
         {
             "fieldName": "label",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

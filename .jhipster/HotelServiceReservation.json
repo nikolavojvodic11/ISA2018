@@ -13,6 +13,10 @@
             "fieldName": "status",
             "fieldType": "ReservationStatus",
             "fieldValues": "RESERVED,CONFIRMED,DELETED"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

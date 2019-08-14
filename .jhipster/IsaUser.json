@@ -8,6 +8,18 @@
         {
             "fieldName": "firstLogin",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "pointsUsed",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "passwordChanged",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

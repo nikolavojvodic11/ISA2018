@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new HotelRoomReservation(0, currentDate, currentDate, ReservationStatus.RESERVED, 0);
+            elemDefault = new HotelRoomReservation(0, currentDate, currentDate, ReservationStatus.RESERVED, 0, 0, 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -76,7 +76,11 @@ describe('Service Tests', () => {
                         dateFrom: currentDate.format(DATE_TIME_FORMAT),
                         dateTo: currentDate.format(DATE_TIME_FORMAT),
                         status: 'BBBBBB',
-                        price: 1
+                        price: 1,
+                        discount: 1,
+                        hotelRating: 1,
+                        roomRating: 1,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -102,7 +106,11 @@ describe('Service Tests', () => {
                         dateFrom: currentDate.format(DATE_TIME_FORMAT),
                         dateTo: currentDate.format(DATE_TIME_FORMAT),
                         status: 'BBBBBB',
-                        price: 1
+                        price: 1,
+                        discount: 1,
+                        hotelRating: 1,
+                        roomRating: 1,
+                        deleted: true
                     },
                     elemDefault
                 );

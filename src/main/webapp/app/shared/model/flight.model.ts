@@ -14,6 +14,7 @@ export interface IFlight {
     price?: number;
     discount?: number;
     code?: string;
+    deleted?: boolean;
     flightStops?: IFlightStop[];
     departureAirport?: IAirport;
     arrivalAirport?: IAirport;
@@ -32,10 +33,13 @@ export class Flight implements IFlight {
         public price?: number,
         public discount?: number,
         public code?: string,
+        public deleted?: boolean,
         public flightStops?: IFlightStop[],
         public departureAirport?: IAirport,
         public arrivalAirport?: IAirport,
         public plane?: IPlane,
         public company?: ICompany
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

@@ -38,6 +38,9 @@ public class Reservation implements Serializable {
     @Column(name = "total")
     private Double total;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "reservation")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<HotelServiceReservation> hotelServiceReservations = new HashSet<>();
@@ -100,6 +103,19 @@ public class Reservation implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Reservation deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Set<HotelServiceReservation> getHotelServiceReservations() {
@@ -243,6 +259,7 @@ public class Reservation implements Serializable {
             ", discount=" + getDiscount() +
             ", type='" + getType() + "'" +
             ", total=" + getTotal() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

@@ -6,6 +6,7 @@ import { IRoom } from 'app/shared/model//room.model';
 export interface IImage {
     id?: number;
     path?: string;
+    deleted?: boolean;
     company?: ICompany;
     car?: ICar;
     hotel?: IHotel;
@@ -16,9 +17,12 @@ export class Image implements IImage {
     constructor(
         public id?: number,
         public path?: string,
+        public deleted?: boolean,
         public company?: ICompany,
         public car?: ICar,
         public hotel?: IHotel,
         public room?: IRoom
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

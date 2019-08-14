@@ -18,6 +18,9 @@
             <th><span>Address</span></th>
             <th><span>Phone</span></th>
             <th><span>Email</span></th>
+            <th><span>Lat</span></th>
+            <th><span>Lng</span></th>
+            <th><span>Deleted</span></th>
             <th><span>City</span></th>
             <th><span>Company</span></th>
             <th></th>
@@ -29,6 +32,9 @@
                 <td>{{companyLocation.address}}</td>
                 <td>{{companyLocation.phone}}</td>
                 <td>{{companyLocation.email}}</td>
+                <td>{{companyLocation.lat}}</td>
+                <td>{{companyLocation.lng}}</td>
+                <td>{{companyLocation.deleted}}</td>
                 <td>
                     <div *ngIf="companyLocation.city">
                         <a [routerLink]="['../city', companyLocation.city?.id, 'view' ]" >{{companyLocation.city?.id}}</a>

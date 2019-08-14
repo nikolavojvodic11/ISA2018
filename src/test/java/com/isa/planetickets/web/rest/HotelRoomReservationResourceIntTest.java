@@ -55,6 +55,18 @@ public class HotelRoomReservationResourceIntTest {
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
+    private static final Integer DEFAULT_DISCOUNT = 1;
+    private static final Integer UPDATED_DISCOUNT = 2;
+
+    private static final Integer DEFAULT_HOTEL_RATING = 1;
+    private static final Integer UPDATED_HOTEL_RATING = 2;
+
+    private static final Integer DEFAULT_ROOM_RATING = 1;
+    private static final Integer UPDATED_ROOM_RATING = 2;
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private HotelRoomReservationRepository hotelRoomReservationRepository;
 
@@ -100,7 +112,11 @@ public class HotelRoomReservationResourceIntTest {
             .dateFrom(DEFAULT_DATE_FROM)
             .dateTo(DEFAULT_DATE_TO)
             .status(DEFAULT_STATUS)
-            .price(DEFAULT_PRICE);
+            .price(DEFAULT_PRICE)
+            .discount(DEFAULT_DISCOUNT)
+            .hotelRating(DEFAULT_HOTEL_RATING)
+            .roomRating(DEFAULT_ROOM_RATING)
+            .deleted(DEFAULT_DELETED);
         return hotelRoomReservation;
     }
 
@@ -128,6 +144,10 @@ public class HotelRoomReservationResourceIntTest {
         assertThat(testHotelRoomReservation.getDateTo()).isEqualTo(DEFAULT_DATE_TO);
         assertThat(testHotelRoomReservation.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testHotelRoomReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testHotelRoomReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
+        assertThat(testHotelRoomReservation.getHotelRating()).isEqualTo(DEFAULT_HOTEL_RATING);
+        assertThat(testHotelRoomReservation.getRoomRating()).isEqualTo(DEFAULT_ROOM_RATING);
+        assertThat(testHotelRoomReservation.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -163,7 +183,11 @@ public class HotelRoomReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(DEFAULT_DATE_FROM.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(DEFAULT_DATE_TO.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
+            .andExpect(jsonPath("$.[*].hotelRating").value(hasItem(DEFAULT_HOTEL_RATING)))
+            .andExpect(jsonPath("$.[*].roomRating").value(hasItem(DEFAULT_ROOM_RATING)))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -180,7 +204,11 @@ public class HotelRoomReservationResourceIntTest {
             .andExpect(jsonPath("$.dateFrom").value(DEFAULT_DATE_FROM.toString()))
             .andExpect(jsonPath("$.dateTo").value(DEFAULT_DATE_TO.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
+            .andExpect(jsonPath("$.hotelRating").value(DEFAULT_HOTEL_RATING))
+            .andExpect(jsonPath("$.roomRating").value(DEFAULT_ROOM_RATING))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -207,7 +235,11 @@ public class HotelRoomReservationResourceIntTest {
             .dateFrom(UPDATED_DATE_FROM)
             .dateTo(UPDATED_DATE_TO)
             .status(UPDATED_STATUS)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .discount(UPDATED_DISCOUNT)
+            .hotelRating(UPDATED_HOTEL_RATING)
+            .roomRating(UPDATED_ROOM_RATING)
+            .deleted(UPDATED_DELETED);
 
         restHotelRoomReservationMockMvc.perform(put("/api/hotel-room-reservations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -222,6 +254,10 @@ public class HotelRoomReservationResourceIntTest {
         assertThat(testHotelRoomReservation.getDateTo()).isEqualTo(UPDATED_DATE_TO);
         assertThat(testHotelRoomReservation.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testHotelRoomReservation.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testHotelRoomReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
+        assertThat(testHotelRoomReservation.getHotelRating()).isEqualTo(UPDATED_HOTEL_RATING);
+        assertThat(testHotelRoomReservation.getRoomRating()).isEqualTo(UPDATED_ROOM_RATING);
+        assertThat(testHotelRoomReservation.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

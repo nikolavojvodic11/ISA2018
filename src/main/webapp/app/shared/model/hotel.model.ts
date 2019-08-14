@@ -9,6 +9,9 @@ export interface IHotel {
     description?: string;
     address?: string;
     stars?: number;
+    lat?: number;
+    lng?: number;
+    deleted?: boolean;
     rooms?: IRoom[];
     images?: IImage[];
     availableHotelServices?: IAvailableHotelService[];
@@ -22,9 +25,14 @@ export class Hotel implements IHotel {
         public description?: string,
         public address?: string,
         public stars?: number,
+        public lat?: number,
+        public lng?: number,
+        public deleted?: boolean,
         public rooms?: IRoom[],
         public images?: IImage[],
         public availableHotelServices?: IAvailableHotelService[],
         public companyLocation?: ICompanyLocation
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

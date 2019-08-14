@@ -49,6 +49,15 @@ public class CompanyLocationResourceIntTest {
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
+    private static final Double DEFAULT_LAT = 1D;
+    private static final Double UPDATED_LAT = 2D;
+
+    private static final Double DEFAULT_LNG = 1D;
+    private static final Double UPDATED_LNG = 2D;
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private CompanyLocationRepository companyLocationRepository;
 
@@ -93,7 +102,10 @@ public class CompanyLocationResourceIntTest {
         CompanyLocation companyLocation = new CompanyLocation()
             .address(DEFAULT_ADDRESS)
             .phone(DEFAULT_PHONE)
-            .email(DEFAULT_EMAIL);
+            .email(DEFAULT_EMAIL)
+            .lat(DEFAULT_LAT)
+            .lng(DEFAULT_LNG)
+            .deleted(DEFAULT_DELETED);
         return companyLocation;
     }
 
@@ -120,6 +132,9 @@ public class CompanyLocationResourceIntTest {
         assertThat(testCompanyLocation.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testCompanyLocation.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testCompanyLocation.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testCompanyLocation.getLat()).isEqualTo(DEFAULT_LAT);
+        assertThat(testCompanyLocation.getLng()).isEqualTo(DEFAULT_LNG);
+        assertThat(testCompanyLocation.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -154,7 +169,10 @@ public class CompanyLocationResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(companyLocation.getId().intValue())))
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].lat").value(hasItem(DEFAULT_LAT.doubleValue())))
+            .andExpect(jsonPath("$.[*].lng").value(hasItem(DEFAULT_LNG.doubleValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -170,7 +188,10 @@ public class CompanyLocationResourceIntTest {
             .andExpect(jsonPath("$.id").value(companyLocation.getId().intValue()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.lat").value(DEFAULT_LAT.doubleValue()))
+            .andExpect(jsonPath("$.lng").value(DEFAULT_LNG.doubleValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -196,7 +217,10 @@ public class CompanyLocationResourceIntTest {
         updatedCompanyLocation
             .address(UPDATED_ADDRESS)
             .phone(UPDATED_PHONE)
-            .email(UPDATED_EMAIL);
+            .email(UPDATED_EMAIL)
+            .lat(UPDATED_LAT)
+            .lng(UPDATED_LNG)
+            .deleted(UPDATED_DELETED);
 
         restCompanyLocationMockMvc.perform(put("/api/company-locations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -210,6 +234,9 @@ public class CompanyLocationResourceIntTest {
         assertThat(testCompanyLocation.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testCompanyLocation.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testCompanyLocation.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testCompanyLocation.getLat()).isEqualTo(UPDATED_LAT);
+        assertThat(testCompanyLocation.getLng()).isEqualTo(UPDATED_LNG);
+        assertThat(testCompanyLocation.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

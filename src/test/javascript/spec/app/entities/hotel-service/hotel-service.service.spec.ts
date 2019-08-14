@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(HotelServiceService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new HotelService(0, 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new HotelService(0, 'AAAAAAA', 'AAAAAAA', false);
         });
 
         describe('Service methods', async () => {
@@ -56,7 +56,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         serviceName: 'BBBBBB',
-                        serviceDescription: 'BBBBBB'
+                        serviceDescription: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -74,7 +75,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         serviceName: 'BBBBBB',
-                        serviceDescription: 'BBBBBB'
+                        serviceDescription: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );

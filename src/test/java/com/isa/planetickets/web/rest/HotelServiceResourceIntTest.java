@@ -46,6 +46,9 @@ public class HotelServiceResourceIntTest {
     private static final String DEFAULT_SERVICE_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_SERVICE_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private HotelServiceRepository hotelServiceRepository;
 
@@ -89,7 +92,8 @@ public class HotelServiceResourceIntTest {
     public static HotelService createEntity(EntityManager em) {
         HotelService hotelService = new HotelService()
             .serviceName(DEFAULT_SERVICE_NAME)
-            .serviceDescription(DEFAULT_SERVICE_DESCRIPTION);
+            .serviceDescription(DEFAULT_SERVICE_DESCRIPTION)
+            .deleted(DEFAULT_DELETED);
         return hotelService;
     }
 
@@ -115,6 +119,7 @@ public class HotelServiceResourceIntTest {
         HotelService testHotelService = hotelServiceList.get(hotelServiceList.size() - 1);
         assertThat(testHotelService.getServiceName()).isEqualTo(DEFAULT_SERVICE_NAME);
         assertThat(testHotelService.getServiceDescription()).isEqualTo(DEFAULT_SERVICE_DESCRIPTION);
+        assertThat(testHotelService.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class HotelServiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(hotelService.getId().intValue())))
             .andExpect(jsonPath("$.[*].serviceName").value(hasItem(DEFAULT_SERVICE_NAME.toString())))
-            .andExpect(jsonPath("$.[*].serviceDescription").value(hasItem(DEFAULT_SERVICE_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].serviceDescription").value(hasItem(DEFAULT_SERVICE_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -163,7 +169,8 @@ public class HotelServiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(hotelService.getId().intValue()))
             .andExpect(jsonPath("$.serviceName").value(DEFAULT_SERVICE_NAME.toString()))
-            .andExpect(jsonPath("$.serviceDescription").value(DEFAULT_SERVICE_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.serviceDescription").value(DEFAULT_SERVICE_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -188,7 +195,8 @@ public class HotelServiceResourceIntTest {
         em.detach(updatedHotelService);
         updatedHotelService
             .serviceName(UPDATED_SERVICE_NAME)
-            .serviceDescription(UPDATED_SERVICE_DESCRIPTION);
+            .serviceDescription(UPDATED_SERVICE_DESCRIPTION)
+            .deleted(UPDATED_DELETED);
 
         restHotelServiceMockMvc.perform(put("/api/hotel-services")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +209,7 @@ public class HotelServiceResourceIntTest {
         HotelService testHotelService = hotelServiceList.get(hotelServiceList.size() - 1);
         assertThat(testHotelService.getServiceName()).isEqualTo(UPDATED_SERVICE_NAME);
         assertThat(testHotelService.getServiceDescription()).isEqualTo(UPDATED_SERVICE_DESCRIPTION);
+        assertThat(testHotelService.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

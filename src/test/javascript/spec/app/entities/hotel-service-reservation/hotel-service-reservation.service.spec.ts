@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(HotelServiceReservationService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new HotelServiceReservation(0, 0, 0, ReservationStatus.RESERVED);
+            elemDefault = new HotelServiceReservation(0, 0, 0, ReservationStatus.RESERVED, false);
         });
 
         describe('Service methods', async () => {
@@ -57,7 +57,8 @@ describe('Service Tests', () => {
                     {
                         quantity: 1,
                         price: 1,
-                        status: 'BBBBBB'
+                        status: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -76,7 +77,8 @@ describe('Service Tests', () => {
                     {
                         quantity: 1,
                         price: 1,
-                        status: 'BBBBBB'
+                        status: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );

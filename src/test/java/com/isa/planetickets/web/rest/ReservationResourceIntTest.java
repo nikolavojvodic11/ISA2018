@@ -50,6 +50,9 @@ public class ReservationResourceIntTest {
     private static final Double DEFAULT_TOTAL = 1D;
     private static final Double UPDATED_TOTAL = 2D;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private ReservationRepository reservationRepository;
 
@@ -94,7 +97,8 @@ public class ReservationResourceIntTest {
         Reservation reservation = new Reservation()
             .discount(DEFAULT_DISCOUNT)
             .type(DEFAULT_TYPE)
-            .total(DEFAULT_TOTAL);
+            .total(DEFAULT_TOTAL)
+            .deleted(DEFAULT_DELETED);
         return reservation;
     }
 
@@ -121,6 +125,7 @@ public class ReservationResourceIntTest {
         assertThat(testReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testReservation.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testReservation.getTotal()).isEqualTo(DEFAULT_TOTAL);
+        assertThat(testReservation.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -155,7 +160,8 @@ public class ReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(reservation.getId().intValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -171,7 +177,8 @@ public class ReservationResourceIntTest {
             .andExpect(jsonPath("$.id").value(reservation.getId().intValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
-            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()));
+            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -197,7 +204,8 @@ public class ReservationResourceIntTest {
         updatedReservation
             .discount(UPDATED_DISCOUNT)
             .type(UPDATED_TYPE)
-            .total(UPDATED_TOTAL);
+            .total(UPDATED_TOTAL)
+            .deleted(UPDATED_DELETED);
 
         restReservationMockMvc.perform(put("/api/reservations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -211,6 +219,7 @@ public class ReservationResourceIntTest {
         assertThat(testReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testReservation.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testReservation.getTotal()).isEqualTo(UPDATED_TOTAL);
+        assertThat(testReservation.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

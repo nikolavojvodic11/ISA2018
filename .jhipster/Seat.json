@@ -8,6 +8,10 @@
         {
             "fieldName": "col",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

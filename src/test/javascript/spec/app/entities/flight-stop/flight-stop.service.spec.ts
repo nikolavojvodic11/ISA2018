@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(FlightStopService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new FlightStop(0, 0);
+            elemDefault = new FlightStop(0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
             it('should update a FlightStop', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        stopNumber: 1
+                        stopNumber: 1,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -72,7 +73,8 @@ describe('Service Tests', () => {
             it('should return a list of FlightStop', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        stopNumber: 1
+                        stopNumber: 1,
+                        deleted: true
                     },
                     elemDefault
                 );

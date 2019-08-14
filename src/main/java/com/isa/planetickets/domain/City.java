@@ -28,6 +28,9 @@ public class City implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "city")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Airport> airports = new HashSet<>();
@@ -51,6 +54,19 @@ public class City implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public City deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Set<Airport> getAirports() {
@@ -104,6 +120,7 @@ public class City implements Serializable {
         return "City{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

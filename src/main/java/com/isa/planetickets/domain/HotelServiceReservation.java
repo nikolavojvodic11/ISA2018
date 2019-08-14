@@ -35,6 +35,9 @@ public class HotelServiceReservation implements Serializable {
     @Column(name = "status")
     private ReservationStatus status;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private AvailableHotelService availableHotelService;
@@ -91,6 +94,19 @@ public class HotelServiceReservation implements Serializable {
         this.status = status;
     }
 
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public HotelServiceReservation deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public AvailableHotelService getAvailableHotelService() {
         return availableHotelService;
     }
@@ -145,6 +161,7 @@ public class HotelServiceReservation implements Serializable {
             ", quantity=" + getQuantity() +
             ", price=" + getPrice() +
             ", status='" + getStatus() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

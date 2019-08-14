@@ -46,6 +46,15 @@ public class IsaUserResourceIntTest {
     private static final Boolean DEFAULT_FIRST_LOGIN = false;
     private static final Boolean UPDATED_FIRST_LOGIN = true;
 
+    private static final Integer DEFAULT_POINTS_USED = 1;
+    private static final Integer UPDATED_POINTS_USED = 2;
+
+    private static final Boolean DEFAULT_PASSWORD_CHANGED = false;
+    private static final Boolean UPDATED_PASSWORD_CHANGED = true;
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private IsaUserRepository isaUserRepository;
 
@@ -89,7 +98,10 @@ public class IsaUserResourceIntTest {
     public static IsaUser createEntity(EntityManager em) {
         IsaUser isaUser = new IsaUser()
             .phone(DEFAULT_PHONE)
-            .firstLogin(DEFAULT_FIRST_LOGIN);
+            .firstLogin(DEFAULT_FIRST_LOGIN)
+            .pointsUsed(DEFAULT_POINTS_USED)
+            .passwordChanged(DEFAULT_PASSWORD_CHANGED)
+            .deleted(DEFAULT_DELETED);
         return isaUser;
     }
 
@@ -115,6 +127,9 @@ public class IsaUserResourceIntTest {
         IsaUser testIsaUser = isaUserList.get(isaUserList.size() - 1);
         assertThat(testIsaUser.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testIsaUser.isFirstLogin()).isEqualTo(DEFAULT_FIRST_LOGIN);
+        assertThat(testIsaUser.getPointsUsed()).isEqualTo(DEFAULT_POINTS_USED);
+        assertThat(testIsaUser.isPasswordChanged()).isEqualTo(DEFAULT_PASSWORD_CHANGED);
+        assertThat(testIsaUser.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -148,7 +163,10 @@ public class IsaUserResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(isaUser.getId().intValue())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
-            .andExpect(jsonPath("$.[*].firstLogin").value(hasItem(DEFAULT_FIRST_LOGIN.booleanValue())));
+            .andExpect(jsonPath("$.[*].firstLogin").value(hasItem(DEFAULT_FIRST_LOGIN.booleanValue())))
+            .andExpect(jsonPath("$.[*].pointsUsed").value(hasItem(DEFAULT_POINTS_USED)))
+            .andExpect(jsonPath("$.[*].passwordChanged").value(hasItem(DEFAULT_PASSWORD_CHANGED.booleanValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -163,7 +181,10 @@ public class IsaUserResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(isaUser.getId().intValue()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
-            .andExpect(jsonPath("$.firstLogin").value(DEFAULT_FIRST_LOGIN.booleanValue()));
+            .andExpect(jsonPath("$.firstLogin").value(DEFAULT_FIRST_LOGIN.booleanValue()))
+            .andExpect(jsonPath("$.pointsUsed").value(DEFAULT_POINTS_USED))
+            .andExpect(jsonPath("$.passwordChanged").value(DEFAULT_PASSWORD_CHANGED.booleanValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -188,7 +209,10 @@ public class IsaUserResourceIntTest {
         em.detach(updatedIsaUser);
         updatedIsaUser
             .phone(UPDATED_PHONE)
-            .firstLogin(UPDATED_FIRST_LOGIN);
+            .firstLogin(UPDATED_FIRST_LOGIN)
+            .pointsUsed(UPDATED_POINTS_USED)
+            .passwordChanged(UPDATED_PASSWORD_CHANGED)
+            .deleted(UPDATED_DELETED);
 
         restIsaUserMockMvc.perform(put("/api/isa-users")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +225,9 @@ public class IsaUserResourceIntTest {
         IsaUser testIsaUser = isaUserList.get(isaUserList.size() - 1);
         assertThat(testIsaUser.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testIsaUser.isFirstLogin()).isEqualTo(UPDATED_FIRST_LOGIN);
+        assertThat(testIsaUser.getPointsUsed()).isEqualTo(UPDATED_POINTS_USED);
+        assertThat(testIsaUser.isPasswordChanged()).isEqualTo(UPDATED_PASSWORD_CHANGED);
+        assertThat(testIsaUser.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

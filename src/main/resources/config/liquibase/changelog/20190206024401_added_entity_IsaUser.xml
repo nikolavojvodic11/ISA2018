@@ -29,6 +29,18 @@
             <column name="first_login" type="boolean">
                 <constraints nullable="true" />
             </column>
+
+            <column name="points_used" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="password_changed" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="deleted" type="boolean">
+                <constraints nullable="true" />
+            </column>
             <column name="jhi_user_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_isa_user_jhi_user_id" />
             </column>

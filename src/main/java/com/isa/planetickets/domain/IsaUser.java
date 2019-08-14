@@ -32,6 +32,15 @@ public class IsaUser implements Serializable {
     @Column(name = "first_login")
     private Boolean firstLogin;
 
+    @Column(name = "points_used")
+    private Integer pointsUsed;
+
+    @Column(name = "password_changed")
+    private Boolean passwordChanged;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToOne    @JoinColumn(unique = true)
     private User jhiUser;
 
@@ -79,6 +88,45 @@ public class IsaUser implements Serializable {
 
     public void setFirstLogin(Boolean firstLogin) {
         this.firstLogin = firstLogin;
+    }
+
+    public Integer getPointsUsed() {
+        return pointsUsed;
+    }
+
+    public IsaUser pointsUsed(Integer pointsUsed) {
+        this.pointsUsed = pointsUsed;
+        return this;
+    }
+
+    public void setPointsUsed(Integer pointsUsed) {
+        this.pointsUsed = pointsUsed;
+    }
+
+    public Boolean isPasswordChanged() {
+        return passwordChanged;
+    }
+
+    public IsaUser passwordChanged(Boolean passwordChanged) {
+        this.passwordChanged = passwordChanged;
+        return this;
+    }
+
+    public void setPasswordChanged(Boolean passwordChanged) {
+        this.passwordChanged = passwordChanged;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public IsaUser deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public User getJhiUser() {
@@ -172,6 +220,9 @@ public class IsaUser implements Serializable {
             "id=" + getId() +
             ", phone='" + getPhone() + "'" +
             ", firstLogin='" + isFirstLogin() + "'" +
+            ", pointsUsed=" + getPointsUsed() +
+            ", passwordChanged='" + isPasswordChanged() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

@@ -12,6 +12,10 @@
         {
             "fieldName": "price",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

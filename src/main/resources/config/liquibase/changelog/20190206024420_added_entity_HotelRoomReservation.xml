@@ -38,6 +38,22 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="discount" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="hotel_rating" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="room_rating" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="deleted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <column name="room_id" type="bigint">
                 <constraints nullable="true" />
             </column>

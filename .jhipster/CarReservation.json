@@ -12,6 +12,22 @@
         {
             "fieldName": "price",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hotelRating",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "roomRating",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

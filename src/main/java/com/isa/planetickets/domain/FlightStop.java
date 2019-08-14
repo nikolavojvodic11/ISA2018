@@ -26,6 +26,9 @@ public class FlightStop implements Serializable {
     @Column(name = "stop_number")
     private Integer stopNumber;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private Airport airport;
@@ -54,6 +57,19 @@ public class FlightStop implements Serializable {
 
     public void setStopNumber(Integer stopNumber) {
         this.stopNumber = stopNumber;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public FlightStop deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Airport getAirport() {
@@ -108,6 +124,7 @@ public class FlightStop implements Serializable {
         return "FlightStop{" +
             "id=" + getId() +
             ", stopNumber=" + getStopNumber() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

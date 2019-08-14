@@ -12,6 +12,7 @@ export interface IHotelServiceReservation {
     quantity?: number;
     price?: number;
     status?: ReservationStatus;
+    deleted?: boolean;
     availableHotelService?: IAvailableHotelService;
     reservation?: IReservation;
 }
@@ -22,7 +23,10 @@ export class HotelServiceReservation implements IHotelServiceReservation {
         public quantity?: number,
         public price?: number,
         public status?: ReservationStatus,
+        public deleted?: boolean,
         public availableHotelService?: IAvailableHotelService,
         public reservation?: IReservation
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

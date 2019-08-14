@@ -26,6 +26,9 @@ public class FriendRequest implements Serializable {
     @Column(name = "accepted")
     private Boolean accepted;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private IsaUser sender;
@@ -54,6 +57,19 @@ public class FriendRequest implements Serializable {
 
     public void setAccepted(Boolean accepted) {
         this.accepted = accepted;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public FriendRequest deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public IsaUser getSender() {
@@ -108,6 +124,7 @@ public class FriendRequest implements Serializable {
         return "FriendRequest{" +
             "id=" + getId() +
             ", accepted='" + isAccepted() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

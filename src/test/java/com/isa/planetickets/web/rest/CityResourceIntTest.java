@@ -43,6 +43,9 @@ public class CityResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private CityRepository cityRepository;
 
@@ -85,7 +88,8 @@ public class CityResourceIntTest {
      */
     public static City createEntity(EntityManager em) {
         City city = new City()
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .deleted(DEFAULT_DELETED);
         return city;
     }
 
@@ -110,6 +114,7 @@ public class CityResourceIntTest {
         assertThat(cityList).hasSize(databaseSizeBeforeCreate + 1);
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testCity.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class CityResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(city.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -156,7 +162,8 @@ public class CityResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(city.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -180,7 +187,8 @@ public class CityResourceIntTest {
         // Disconnect from session so that the updates on updatedCity are not directly saved in db
         em.detach(updatedCity);
         updatedCity
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .deleted(UPDATED_DELETED);
 
         restCityMockMvc.perform(put("/api/cities")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +200,7 @@ public class CityResourceIntTest {
         assertThat(cityList).hasSize(databaseSizeBeforeUpdate);
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testCity.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

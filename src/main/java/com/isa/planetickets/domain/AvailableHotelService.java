@@ -29,6 +29,9 @@ public class AvailableHotelService implements Serializable {
     @Column(name = "discount")
     private Integer discount;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private HotelService hotelServiceReservation;
@@ -70,6 +73,19 @@ public class AvailableHotelService implements Serializable {
 
     public void setDiscount(Integer discount) {
         this.discount = discount;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public AvailableHotelService deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public HotelService getHotelServiceReservation() {
@@ -125,6 +141,7 @@ public class AvailableHotelService implements Serializable {
             "id=" + getId() +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

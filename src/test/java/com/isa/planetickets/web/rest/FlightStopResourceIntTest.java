@@ -43,6 +43,9 @@ public class FlightStopResourceIntTest {
     private static final Integer DEFAULT_STOP_NUMBER = 1;
     private static final Integer UPDATED_STOP_NUMBER = 2;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private FlightStopRepository flightStopRepository;
 
@@ -85,7 +88,8 @@ public class FlightStopResourceIntTest {
      */
     public static FlightStop createEntity(EntityManager em) {
         FlightStop flightStop = new FlightStop()
-            .stopNumber(DEFAULT_STOP_NUMBER);
+            .stopNumber(DEFAULT_STOP_NUMBER)
+            .deleted(DEFAULT_DELETED);
         return flightStop;
     }
 
@@ -110,6 +114,7 @@ public class FlightStopResourceIntTest {
         assertThat(flightStopList).hasSize(databaseSizeBeforeCreate + 1);
         FlightStop testFlightStop = flightStopList.get(flightStopList.size() - 1);
         assertThat(testFlightStop.getStopNumber()).isEqualTo(DEFAULT_STOP_NUMBER);
+        assertThat(testFlightStop.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class FlightStopResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(flightStop.getId().intValue())))
-            .andExpect(jsonPath("$.[*].stopNumber").value(hasItem(DEFAULT_STOP_NUMBER)));
+            .andExpect(jsonPath("$.[*].stopNumber").value(hasItem(DEFAULT_STOP_NUMBER)))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -156,7 +162,8 @@ public class FlightStopResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(flightStop.getId().intValue()))
-            .andExpect(jsonPath("$.stopNumber").value(DEFAULT_STOP_NUMBER));
+            .andExpect(jsonPath("$.stopNumber").value(DEFAULT_STOP_NUMBER))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -180,7 +187,8 @@ public class FlightStopResourceIntTest {
         // Disconnect from session so that the updates on updatedFlightStop are not directly saved in db
         em.detach(updatedFlightStop);
         updatedFlightStop
-            .stopNumber(UPDATED_STOP_NUMBER);
+            .stopNumber(UPDATED_STOP_NUMBER)
+            .deleted(UPDATED_DELETED);
 
         restFlightStopMockMvc.perform(put("/api/flight-stops")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +200,7 @@ public class FlightStopResourceIntTest {
         assertThat(flightStopList).hasSize(databaseSizeBeforeUpdate);
         FlightStop testFlightStop = flightStopList.get(flightStopList.size() - 1);
         assertThat(testFlightStop.getStopNumber()).isEqualTo(UPDATED_STOP_NUMBER);
+        assertThat(testFlightStop.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

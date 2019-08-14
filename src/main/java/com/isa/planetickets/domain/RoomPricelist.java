@@ -33,6 +33,9 @@ public class RoomPricelist implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("roomPricelists")
     private Room room;
@@ -85,6 +88,19 @@ public class RoomPricelist implements Serializable {
         this.price = price;
     }
 
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public RoomPricelist deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Room getRoom() {
         return room;
     }
@@ -126,6 +142,7 @@ public class RoomPricelist implements Serializable {
             ", dateFrom='" + getDateFrom() + "'" +
             ", dateTo='" + getDateTo() + "'" +
             ", price=" + getPrice() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

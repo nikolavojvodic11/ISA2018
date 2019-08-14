@@ -16,6 +16,7 @@ export interface ICompany {
     phone?: string;
     email?: string;
     type?: CompanyType;
+    deleted?: boolean;
     companyLocations?: ICompanyLocation[];
     planes?: IPlane[];
     images?: IImage[];
@@ -30,8 +31,11 @@ export class Company implements ICompany {
         public phone?: string,
         public email?: string,
         public type?: CompanyType,
+        public deleted?: boolean,
         public companyLocations?: ICompanyLocation[],
         public planes?: IPlane[],
         public images?: IImage[]
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

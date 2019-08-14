@@ -32,6 +32,9 @@ public class Room implements Serializable {
     @Column(name = "jhi_label")
     private String label;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "room")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RoomPricelist> roomPricelists = new HashSet<>();
@@ -75,6 +78,19 @@ public class Room implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Room deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Set<RoomPricelist> getRoomPricelists() {
@@ -167,6 +183,7 @@ public class Room implements Serializable {
             "id=" + getId() +
             ", bedsCount=" + getBedsCount() +
             ", label='" + getLabel() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

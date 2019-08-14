@@ -18,6 +18,7 @@
             <th><span>Quantity</span></th>
             <th><span>Price</span></th>
             <th><span>Status</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Available Hotel Service</span></th>
             <th><span>Reservation</span></th>
             <th></th>
@@ -29,6 +30,7 @@
                 <td>{{hotelServiceReservation.quantity}}</td>
                 <td>{{hotelServiceReservation.price}}</td>
                 <td>{{hotelServiceReservation.status}}</td>
+                <td>{{hotelServiceReservation.deleted}}</td>
                 <td>
                     <div *ngIf="hotelServiceReservation.availableHotelService">
                         <a [routerLink]="['../available-hotel-service', hotelServiceReservation.availableHotelService?.id, 'view' ]" >{{hotelServiceReservation.availableHotelService?.id}}</a>

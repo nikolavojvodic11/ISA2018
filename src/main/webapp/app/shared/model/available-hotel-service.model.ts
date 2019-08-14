@@ -5,6 +5,7 @@ export interface IAvailableHotelService {
     id?: number;
     price?: number;
     discount?: number;
+    deleted?: boolean;
     hotelServiceReservation?: IHotelService;
     hotel?: IHotel;
 }
@@ -14,7 +15,10 @@ export class AvailableHotelService implements IAvailableHotelService {
         public id?: number,
         public price?: number,
         public discount?: number,
+        public deleted?: boolean,
         public hotelServiceReservation?: IHotelService,
         public hotel?: IHotel
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

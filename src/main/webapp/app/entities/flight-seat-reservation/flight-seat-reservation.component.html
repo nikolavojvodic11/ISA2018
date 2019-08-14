@@ -20,6 +20,11 @@
             <th><span>Passport Number</span></th>
             <th><span>Status</span></th>
             <th><span>Price</span></th>
+            <th><span>Discount</span></th>
+            <th><span>Hotel Rating</span></th>
+            <th><span>Room Rating</span></th>
+            <th><span>Points Earned</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Seat</span></th>
             <th><span>Flight</span></th>
             <th><span>Friend Request</span></th>
@@ -35,6 +40,11 @@
                 <td>{{flightSeatReservation.passportNumber}}</td>
                 <td>{{flightSeatReservation.status}}</td>
                 <td>{{flightSeatReservation.price}}</td>
+                <td>{{flightSeatReservation.discount}}</td>
+                <td>{{flightSeatReservation.hotelRating}}</td>
+                <td>{{flightSeatReservation.roomRating}}</td>
+                <td>{{flightSeatReservation.pointsEarned}}</td>
+                <td>{{flightSeatReservation.deleted}}</td>
                 <td>
                     <div *ngIf="flightSeatReservation.seat">
                         <a [routerLink]="['../seat', flightSeatReservation.seat?.id, 'view' ]" >{{flightSeatReservation.seat?.id}}</a>

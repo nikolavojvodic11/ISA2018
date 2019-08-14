@@ -49,6 +49,15 @@ public class AirportResourceIntTest {
     private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
 
+    private static final Double DEFAULT_LAT = 1D;
+    private static final Double UPDATED_LAT = 2D;
+
+    private static final Double DEFAULT_LNG = 1D;
+    private static final Double UPDATED_LNG = 2D;
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private AirportRepository airportRepository;
 
@@ -93,7 +102,10 @@ public class AirportResourceIntTest {
         Airport airport = new Airport()
             .name(DEFAULT_NAME)
             .code(DEFAULT_CODE)
-            .address(DEFAULT_ADDRESS);
+            .address(DEFAULT_ADDRESS)
+            .lat(DEFAULT_LAT)
+            .lng(DEFAULT_LNG)
+            .deleted(DEFAULT_DELETED);
         return airport;
     }
 
@@ -120,6 +132,9 @@ public class AirportResourceIntTest {
         assertThat(testAirport.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testAirport.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testAirport.getAddress()).isEqualTo(DEFAULT_ADDRESS);
+        assertThat(testAirport.getLat()).isEqualTo(DEFAULT_LAT);
+        assertThat(testAirport.getLng()).isEqualTo(DEFAULT_LNG);
+        assertThat(testAirport.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -154,7 +169,10 @@ public class AirportResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(airport.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
-            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())));
+            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
+            .andExpect(jsonPath("$.[*].lat").value(hasItem(DEFAULT_LAT.doubleValue())))
+            .andExpect(jsonPath("$.[*].lng").value(hasItem(DEFAULT_LNG.doubleValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -170,7 +188,10 @@ public class AirportResourceIntTest {
             .andExpect(jsonPath("$.id").value(airport.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
-            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()));
+            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
+            .andExpect(jsonPath("$.lat").value(DEFAULT_LAT.doubleValue()))
+            .andExpect(jsonPath("$.lng").value(DEFAULT_LNG.doubleValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -196,7 +217,10 @@ public class AirportResourceIntTest {
         updatedAirport
             .name(UPDATED_NAME)
             .code(UPDATED_CODE)
-            .address(UPDATED_ADDRESS);
+            .address(UPDATED_ADDRESS)
+            .lat(UPDATED_LAT)
+            .lng(UPDATED_LNG)
+            .deleted(UPDATED_DELETED);
 
         restAirportMockMvc.perform(put("/api/airports")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -210,6 +234,9 @@ public class AirportResourceIntTest {
         assertThat(testAirport.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testAirport.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testAirport.getAddress()).isEqualTo(UPDATED_ADDRESS);
+        assertThat(testAirport.getLat()).isEqualTo(UPDATED_LAT);
+        assertThat(testAirport.getLng()).isEqualTo(UPDATED_LNG);
+        assertThat(testAirport.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

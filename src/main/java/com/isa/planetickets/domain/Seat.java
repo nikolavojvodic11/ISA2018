@@ -29,6 +29,9 @@ public class Seat implements Serializable {
     @Column(name = "col")
     private Integer col;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("seats")
     private Plane plane;
@@ -66,6 +69,19 @@ public class Seat implements Serializable {
 
     public void setCol(Integer col) {
         this.col = col;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Seat deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Plane getPlane() {
@@ -108,6 +124,7 @@ public class Seat implements Serializable {
             "id=" + getId() +
             ", row=" + getRow() +
             ", col=" + getCol() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

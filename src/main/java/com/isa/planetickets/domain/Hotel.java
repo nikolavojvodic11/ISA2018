@@ -38,6 +38,15 @@ public class Hotel implements Serializable {
     @Column(name = "stars")
     private Integer stars;
 
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lng")
+    private Double lng;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "hotel")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Room> rooms = new HashSet<>();
@@ -110,6 +119,45 @@ public class Hotel implements Serializable {
 
     public void setStars(Integer stars) {
         this.stars = stars;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public Hotel lat(Double lat) {
+        this.lat = lat;
+        return this;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public Hotel lng(Double lng) {
+        this.lng = lng;
+        return this;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Hotel deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Set<Room> getRooms() {
@@ -229,6 +277,9 @@ public class Hotel implements Serializable {
             ", description='" + getDescription() + "'" +
             ", address='" + getAddress() + "'" +
             ", stars=" + getStars() +
+            ", lat=" + getLat() +
+            ", lng=" + getLng() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

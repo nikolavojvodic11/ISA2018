@@ -46,6 +46,9 @@ public class SeatResourceIntTest {
     private static final Integer DEFAULT_COL = 1;
     private static final Integer UPDATED_COL = 2;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private SeatRepository seatRepository;
 
@@ -89,7 +92,8 @@ public class SeatResourceIntTest {
     public static Seat createEntity(EntityManager em) {
         Seat seat = new Seat()
             .row(DEFAULT_ROW)
-            .col(DEFAULT_COL);
+            .col(DEFAULT_COL)
+            .deleted(DEFAULT_DELETED);
         return seat;
     }
 
@@ -115,6 +119,7 @@ public class SeatResourceIntTest {
         Seat testSeat = seatList.get(seatList.size() - 1);
         assertThat(testSeat.getRow()).isEqualTo(DEFAULT_ROW);
         assertThat(testSeat.getCol()).isEqualTo(DEFAULT_COL);
+        assertThat(testSeat.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class SeatResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(seat.getId().intValue())))
             .andExpect(jsonPath("$.[*].row").value(hasItem(DEFAULT_ROW)))
-            .andExpect(jsonPath("$.[*].col").value(hasItem(DEFAULT_COL)));
+            .andExpect(jsonPath("$.[*].col").value(hasItem(DEFAULT_COL)))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -163,7 +169,8 @@ public class SeatResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(seat.getId().intValue()))
             .andExpect(jsonPath("$.row").value(DEFAULT_ROW))
-            .andExpect(jsonPath("$.col").value(DEFAULT_COL));
+            .andExpect(jsonPath("$.col").value(DEFAULT_COL))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -188,7 +195,8 @@ public class SeatResourceIntTest {
         em.detach(updatedSeat);
         updatedSeat
             .row(UPDATED_ROW)
-            .col(UPDATED_COL);
+            .col(UPDATED_COL)
+            .deleted(UPDATED_DELETED);
 
         restSeatMockMvc.perform(put("/api/seats")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,6 +209,7 @@ public class SeatResourceIntTest {
         Seat testSeat = seatList.get(seatList.size() - 1);
         assertThat(testSeat.getRow()).isEqualTo(UPDATED_ROW);
         assertThat(testSeat.getCol()).isEqualTo(UPDATED_COL);
+        assertThat(testSeat.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

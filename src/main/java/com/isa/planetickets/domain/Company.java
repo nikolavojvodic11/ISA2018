@@ -46,6 +46,9 @@ public class Company implements Serializable {
     @Column(name = "jhi_type")
     private CompanyType type;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "company")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CompanyLocation> companyLocations = new HashSet<>();
@@ -140,6 +143,19 @@ public class Company implements Serializable {
 
     public void setType(CompanyType type) {
         this.type = type;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Company deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Set<CompanyLocation> getCompanyLocations() {
@@ -248,6 +264,7 @@ public class Company implements Serializable {
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", type='" + getType() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(HotelService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Hotel(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0);
+            elemDefault = new Hotel(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -58,7 +58,10 @@ describe('Service Tests', () => {
                         name: 'BBBBBB',
                         description: 'BBBBBB',
                         address: 'BBBBBB',
-                        stars: 1
+                        stars: 1,
+                        lat: 1,
+                        lng: 1,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -78,7 +81,10 @@ describe('Service Tests', () => {
                         name: 'BBBBBB',
                         description: 'BBBBBB',
                         address: 'BBBBBB',
-                        stars: 1
+                        stars: 1,
+                        lat: 1,
+                        lng: 1,
+                        deleted: true
                     },
                     elemDefault
                 );

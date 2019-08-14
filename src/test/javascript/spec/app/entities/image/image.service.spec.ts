@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(ImageService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Image(0, 'AAAAAAA');
+            elemDefault = new Image(0, 'AAAAAAA', false);
         });
 
         describe('Service methods', async () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
             it('should update a Image', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        path: 'BBBBBB'
+                        path: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -72,7 +73,8 @@ describe('Service Tests', () => {
             it('should return a list of Image', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        path: 'BBBBBB'
+                        path: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );

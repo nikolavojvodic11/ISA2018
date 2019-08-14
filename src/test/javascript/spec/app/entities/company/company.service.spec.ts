@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(CompanyService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Company(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', CompanyType.AIRLINE);
+            elemDefault = new Company(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', CompanyType.AIRLINE, false);
         });
 
         describe('Service methods', async () => {
@@ -60,7 +60,8 @@ describe('Service Tests', () => {
                         website: 'BBBBBB',
                         phone: 'BBBBBB',
                         email: 'BBBBBB',
-                        type: 'BBBBBB'
+                        type: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -82,7 +83,8 @@ describe('Service Tests', () => {
                         website: 'BBBBBB',
                         phone: 'BBBBBB',
                         email: 'BBBBBB',
-                        type: 'BBBBBB'
+                        type: 'BBBBBB',
+                        deleted: true
                     },
                     elemDefault
                 );

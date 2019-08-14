@@ -4,6 +4,10 @@
         {
             "fieldName": "path",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

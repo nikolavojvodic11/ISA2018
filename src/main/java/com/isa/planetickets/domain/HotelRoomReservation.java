@@ -39,6 +39,18 @@ public class HotelRoomReservation implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "discount")
+    private Integer discount;
+
+    @Column(name = "hotel_rating")
+    private Integer hotelRating;
+
+    @Column(name = "room_rating")
+    private Integer roomRating;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private Room room;
@@ -108,6 +120,58 @@ public class HotelRoomReservation implements Serializable {
         this.price = price;
     }
 
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public HotelRoomReservation discount(Integer discount) {
+        this.discount = discount;
+        return this;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public Integer getHotelRating() {
+        return hotelRating;
+    }
+
+    public HotelRoomReservation hotelRating(Integer hotelRating) {
+        this.hotelRating = hotelRating;
+        return this;
+    }
+
+    public void setHotelRating(Integer hotelRating) {
+        this.hotelRating = hotelRating;
+    }
+
+    public Integer getRoomRating() {
+        return roomRating;
+    }
+
+    public HotelRoomReservation roomRating(Integer roomRating) {
+        this.roomRating = roomRating;
+        return this;
+    }
+
+    public void setRoomRating(Integer roomRating) {
+        this.roomRating = roomRating;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public HotelRoomReservation deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Room getRoom() {
         return room;
     }
@@ -163,6 +227,10 @@ public class HotelRoomReservation implements Serializable {
             ", dateTo='" + getDateTo() + "'" +
             ", status='" + getStatus() + "'" +
             ", price=" + getPrice() +
+            ", discount=" + getDiscount() +
+            ", hotelRating=" + getHotelRating() +
+            ", roomRating=" + getRoomRating() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

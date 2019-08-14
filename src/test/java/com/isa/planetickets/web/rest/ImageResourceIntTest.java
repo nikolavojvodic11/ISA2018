@@ -43,6 +43,9 @@ public class ImageResourceIntTest {
     private static final String DEFAULT_PATH = "AAAAAAAAAA";
     private static final String UPDATED_PATH = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private ImageRepository imageRepository;
 
@@ -85,7 +88,8 @@ public class ImageResourceIntTest {
      */
     public static Image createEntity(EntityManager em) {
         Image image = new Image()
-            .path(DEFAULT_PATH);
+            .path(DEFAULT_PATH)
+            .deleted(DEFAULT_DELETED);
         return image;
     }
 
@@ -110,6 +114,7 @@ public class ImageResourceIntTest {
         assertThat(imageList).hasSize(databaseSizeBeforeCreate + 1);
         Image testImage = imageList.get(imageList.size() - 1);
         assertThat(testImage.getPath()).isEqualTo(DEFAULT_PATH);
+        assertThat(testImage.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class ImageResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(image.getId().intValue())))
-            .andExpect(jsonPath("$.[*].path").value(hasItem(DEFAULT_PATH.toString())));
+            .andExpect(jsonPath("$.[*].path").value(hasItem(DEFAULT_PATH.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -156,7 +162,8 @@ public class ImageResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(image.getId().intValue()))
-            .andExpect(jsonPath("$.path").value(DEFAULT_PATH.toString()));
+            .andExpect(jsonPath("$.path").value(DEFAULT_PATH.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -180,7 +187,8 @@ public class ImageResourceIntTest {
         // Disconnect from session so that the updates on updatedImage are not directly saved in db
         em.detach(updatedImage);
         updatedImage
-            .path(UPDATED_PATH);
+            .path(UPDATED_PATH)
+            .deleted(UPDATED_DELETED);
 
         restImageMockMvc.perform(put("/api/images")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +200,7 @@ public class ImageResourceIntTest {
         assertThat(imageList).hasSize(databaseSizeBeforeUpdate);
         Image testImage = imageList.get(imageList.size() - 1);
         assertThat(testImage.getPath()).isEqualTo(UPDATED_PATH);
+        assertThat(testImage.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

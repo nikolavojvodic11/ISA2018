@@ -26,6 +26,9 @@ public class Image implements Serializable {
     @Column(name = "path")
     private String path;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("images")
     private Company company;
@@ -62,6 +65,19 @@ public class Image implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Image deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Company getCompany() {
@@ -142,6 +158,7 @@ public class Image implements Serializable {
         return "Image{" +
             "id=" + getId() +
             ", path='" + getPath() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

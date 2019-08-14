@@ -28,6 +28,9 @@ public class HotelService implements Serializable {
     @Column(name = "service_description")
     private String serviceDescription;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -62,6 +65,19 @@ public class HotelService implements Serializable {
     public void setServiceDescription(String serviceDescription) {
         this.serviceDescription = serviceDescription;
     }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public HotelService deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -90,6 +106,7 @@ public class HotelService implements Serializable {
             "id=" + getId() +
             ", serviceName='" + getServiceName() + "'" +
             ", serviceDescription='" + getServiceDescription() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

@@ -8,6 +8,10 @@
         {
             "fieldName": "serviceDescription",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [],

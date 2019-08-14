@@ -35,6 +35,15 @@ public class CompanyLocation implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lng")
+    private Double lng;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "companyLocation")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Car> cars = new HashSet<>();
@@ -95,6 +104,45 @@ public class CompanyLocation implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public CompanyLocation lat(Double lat) {
+        this.lat = lat;
+        return this;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public CompanyLocation lng(Double lng) {
+        this.lng = lng;
+        return this;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public CompanyLocation deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Set<Car> getCars() {
@@ -201,6 +249,9 @@ public class CompanyLocation implements Serializable {
             ", address='" + getAddress() + "'" +
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
+            ", lat=" + getLat() +
+            ", lng=" + getLng() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

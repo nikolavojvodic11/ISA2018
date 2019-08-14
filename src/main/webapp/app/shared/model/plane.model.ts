@@ -8,6 +8,7 @@ export interface IPlane {
     registration?: string;
     rowsCount?: number;
     colsCount?: number;
+    deleted?: boolean;
     seats?: ISeat[];
     company?: ICompany;
 }
@@ -20,7 +21,10 @@ export class Plane implements IPlane {
         public registration?: string,
         public rowsCount?: number,
         public colsCount?: number,
+        public deleted?: boolean,
         public seats?: ISeat[],
         public company?: ICompany
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

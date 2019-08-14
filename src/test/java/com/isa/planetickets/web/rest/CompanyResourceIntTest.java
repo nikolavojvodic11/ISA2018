@@ -59,6 +59,9 @@ public class CompanyResourceIntTest {
     private static final CompanyType DEFAULT_TYPE = CompanyType.AIRLINE;
     private static final CompanyType UPDATED_TYPE = CompanyType.HOTEL;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private CompanyRepository companyRepository;
 
@@ -106,7 +109,8 @@ public class CompanyResourceIntTest {
             .website(DEFAULT_WEBSITE)
             .phone(DEFAULT_PHONE)
             .email(DEFAULT_EMAIL)
-            .type(DEFAULT_TYPE);
+            .type(DEFAULT_TYPE)
+            .deleted(DEFAULT_DELETED);
         return company;
     }
 
@@ -136,6 +140,7 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testCompany.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testCompany.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testCompany.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -173,7 +178,8 @@ public class CompanyResourceIntTest {
             .andExpect(jsonPath("$.[*].website").value(hasItem(DEFAULT_WEBSITE.toString())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -192,7 +198,8 @@ public class CompanyResourceIntTest {
             .andExpect(jsonPath("$.website").value(DEFAULT_WEBSITE.toString()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
-            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -221,7 +228,8 @@ public class CompanyResourceIntTest {
             .website(UPDATED_WEBSITE)
             .phone(UPDATED_PHONE)
             .email(UPDATED_EMAIL)
-            .type(UPDATED_TYPE);
+            .type(UPDATED_TYPE)
+            .deleted(UPDATED_DELETED);
 
         restCompanyMockMvc.perform(put("/api/companies")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -238,6 +246,7 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testCompany.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCompany.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testCompany.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

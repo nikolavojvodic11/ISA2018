@@ -50,6 +50,9 @@ public class Car implements Serializable {
     @Column(name = "discount")
     private Integer discount;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "car")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Image> images = new HashSet<>();
@@ -157,6 +160,19 @@ public class Car implements Serializable {
         this.discount = discount;
     }
 
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Car deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Set<Image> getImages() {
         return images;
     }
@@ -227,6 +243,7 @@ public class Car implements Serializable {
             ", type='" + getType() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

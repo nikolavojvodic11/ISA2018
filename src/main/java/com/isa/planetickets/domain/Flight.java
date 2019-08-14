@@ -51,6 +51,9 @@ public class Flight implements Serializable {
     @Column(name = "code")
     private String code;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "flight")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<FlightStop> flightStops = new HashSet<>();
@@ -183,6 +186,19 @@ public class Flight implements Serializable {
         this.code = code;
     }
 
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Flight deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Set<FlightStop> getFlightStops() {
         return flightStops;
     }
@@ -293,6 +309,7 @@ public class Flight implements Serializable {
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             ", code='" + getCode() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

@@ -16,6 +16,7 @@ export interface ICar {
     type?: CarType;
     price?: number;
     discount?: number;
+    deleted?: boolean;
     images?: IImage[];
     companyLocation?: ICompanyLocation;
 }
@@ -30,7 +31,10 @@ export class Car implements ICar {
         public type?: CarType,
         public price?: number,
         public discount?: number,
+        public deleted?: boolean,
         public images?: IImage[],
         public companyLocation?: ICompanyLocation
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

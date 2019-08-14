@@ -4,9 +4,12 @@ export interface ISeat {
     id?: number;
     row?: number;
     col?: number;
+    deleted?: boolean;
     plane?: IPlane;
 }
 
 export class Seat implements ISeat {
-    constructor(public id?: number, public row?: number, public col?: number, public plane?: IPlane) {}
+    constructor(public id?: number, public row?: number, public col?: number, public deleted?: boolean, public plane?: IPlane) {
+        this.deleted = this.deleted || false;
+    }
 }

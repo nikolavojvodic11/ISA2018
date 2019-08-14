@@ -50,6 +50,9 @@ public class HotelServiceReservationResourceIntTest {
     private static final ReservationStatus DEFAULT_STATUS = ReservationStatus.RESERVED;
     private static final ReservationStatus UPDATED_STATUS = ReservationStatus.CONFIRMED;
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private HotelServiceReservationRepository hotelServiceReservationRepository;
 
@@ -94,7 +97,8 @@ public class HotelServiceReservationResourceIntTest {
         HotelServiceReservation hotelServiceReservation = new HotelServiceReservation()
             .quantity(DEFAULT_QUANTITY)
             .price(DEFAULT_PRICE)
-            .status(DEFAULT_STATUS);
+            .status(DEFAULT_STATUS)
+            .deleted(DEFAULT_DELETED);
         return hotelServiceReservation;
     }
 
@@ -121,6 +125,7 @@ public class HotelServiceReservationResourceIntTest {
         assertThat(testHotelServiceReservation.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
         assertThat(testHotelServiceReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testHotelServiceReservation.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testHotelServiceReservation.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -155,7 +160,8 @@ public class HotelServiceReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(hotelServiceReservation.getId().intValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -171,7 +177,8 @@ public class HotelServiceReservationResourceIntTest {
             .andExpect(jsonPath("$.id").value(hotelServiceReservation.getId().intValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -197,7 +204,8 @@ public class HotelServiceReservationResourceIntTest {
         updatedHotelServiceReservation
             .quantity(UPDATED_QUANTITY)
             .price(UPDATED_PRICE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .deleted(UPDATED_DELETED);
 
         restHotelServiceReservationMockMvc.perform(put("/api/hotel-service-reservations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -211,6 +219,7 @@ public class HotelServiceReservationResourceIntTest {
         assertThat(testHotelServiceReservation.getQuantity()).isEqualTo(UPDATED_QUANTITY);
         assertThat(testHotelServiceReservation.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testHotelServiceReservation.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testHotelServiceReservation.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

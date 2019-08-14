@@ -17,6 +17,9 @@
             <th><span>ID</span></th>
             <th><span>Phone</span></th>
             <th><span>First Login</span></th>
+            <th><span>Points Used</span></th>
+            <th><span>Password Changed</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Jhi User</span></th>
             <th><span>City</span></th>
             <th><span>Company</span></th>
@@ -28,6 +31,9 @@
                 <td><a [routerLink]="['/isa-user', isaUser.id, 'view' ]">{{isaUser.id}}</a></td>
                 <td>{{isaUser.phone}}</td>
                 <td>{{isaUser.firstLogin}}</td>
+                <td>{{isaUser.pointsUsed}}</td>
+                <td>{{isaUser.passwordChanged}}</td>
+                <td>{{isaUser.deleted}}</td>
                 <td>
                     {{isaUser.jhiUser?.id}}
                 </td>

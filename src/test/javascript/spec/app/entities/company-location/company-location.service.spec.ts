@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(CompanyLocationService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new CompanyLocation(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new CompanyLocation(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -57,7 +57,10 @@ describe('Service Tests', () => {
                     {
                         address: 'BBBBBB',
                         phone: 'BBBBBB',
-                        email: 'BBBBBB'
+                        email: 'BBBBBB',
+                        lat: 1,
+                        lng: 1,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -76,7 +79,10 @@ describe('Service Tests', () => {
                     {
                         address: 'BBBBBB',
                         phone: 'BBBBBB',
-                        email: 'BBBBBB'
+                        email: 'BBBBBB',
+                        lat: 1,
+                        lng: 1,
+                        deleted: true
                     },
                     elemDefault
                 );

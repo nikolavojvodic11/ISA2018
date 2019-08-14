@@ -38,6 +38,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="lat" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lng" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="deleted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <column name="company_location_id" type="bigint">
                 <constraints nullable="true" />
             </column>

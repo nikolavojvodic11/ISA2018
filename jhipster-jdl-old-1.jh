@@ -3,13 +3,9 @@
 entity IsaUser {
 	phone String
     firstLogin Boolean
-    pointsUsed Integer
-    passwordChanged Boolean
-    deleted Boolean
 }
 entity City {
 	name String
-    deleted Boolean
 }
 
 entity Company {
@@ -19,23 +15,16 @@ entity Company {
     phone String
     email String
     type CompanyType
-    deleted Boolean
 }
 entity CompanyLocation {
 	address String
     phone String
     email String
-    lat Double
-    lng Double
-    deleted Boolean
 }
 entity Airport {
 	name String
     code String
     address String
-    lat Double
-    lng Double
-    deleted Boolean
 }
 entity Flight {
 	departureTime Instant
@@ -46,7 +35,6 @@ entity Flight {
     price Double
     discount Integer
     code String
-    deleted Boolean
 }
 entity Plane {
 	manufacturer String
@@ -54,18 +42,15 @@ entity Plane {
     registration String
     rowsCount Integer
     colsCount Integer
-    deleted Boolean
 }
 
 entity Seat {
 	row Integer
     col Integer
-    deleted Boolean
 }
 
 entity FlightStop {
 	stopNumber Integer
-    deleted Boolean
 }
 
 entity Car {
@@ -75,8 +60,7 @@ entity Car {
     seats Integer
     type CarType
     price Double
-    discount Integer
-    deleted Boolean
+    discount Integer    
 }
 
 enum CarType {
@@ -88,29 +72,23 @@ entity Hotel {
     description String
     address String
     stars Integer
-    lat Double
-    lng Double
-    deleted Boolean
 }
 
 entity Room {
 	bedsCount Integer
     label String
-    deleted Boolean
 }
 
 entity RoomPricelist {
 	dateFrom Instant
     dateTo Instant
     price Double
-    deleted Boolean
 }
 
 entity Reservation {
     discount Integer
     type ReservationType
     total Double
-    deleted Boolean
 }
 
 enum ReservationType {
@@ -127,31 +105,26 @@ enum CompanyType {
 
 entity FriendRequest {
 	accepted Boolean
-    deleted Boolean
 }
 
 entity Image {
 	path String
-    deleted Boolean
 }
 
 entity HotelService {
 	serviceName String
     serviceDescription String
-    deleted Boolean
 }
 
 entity AvailableHotelService {
 	price Double
     discount Integer
-    deleted Boolean
 }
 
 entity HotelServiceReservation {
 	quantity Integer
     price Double
     status ReservationStatus
-    deleted Boolean
 }
 
 entity HotelRoomReservation {
@@ -159,10 +132,6 @@ entity HotelRoomReservation {
     dateTo Instant
     status ReservationStatus
     price Double
-    discount Integer
-    hotelRating Integer
-    roomRating Integer
-    deleted Boolean
 }
 
 entity FlightSeatReservation {
@@ -171,21 +140,12 @@ entity FlightSeatReservation {
     passportNumber String
     status ReservationStatus
     price Double
-    discount Integer
-    hotelRating Integer
-    roomRating Integer
-    pointsEarned Integer
-    deleted Boolean
 }
 
 entity CarReservation {
 	dateFrom Instant
     dateTo Instant  
     price Double
-    discount Integer
-    hotelRating Integer
-    roomRating Integer
-    deleted Boolean
 }
 // RELATIONSHIPS
 relationship OneToOne {

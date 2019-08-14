@@ -32,6 +32,10 @@
         {
             "fieldName": "code",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

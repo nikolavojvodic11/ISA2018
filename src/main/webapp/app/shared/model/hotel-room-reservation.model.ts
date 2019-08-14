@@ -14,6 +14,10 @@ export interface IHotelRoomReservation {
     dateTo?: Moment;
     status?: ReservationStatus;
     price?: number;
+    discount?: number;
+    hotelRating?: number;
+    roomRating?: number;
+    deleted?: boolean;
     room?: IRoom;
     reservation?: IReservation;
 }
@@ -25,7 +29,13 @@ export class HotelRoomReservation implements IHotelRoomReservation {
         public dateTo?: Moment,
         public status?: ReservationStatus,
         public price?: number,
+        public discount?: number,
+        public hotelRating?: number,
+        public roomRating?: number,
+        public deleted?: boolean,
         public room?: IRoom,
         public reservation?: IReservation
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

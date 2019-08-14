@@ -16,6 +16,11 @@ export interface IFlightSeatReservation {
     passportNumber?: string;
     status?: ReservationStatus;
     price?: number;
+    discount?: number;
+    hotelRating?: number;
+    roomRating?: number;
+    pointsEarned?: number;
+    deleted?: boolean;
     seat?: ISeat;
     flight?: IFlight;
     friendRequest?: IFriendRequest;
@@ -30,9 +35,16 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public passportNumber?: string,
         public status?: ReservationStatus,
         public price?: number,
+        public discount?: number,
+        public hotelRating?: number,
+        public roomRating?: number,
+        public pointsEarned?: number,
+        public deleted?: boolean,
         public seat?: ISeat,
         public flight?: IFlight,
         public friendRequest?: IFriendRequest,
         public reservation?: IReservation
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

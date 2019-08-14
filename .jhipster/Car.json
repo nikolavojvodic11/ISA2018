@@ -29,6 +29,10 @@
         {
             "fieldName": "discount",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

@@ -25,6 +25,10 @@
             "fieldName": "type",
             "fieldType": "CompanyType",
             "fieldValues": "AIRLINE,HOTEL,CAR_RENTAL"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [

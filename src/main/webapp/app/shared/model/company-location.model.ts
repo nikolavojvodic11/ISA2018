@@ -8,6 +8,9 @@ export interface ICompanyLocation {
     address?: string;
     phone?: string;
     email?: string;
+    lat?: number;
+    lng?: number;
+    deleted?: boolean;
     cars?: ICar[];
     hotels?: IHotel[];
     city?: ICity;
@@ -20,9 +23,14 @@ export class CompanyLocation implements ICompanyLocation {
         public address?: string,
         public phone?: string,
         public email?: string,
+        public lat?: number,
+        public lng?: number,
+        public deleted?: boolean,
         public cars?: ICar[],
         public hotels?: IHotel[],
         public city?: ICity,
         public company?: ICompany
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

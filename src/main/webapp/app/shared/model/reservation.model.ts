@@ -14,6 +14,7 @@ export interface IReservation {
     discount?: number;
     type?: ReservationType;
     total?: number;
+    deleted?: boolean;
     hotelServiceReservations?: IHotelServiceReservation[];
     hotelRoomReservations?: IHotelRoomReservation[];
     flightSeatReservations?: IFlightSeatReservation[];
@@ -27,10 +28,13 @@ export class Reservation implements IReservation {
         public discount?: number,
         public type?: ReservationType,
         public total?: number,
+        public deleted?: boolean,
         public hotelServiceReservations?: IHotelServiceReservation[],
         public hotelRoomReservations?: IHotelRoomReservation[],
         public flightSeatReservations?: IFlightSeatReservation[],
         public carReservations?: ICarReservation[],
         public user?: IIsaUser
-    ) {}
+    ) {
+        this.deleted = this.deleted || false;
+    }
 }

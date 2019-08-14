@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(FriendRequestService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new FriendRequest(0, false);
+            elemDefault = new FriendRequest(0, false, false);
         });
 
         describe('Service methods', async () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
             it('should update a FriendRequest', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        accepted: true
+                        accepted: true,
+                        deleted: true
                     },
                     elemDefault
                 );
@@ -72,7 +73,8 @@ describe('Service Tests', () => {
             it('should return a list of FriendRequest', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        accepted: true
+                        accepted: true,
+                        deleted: true
                     },
                     elemDefault
                 );

@@ -41,6 +41,9 @@ public class Plane implements Serializable {
     @Column(name = "cols_count")
     private Integer colsCount;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToMany(mappedBy = "plane")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Seat> seats = new HashSet<>();
@@ -122,6 +125,19 @@ public class Plane implements Serializable {
         this.colsCount = colsCount;
     }
 
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Plane deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Set<Seat> getSeats() {
         return seats;
     }
@@ -190,6 +206,7 @@ public class Plane implements Serializable {
             ", registration='" + getRegistration() + "'" +
             ", rowsCount=" + getRowsCount() +
             ", colsCount=" + getColsCount() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

@@ -32,6 +32,15 @@ public class Airport implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lng")
+    private Double lng;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("airports")
     private City city;
@@ -84,6 +93,45 @@ public class Airport implements Serializable {
         this.address = address;
     }
 
+    public Double getLat() {
+        return lat;
+    }
+
+    public Airport lat(Double lat) {
+        this.lat = lat;
+        return this;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public Airport lng(Double lng) {
+        this.lng = lng;
+        return this;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public Airport deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public City getCity() {
         return city;
     }
@@ -125,6 +173,9 @@ public class Airport implements Serializable {
             ", name='" + getName() + "'" +
             ", code='" + getCode() + "'" +
             ", address='" + getAddress() + "'" +
+            ", lat=" + getLat() +
+            ", lng=" + getLng() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

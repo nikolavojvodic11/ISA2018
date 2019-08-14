@@ -23,6 +23,7 @@
             <th><span>Price</span></th>
             <th><span>Discount</span></th>
             <th><span>Code</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Departure Airport</span></th>
             <th><span>Arrival Airport</span></th>
             <th><span>Plane</span></th>
@@ -41,6 +42,7 @@
                 <td>{{flight.price}}</td>
                 <td>{{flight.discount}}</td>
                 <td>{{flight.code}}</td>
+                <td>{{flight.deleted}}</td>
                 <td>
                     <div *ngIf="flight.departureAirport">
                         <a [routerLink]="['../airport', flight.departureAirport?.id, 'view' ]" >{{flight.departureAirport?.id}}</a>

@@ -66,6 +66,9 @@ public class FlightResourceIntTest {
     private static final String DEFAULT_CODE = "AAAAAAAAAA";
     private static final String UPDATED_CODE = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private FlightRepository flightRepository;
 
@@ -115,7 +118,8 @@ public class FlightResourceIntTest {
             .stopsCount(DEFAULT_STOPS_COUNT)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
-            .code(DEFAULT_CODE);
+            .code(DEFAULT_CODE)
+            .deleted(DEFAULT_DELETED);
         return flight;
     }
 
@@ -147,6 +151,7 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testFlight.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testFlight.getCode()).isEqualTo(DEFAULT_CODE);
+        assertThat(testFlight.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -186,7 +191,8 @@ public class FlightResourceIntTest {
             .andExpect(jsonPath("$.[*].stopsCount").value(hasItem(DEFAULT_STOPS_COUNT)))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
-            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())));
+            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
     @Test
@@ -207,7 +213,8 @@ public class FlightResourceIntTest {
             .andExpect(jsonPath("$.stopsCount").value(DEFAULT_STOPS_COUNT))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
-            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()));
+            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -238,7 +245,8 @@ public class FlightResourceIntTest {
             .stopsCount(UPDATED_STOPS_COUNT)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
-            .code(UPDATED_CODE);
+            .code(UPDATED_CODE)
+            .deleted(UPDATED_DELETED);
 
         restFlightMockMvc.perform(put("/api/flights")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -257,6 +265,7 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testFlight.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testFlight.getCode()).isEqualTo(UPDATED_CODE);
+        assertThat(testFlight.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

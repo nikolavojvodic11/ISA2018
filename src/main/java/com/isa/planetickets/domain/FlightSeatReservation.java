@@ -41,6 +41,21 @@ public class FlightSeatReservation implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "discount")
+    private Integer discount;
+
+    @Column(name = "hotel_rating")
+    private Integer hotelRating;
+
+    @Column(name = "room_rating")
+    private Integer roomRating;
+
+    @Column(name = "points_earned")
+    private Integer pointsEarned;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private Seat seat;
@@ -131,6 +146,71 @@ public class FlightSeatReservation implements Serializable {
         this.price = price;
     }
 
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public FlightSeatReservation discount(Integer discount) {
+        this.discount = discount;
+        return this;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public Integer getHotelRating() {
+        return hotelRating;
+    }
+
+    public FlightSeatReservation hotelRating(Integer hotelRating) {
+        this.hotelRating = hotelRating;
+        return this;
+    }
+
+    public void setHotelRating(Integer hotelRating) {
+        this.hotelRating = hotelRating;
+    }
+
+    public Integer getRoomRating() {
+        return roomRating;
+    }
+
+    public FlightSeatReservation roomRating(Integer roomRating) {
+        this.roomRating = roomRating;
+        return this;
+    }
+
+    public void setRoomRating(Integer roomRating) {
+        this.roomRating = roomRating;
+    }
+
+    public Integer getPointsEarned() {
+        return pointsEarned;
+    }
+
+    public FlightSeatReservation pointsEarned(Integer pointsEarned) {
+        this.pointsEarned = pointsEarned;
+        return this;
+    }
+
+    public void setPointsEarned(Integer pointsEarned) {
+        this.pointsEarned = pointsEarned;
+    }
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
+
+    public FlightSeatReservation deleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Seat getSeat() {
         return seat;
     }
@@ -213,6 +293,11 @@ public class FlightSeatReservation implements Serializable {
             ", passportNumber='" + getPassportNumber() + "'" +
             ", status='" + getStatus() + "'" +
             ", price=" + getPrice() +
+            ", discount=" + getDiscount() +
+            ", hotelRating=" + getHotelRating() +
+            ", roomRating=" + getRoomRating() +
+            ", pointsEarned=" + getPointsEarned() +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

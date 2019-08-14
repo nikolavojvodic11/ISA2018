@@ -16,6 +16,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Path</span></th>
+            <th><span>Deleted</span></th>
             <th><span>Company</span></th>
             <th><span>Car</span></th>
             <th><span>Hotel</span></th>
@@ -27,6 +28,7 @@
             <tr *ngFor="let image of images ;trackBy: trackId">
                 <td><a [routerLink]="['/image', image.id, 'view' ]">{{image.id}}</a></td>
                 <td>{{image.path}}</td>
+                <td>{{image.deleted}}</td>
                 <td>
                     <div *ngIf="image.company">
                         <a [routerLink]="['../company', image.company?.id, 'view' ]" >{{image.company?.id}}</a>
