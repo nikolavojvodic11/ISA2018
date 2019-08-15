@@ -47,5 +47,8 @@
     <include file="config/liquibase/changelog/20190206024420_added_entity_constraints_HotelRoomReservation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024421_added_entity_constraints_FlightSeatReservation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024422_added_entity_constraints_CarReservation.xml" relativeToChangelogFile="false"/>
+    
+    <!-- load test data -->
+    <include file="config/liquibase/changelog/99999999999999_load_test_data.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

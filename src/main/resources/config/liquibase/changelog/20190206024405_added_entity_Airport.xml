@@ -53,7 +53,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
-        <loadData encoding="UTF-8"
+        <!-- <loadData encoding="UTF-8"
                   file="config/liquibase/airports.csv"
                   separator=";"
                   tableName="airport">
@@ -61,7 +61,7 @@
        		<column name="lat" type="numeric"/>
        		<column name="lng" type="numeric"/>
        		<column name="city_id" type="numeric"/>
-       	</loadData>
+       	</loadData> -->
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

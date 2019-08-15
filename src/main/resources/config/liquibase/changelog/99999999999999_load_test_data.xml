@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="autoIncrement" value="true"/>
+
+    <!--
+        Load test data
+    -->
+    <changeSet id="99999999999991" author="jhipster">
+        
+        <!-- CITIES -->
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/cities.csv"
+                  separator=";"
+                  tableName="city">
+        	<column name="deleted" type="boolean"/>
+        </loadData>
+        
+        <!-- COMPANIES -->
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/companies.csv"
+                  separator=";"
+                  tableName="company">
+        	<column name="deleted" type="boolean"/>
+        </loadData>
+        
+        <!-- COMPANY LOCATIONS -->
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/company_locations.csv"
+                  separator=";"
+                  tableName="company_location">
+       		<column name="deleted" type="boolean"/>
+       		<column name="lat" type="numeric"/>
+       		<column name="lng" type="numeric"/>
+       		<column name="city_id" type="numeric"/>
+       		<column name="company_id" type="numeric"/>
+       	</loadData>
+       	
+       	<!-- AIRPORTS -->
+       	<loadData encoding="UTF-8"
+                  file="config/liquibase/airports.csv"
+                  separator=";"
+                  tableName="airport">
+       		<column name="deleted" type="boolean"/>
+       		<column name="lat" type="numeric"/>
+       		<column name="lng" type="numeric"/>
+       		<column name="city_id" type="numeric"/>
+       	</loadData>
+        
+    </changeSet>
+    
+</databaseChangeLog>
