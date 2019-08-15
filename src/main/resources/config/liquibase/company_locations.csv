@@ -1,0 +1,67 @@
+address;phone;email;lat;lng;deleted;city_id;company_id
+Queens, 11430;1-800-221-1010;delta-ny@mail.com;40.6441666667;-73.7822222222;false;1;1
+Queens, 11430;1-800-221-1111;british-ny@mail.com;40.6441666667;-73.7822222222;false;1;2
+Queens, 11430;1-800-221-1212;airserbia-ny@mail.com;40.6441666667;-73.7822222222;false;1;3
+Queens, 11430;1-800-221-1313;aeroflot-ny@mail.com;40.6441666667;-73.7822222222;false;1;4
+Queens, 11430;1-800-221-1414;airchina-ny@mail.com;40.6441666667;-73.7822222222;false;1;5
+Queens, 11430;1-800-221-1415;qatar-ny@mail.com;40.6441666667;-73.7822222222;false;1;6
+Queens, 11430;1-800-221-1416;hertz-ny@mail.com;40.6441666667;-73.7822222222;false;1;7
+Queens, 11430;1-800-221-1417;budget-ny@mail.com;40.6441666667;-73.7822222222;false;1;8
+1335 6th Ave;1-800-221-1418;hilton-ny@mail.com;40.762745;-73.979807;false;1;9
+153 W 57th St;1-800-221-1419;hyatt-ny@mail.com;40.765619;-73.978991;false;1;10
+Garment District;1-800-221-1420;inn-ny@mail.com;40.756094;-73.990794;false;1;11
+Longford TW6;1-800-221-2010;delta-gb@mail.com;51.470020;-0.454295;false;2;1
+Longford TW6;1-800-221-2111;british-gb@mail.com;51.470020;-0.454295;false;2;2
+Longford TW6;1-800-221-2212;airserbia-gb@mail.com;51.470020;-0.454295;false;2;3
+Longford TW6;1-800-221-2313;aeroflot-gb@mail.com;51.470020;-0.454295;false;2;4
+Longford TW6;1-800-221-2414;airchina-gb@mail.com;51.470020;-0.454295;false;2;5
+Longford TW6;1-800-221-2415;qatar-gb@mail.com;51.470020;-73.7822222222;false;2;6
+Longford TW6;1-800-221-1416;hertz-gb@mail.com;51.470020;-73.7822222222;false;2;7
+Longford TW6;1-800-221-1417;budget-gb@mail.com;51.470020;-73.7822222222;false;2;8
+Park Lane;1-800-221-1418;hilton-gb@mail.com;51.510857;-0.149522;false;2;9
+Merilebon;1-800-221-1419;hyatt-gb@mail.com;51.518343;-0.156306;false;2;10
+Tate Modern;1-800-221-1420;inn-gb@mail.com;51.507211;-0.102584;false;2;11
+Aerodrom Beograd 59;1-800-221-3010;delta-srb@mail.com;44.8192;20.3122;false;3;1
+Aerodrom Beograd 59;1-800-221-3111;british-srb@mail.com;44.8192;20.3122;false;3;2
+Aerodrom Beograd 59;1-800-221-3212;airserbia-srb@mail.com;44.8192;20.3122;false;3;3
+Aerodrom Beograd 59;1-800-221-3313;aeroflot-srb@mail.com;44.8192;20.3122;false;3;4
+Aerodrom Beograd 59;1-800-221-3414;airchina-srb@mail.com;44.8192;20.3122;false;3;5
+Aerodrom Beograd 59;1-800-221-3415;qatar-srb@mail.com;44.8192;20.3122;false;3;6
+Aerodrom Beograd 59;1-800-221-1416;hertz-srb@mail.com;44.8192;20.3122;false;3;7
+Aerodrom Beograd 59;1-800-221-1417;budget-srb@mail.com;44.8192;20.3122;false;3;8
+Kralja Milutina 14;1-800-221-1418;hilton-srb@mail.com;44.803977;20.466297;false;3;9
+Milentija Popovica;1-800-221-1419;hyatt-srb@mail.com;44.812091;20.432336;false;3;10
+Djordja Stanojevica;1-800-221-1420;inn-srb@mail.com;44.809529;20.414820;false;3;11
+Moscow Oblast, 103340;1-800-221-4010;delta-ru@mail.com;55.972557;37.414974;false;4;1
+Moscow Oblast, 103340;1-800-221-4111;british-ru@mail.com;55.972557;37.414974;false;4;2
+Moscow Oblast, 103340;1-800-221-4212;airserbia-ru@mail.com;55.972557;37.414974;false;4;3
+Moscow Oblast, 103340;1-800-221-4313;aeroflot-ru@mail.com;55.972557;37.414974;false;4;4
+Moscow Oblast, 103340;1-800-221-4414;airchina-ru@mail.com;55.972557;37.414974;false;4;5
+Moscow Oblast, 103340;1-800-221-4415;qatar-ru@mail.com;55.972557;37.414974;false;4;6
+Moscow Oblast, 103340;1-800-221-1416;hertz-ru@mail.com;55.972557;37.414974;false;4;7
+Moscow Oblast, 103340;1-800-221-1417;budget-ru@mail.com;55.972557;37.414974;false;4;8
+Kalacenvska 21;1-800-221-1418;hilton-ru@mail.com;55.774206;37.652485;false;4;9
+Neglina 4;1-800-221-1419;hyatt-ru@mail.com;55.760131;37.620930;false;4;10
+Korovinskoe 13;1-800-221-1420;inn-ru@mail.com;55.870287;37.534473;false;4;11
+Shunyi;1-800-221-5010;delta-cn@mail.com;39.129261;117.352753;false;5;1
+Shunyi;1-800-221-5111;british-cn@mail.com;39.129261;117.352753;false;5;2
+Shunyi;1-800-221-5212;airserbia-cn@mail.com;39.129261;117.352753;false;5;3
+Shunyi;1-800-221-5313;aeroflot-cn@mail.com;39.129261;117.352753;false;5;4
+Shunyi;1-800-221-5414;airchina-cn@mail.com;39.129261;117.352753;false;5;5
+Shunyi;1-800-221-5415;qatar-cn@mail.com;39.129261;117.352753;false;5;6
+Shunyi;1-800-221-1416;hertz-cn@mail.com;39.129261;117.352753;false;5;7
+Shunyi;1-800-221-1417;budget-cn@mail.com;39.129261;117.352753;false;5;8
+Shunyi;1-800-221-1418;hilton-cn@mail.com;39.915518;116.413468;false;5;9
+2 Jianguomenwai Street;1-800-221-1419;hyatt-cn@mail.com;39.908901;116.414560;false;5;10
+Xian Nong Tan Xi Lu;1-800-221-1420;inn-cn@mail.com;39.880016;116.391034;false;5;11
+P.O.Box 24659;1-800-221-6010;delta-qa@mail.com;25.268362;51.612104;false;6;1
+P.O.Box 24659;1-800-221-6111;british-qa@mail.com;25.268362;51.612104;false;6;2
+P.O.Box 24659;1-800-221-6212;airserbia-qa@mail.com;25.268362;51.612104;false;6;3
+P.O.Box 24659;1-800-221-6313;aeroflot-qa@mail.com;25.268362;51.612104;false;6;4
+P.O.Box 24659;1-800-221-6414;airchina-qa@mail.com;25.268362;51.612104;false;6;5
+P.O.Box 24659;1-800-221-6415;qatar-qa@mail.com;25.268362;51.612104;false;6;6
+P.O.Box 24659;1-800-221-1416;hertz-qa@mail.com;25.268362;51.612104;false;6;7
+P.O.Box 24659;1-800-221-1417;budget-qa@mail.com;25.268362;51.612104;false;6;8
+Diplomatic St;1-800-221-1418;hilton-qa@mail.com;25.326096;51.540090;false;6;9
+Diplomatic St;1-800-221-1419;hyatt-qa@mail.com;25.328117;51.530280;false;6;10
+Al Matar St;1-800-221-1420;inn-qa@mail.com;25.273052;51.542327;false;6;11
