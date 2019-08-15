@@ -29,6 +29,20 @@
         	<column name="deleted" type="boolean"/>
         </loadData>
         
+        <!-- ISA USERS -->
+       	<loadData encoding="UTF-8"
+                  file="config/liquibase/isa_users.csv"
+                  separator=";"
+                  tableName="isa_user">
+       		<column name="first_login" type="boolean"/>
+       		<column name="points_used" type="numeric"/>
+       		<column name="password_changed" type="boolean"/>
+       		<column name="deleted" type="boolean"/>
+       		<column name="jhi_user_id" type="numeric"/>
+       		<column name="city_id" type="numeric"/>       		
+       		<column name="company_id" type="numeric"/>
+       	</loadData>
+        
         <!-- COMPANY LOCATIONS -->
         <loadData encoding="UTF-8"
                   file="config/liquibase/company_locations.csv"
