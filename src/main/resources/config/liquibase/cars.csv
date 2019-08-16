@@ -1,0 +1,37 @@
+manufacturer;model;registration;seats;jhi_type;price;discount;deleted;company_location_id
+Audi;A3;11111;5;HATCHBACK;50;0;false;7
+BMW;5 Series;11112;5;LIMOUSINE;80;0;false;7
+Mercedes;GL-Class;11113;7;SUV;130;0;false;7
+VW;Golf VII;11114;5;HATCHBACK;40;0;false;8
+Porsche;Panamera;11115;4;LIMOUSINE;100;0;false;8
+Land Rover;Range Rover;11116;7;SUV;140;0;false;8
+Audi;A3;11117;5;HATCHBACK;50;0;false;18
+BMW;5 Series;11118;5;LIMOUSINE;80;0;false;18
+Mercedes;GL-Class;11119;7;SUV;130;0;false;18
+VW;Golf VII;11120;5;HATCHBACK;40;0;false;19
+Porsche;Panamera;11121;4;LIMOUSINE;100;0;false;19
+Land Rover;Range Rover;11122;7;SUV;140;0;false;19
+Audi;A3;11123;5;HATCHBACK;50;0;false;29
+BMW;5 Series;11124;5;LIMOUSINE;80;0;false;29
+Mercedes;GL-Class;11125;7;SUV;130;0;false;29
+VW;Golf VII;11126;5;HATCHBACK;40;0;false;30
+Porsche;Panamera;11127;4;LIMOUSINE;100;0;false;30
+Land Rover;Range Rover;11128;7;SUV;140;0;false;30
+Audi;A3;11129;5;HATCHBACK;50;0;false;40
+BMW;5 Series;11130;5;LIMOUSINE;80;0;false;40
+Mercedes;GL-Class;11131;7;SUV;130;0;false;40
+VW;Golf VII;11132;5;HATCHBACK;40;0;false;41
+Porsche;Panamera;11133;4;LIMOUSINE;100;0;false;41
+Land Rover;Range Rover;11134;7;SUV;140;0;false;41
+Audi;A3;11135;5;HATCHBACK;50;0;false;51
+BMW;5 Series;11136;5;LIMOUSINE;80;0;false;51
+Mercedes;GL-Class;11137;7;SUV;130;0;false;51
+VW;Golf VII;11138;5;HATCHBACK;40;0;false;52
+Porsche;Panamera;11139;4;LIMOUSINE;100;0;false;52
+Land Rover;Range Rover;11140;7;SUV;140;0;false;52
+Audi;A3;11141;5;HATCHBACK;50;0;false;62
+BMW;5 Series;11142;5;LIMOUSINE;80;0;false;62
+Mercedes;GL-Class;11143;7;SUV;130;0;false;62
+VW;Golf VII;11144;5;HATCHBACK;40;0;false;63
+Porsche;Panamera;11145;4;LIMOUSINE;100;0;false;63
+Land Rover;Range Rover;11146;7;SUV;140;0;false;63

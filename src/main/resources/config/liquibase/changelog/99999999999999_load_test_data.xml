@@ -65,6 +65,59 @@
        		<column name="lng" type="numeric"/>
        		<column name="city_id" type="numeric"/>
        	</loadData>
+       	
+       	<!-- HOTELS -->
+       	<loadData encoding="UTF-8"
+                  file="config/liquibase/hotels.csv"
+                  separator=";"
+                  tableName="hotel">
+       		<column name="stars" type="numeric"/>
+       		<column name="lat" type="numeric"/>
+       		<column name="lng" type="numeric"/>
+       		<column name="deleted" type="boolean"/>
+       		<column name="company_location_id" type="numeric"/>
+       	</loadData>
+       	
+       	<!-- HOTEL SERVICES -->
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/hotel_services.csv"
+                  separator=";"
+                  tableName="hotel_service">
+        	<column name="deleted" type="boolean"/>
+        </loadData>
+        
+        <!-- ROOMS -->
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/rooms.csv"
+                  separator=";"
+                  tableName="room">
+        	<column name="beds_count" type="numeric"/>
+        	<column name="deleted" type="boolean"/>
+        	<column name="hotel_id" type="numeric"/>        	
+        </loadData>
+       	
+       	<!-- CARS -->
+       	<loadData encoding="UTF-8"
+                  file="config/liquibase/cars.csv"
+                  separator=";"
+                  tableName="car">
+       		<column name="seats" type="numeric"/>
+       		<column name="price" type="numeric"/>
+       		<column name="discount" type="numeric"/>
+       		<column name="deleted" type="boolean"/>
+       		<column name="company_location_id" type="numeric"/>
+       	</loadData>
+       	
+       	<!-- PLANES -->
+       	<loadData encoding="UTF-8"
+                  file="config/liquibase/planes.csv"
+                  separator=";"
+                  tableName="plane">
+       		<column name="rows_count" type="numeric"/>
+       		<column name="cols_count" type="numeric"/>
+       		<column name="deleted" type="boolean"/>
+       		<column name="company_id" type="numeric"/>
+       	</loadData>
         
     </changeSet>
     

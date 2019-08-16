@@ -1,0 +1,19 @@
+name;description;address;stars;lat;lng;deleted;company_location_id
+Hilton New York;Hilton New York description;1335 6th Ave;5;40.762745;-73.979807;false;9
+Hyatt New York;Hyatt New York description;153 W 57th St;4;40.765619;-73.978991;false;10
+Holiday Inn New York;Holiday Inn New York description;Garment District;4;40.756094;-73.990794;false;11
+Hilton London;Hilton London description;Park Lane;5;51.510857;-0.149522;false;20
+Hyatt London;Hyatt London description;Merilebon;5;51.518343;-0.156306;false;21
+Holiday Inn London;Holiday Inn London description;Tate Modern;4;51.507211;-0.102584;false;22
+Hilton Belgrade;Hilton Belgrade description;Kralja Milutina 14;4;44.803977;20.466297;false;31
+Hyatt Belgrade;Hyatt Belgrade description;Milentija Popovica;4;44.812091;20.432336;false;32
+Holiday Inn Belgrade;Holiday Inn Belgrade description;Djordja Stanojevica;4;44.809529;20.414820;false;33
+Hilton Moscow;Hilton Moscow description;Kalacenvska 21;5;55.774206;37.652485;false;42
+Hyatt Moscow;Hyatt Moscow description;Neglina 4;4;55.760131;37.620930;false;43
+Holiday Inn Moscow;Holiday Inn Moscow description;Korovinskoe 13;5;55.870287;37.534473;false;44
+Hilton Bejing;Hilton Bejing description;8 Jianguomenwai;4;39.915518;116.413468;false;53
+Hyatt Bejing;Hyatt Bejing description;2 Jianguomenwai;5;39.908901;116.414560;false;54
+Holiday Inn Bejing;Holiday Inn Bejing description;Xian Nong Tan Xi Lu;4;39.880016;116.391034;false;55
+Hilton Doha;Hilton Doha description;Diplomatic St;5;25.326096;51.540090;false;64
+Hyatt Doha;Hyatt Doha description;Diplomatic St;5;25.328117;51.530280;false;65
+Holiday Inn Doha;Holiday Inn Doha description;Al Matar St;5;25.273052;51.542327;false;66

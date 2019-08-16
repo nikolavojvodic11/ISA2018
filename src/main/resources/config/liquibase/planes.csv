@@ -1,0 +1,13 @@
+manufacturer;model;registration;rows_count;cols_count;deleted;company_id
+Boeing;737;NY-111;3;2;false;1
+Airbus;A380;NY-112;5;2;false;1
+Boeing;737;GB-111;3;2;false;2
+Airbus;A380;GB-112;5;2;false;2
+Boeing;737;SR-111;3;2;false;3
+Airbus;A380;SR-112;5;2;false;3
+Boeing;737;RU-111;3;2;false;4
+Airbus;A380;RU-112;5;2;false;4
+Boeing;737;CN-111;3;2;false;5
+Airbus;A380;CN-112;5;2;false;5
+Boeing;737;QA-111;3;2;false;6
+Airbus;A380;QA-112;5;2;false;6
