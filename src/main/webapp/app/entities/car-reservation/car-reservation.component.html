@@ -17,6 +17,7 @@
             <th><span>ID</span></th>
             <th><span>Date From</span></th>
             <th><span>Date To</span></th>
+            <th><span>Status</span></th>
             <th><span>Price</span></th>
             <th><span>Discount</span></th>
             <th><span>Hotel Rating</span></th>
@@ -32,6 +33,7 @@
                 <td><a [routerLink]="['/car-reservation', carReservation.id, 'view' ]">{{carReservation.id}}</a></td>
                 <td>{{carReservation.dateFrom | date:'medium'}}</td>
                 <td>{{carReservation.dateTo | date:'medium'}}</td>
+                <td>{{carReservation.status}}</td>
                 <td>{{carReservation.price}}</td>
                 <td>{{carReservation.discount}}</td>
                 <td>{{carReservation.hotelRating}}</td>

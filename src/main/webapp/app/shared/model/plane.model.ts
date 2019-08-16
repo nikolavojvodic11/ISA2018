@@ -1,4 +1,3 @@
-import { ISeat } from 'app/shared/model//seat.model';
 import { ICompany } from 'app/shared/model//company.model';
 
 export interface IPlane {
@@ -8,8 +7,8 @@ export interface IPlane {
     registration?: string;
     rowsCount?: number;
     colsCount?: number;
+    unavailableSeats?: string;
     deleted?: boolean;
-    seats?: ISeat[];
     company?: ICompany;
 }
 
@@ -21,8 +20,8 @@ export class Plane implements IPlane {
         public registration?: string,
         public rowsCount?: number,
         public colsCount?: number,
+        public unavailableSeats?: string,
         public deleted?: boolean,
-        public seats?: ISeat[],
         public company?: ICompany
     ) {
         this.deleted = this.deleted || false;

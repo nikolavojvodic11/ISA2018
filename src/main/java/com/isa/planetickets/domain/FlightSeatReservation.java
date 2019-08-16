@@ -67,10 +67,6 @@ public class FlightSeatReservation implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("")
-    private Seat seat;
-
-    @ManyToOne
-    @JsonIgnoreProperties("")
     private Flight flight;
 
     @ManyToOne
@@ -257,19 +253,6 @@ public class FlightSeatReservation implements Serializable {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public Seat getSeat() {
-        return seat;
-    }
-
-    public FlightSeatReservation seat(Seat seat) {
-        this.seat = seat;
-        return this;
-    }
-
-    public void setSeat(Seat seat) {
-        this.seat = seat;
     }
 
     public Flight getFlight() {

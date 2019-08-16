@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.isa.planetickets.domain.enumeration.ReservationStatus;
+
 /**
  * A CarReservation.
  */
@@ -29,6 +31,10 @@ public class CarReservation implements Serializable {
 
     @Column(name = "date_to")
     private Instant dateTo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private ReservationStatus status;
 
     @Column(name = "price")
     private Double price;
@@ -86,6 +92,19 @@ public class CarReservation implements Serializable {
 
     public void setDateTo(Instant dateTo) {
         this.dateTo = dateTo;
+    }
+
+    public ReservationStatus getStatus() {
+        return status;
+    }
+
+    public CarReservation status(ReservationStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(ReservationStatus status) {
+        this.status = status;
     }
 
     public Double getPrice() {
@@ -206,6 +225,7 @@ public class CarReservation implements Serializable {
             "id=" + getId() +
             ", dateFrom='" + getDateFrom() + "'" +
             ", dateTo='" + getDateTo() + "'" +
+            ", status='" + getStatus() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             ", hotelRating=" + getHotelRating() +

@@ -33,6 +33,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.isa.planetickets.domain.enumeration.ReservationStatus;
 /**
  * Test class for the CarReservationResource REST controller.
  *
@@ -47,6 +48,9 @@ public class CarReservationResourceIntTest {
 
     private static final Instant DEFAULT_DATE_TO = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE_TO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final ReservationStatus DEFAULT_STATUS = ReservationStatus.RESERVED;
+    private static final ReservationStatus UPDATED_STATUS = ReservationStatus.CONFIRMED;
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
@@ -107,6 +111,7 @@ public class CarReservationResourceIntTest {
         CarReservation carReservation = new CarReservation()
             .dateFrom(DEFAULT_DATE_FROM)
             .dateTo(DEFAULT_DATE_TO)
+            .status(DEFAULT_STATUS)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
             .hotelRating(DEFAULT_HOTEL_RATING)
@@ -137,6 +142,7 @@ public class CarReservationResourceIntTest {
         CarReservation testCarReservation = carReservationList.get(carReservationList.size() - 1);
         assertThat(testCarReservation.getDateFrom()).isEqualTo(DEFAULT_DATE_FROM);
         assertThat(testCarReservation.getDateTo()).isEqualTo(DEFAULT_DATE_TO);
+        assertThat(testCarReservation.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testCarReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testCarReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testCarReservation.getHotelRating()).isEqualTo(DEFAULT_HOTEL_RATING);
@@ -176,6 +182,7 @@ public class CarReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(carReservation.getId().intValue())))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(DEFAULT_DATE_FROM.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(DEFAULT_DATE_TO.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
             .andExpect(jsonPath("$.[*].hotelRating").value(hasItem(DEFAULT_HOTEL_RATING)))
@@ -196,6 +203,7 @@ public class CarReservationResourceIntTest {
             .andExpect(jsonPath("$.id").value(carReservation.getId().intValue()))
             .andExpect(jsonPath("$.dateFrom").value(DEFAULT_DATE_FROM.toString()))
             .andExpect(jsonPath("$.dateTo").value(DEFAULT_DATE_TO.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
             .andExpect(jsonPath("$.hotelRating").value(DEFAULT_HOTEL_RATING))
@@ -226,6 +234,7 @@ public class CarReservationResourceIntTest {
         updatedCarReservation
             .dateFrom(UPDATED_DATE_FROM)
             .dateTo(UPDATED_DATE_TO)
+            .status(UPDATED_STATUS)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
             .hotelRating(UPDATED_HOTEL_RATING)
@@ -243,6 +252,7 @@ public class CarReservationResourceIntTest {
         CarReservation testCarReservation = carReservationList.get(carReservationList.size() - 1);
         assertThat(testCarReservation.getDateFrom()).isEqualTo(UPDATED_DATE_FROM);
         assertThat(testCarReservation.getDateTo()).isEqualTo(UPDATED_DATE_TO);
+        assertThat(testCarReservation.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testCarReservation.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testCarReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testCarReservation.getHotelRating()).isEqualTo(UPDATED_HOTEL_RATING);

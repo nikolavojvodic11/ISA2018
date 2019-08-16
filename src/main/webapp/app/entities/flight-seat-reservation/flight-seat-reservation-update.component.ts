@@ -6,8 +6,6 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IFlightSeatReservation } from 'app/shared/model/flight-seat-reservation.model';
 import { FlightSeatReservationService } from './flight-seat-reservation.service';
-import { ISeat } from 'app/shared/model/seat.model';
-import { SeatService } from 'app/entities/seat';
 import { IFlight } from 'app/shared/model/flight.model';
 import { FlightService } from 'app/entities/flight';
 import { IIsaUser } from 'app/shared/model/isa-user.model';
@@ -23,8 +21,6 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
     flightSeatReservation: IFlightSeatReservation;
     isSaving: boolean;
 
-    seats: ISeat[];
-
     flights: IFlight[];
 
     isausers: IIsaUser[];
@@ -34,7 +30,6 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected flightSeatReservationService: FlightSeatReservationService,
-        protected seatService: SeatService,
         protected flightService: FlightService,
         protected isaUserService: IsaUserService,
         protected reservationService: ReservationService,
@@ -46,12 +41,6 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ flightSeatReservation }) => {
             this.flightSeatReservation = flightSeatReservation;
         });
-        this.seatService.query().subscribe(
-            (res: HttpResponse<ISeat[]>) => {
-                this.seats = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.flightService.query().subscribe(
             (res: HttpResponse<IFlight[]>) => {
                 this.flights = res.body;
@@ -103,10 +92,6 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
 
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackSeatById(index: number, item: ISeat) {
-        return item.id;
     }
 
     trackFlightById(index: number, item: IFlight) {

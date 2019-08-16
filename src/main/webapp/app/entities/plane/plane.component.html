@@ -20,6 +20,7 @@
             <th><span>Registration</span></th>
             <th><span>Rows Count</span></th>
             <th><span>Cols Count</span></th>
+            <th><span>Unavailable Seats</span></th>
             <th><span>Deleted</span></th>
             <th><span>Company</span></th>
             <th></th>
@@ -33,6 +34,7 @@
                 <td>{{plane.registration}}</td>
                 <td>{{plane.rowsCount}}</td>
                 <td>{{plane.colsCount}}</td>
+                <td>{{plane.unavailableSeats}}</td>
                 <td>{{plane.deleted}}</td>
                 <td>
                     <div *ngIf="plane.company">

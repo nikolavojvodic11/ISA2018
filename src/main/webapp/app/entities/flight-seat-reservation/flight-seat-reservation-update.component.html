@@ -79,13 +79,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_seat">Seat</label>
-                    <select class="form-control" id="field_seat" name="seat" [(ngModel)]="flightSeatReservation.seat" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="seatOption.id === flightSeatReservation.seat?.id ? flightSeatReservation.seat : seatOption" *ngFor="let seatOption of seats; trackBy: trackSeatById">{{seatOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" for="field_flight">Flight</label>
                     <select class="form-control" id="field_flight" name="flight" [(ngModel)]="flightSeatReservation.flight" >
                         <option [ngValue]="null"></option>

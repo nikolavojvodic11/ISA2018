@@ -74,10 +74,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="seat_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <column name="flight_id" type="bigint">
                 <constraints nullable="true" />
             </column>

@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(PlaneService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Plane(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, false);
+            elemDefault = new Plane(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, 'AAAAAAA', false);
         });
 
         describe('Service methods', async () => {
@@ -60,6 +60,7 @@ describe('Service Tests', () => {
                         registration: 'BBBBBB',
                         rowsCount: 1,
                         colsCount: 1,
+                        unavailableSeats: 'BBBBBB',
                         deleted: true
                     },
                     elemDefault
@@ -82,6 +83,7 @@ describe('Service Tests', () => {
                         registration: 'BBBBBB',
                         rowsCount: 1,
                         colsCount: 1,
+                        unavailableSeats: 'BBBBBB',
                         deleted: true
                     },
                     elemDefault

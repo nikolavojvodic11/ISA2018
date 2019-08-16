@@ -57,12 +57,6 @@
                 <dd>
                     <span>{{flightSeatReservation.deleted}}</span>
                 </dd>
-                <dt><span>Seat</span></dt>
-                <dd>
-                    <div *ngIf="flightSeatReservation.seat">
-                        <a [routerLink]="['/seat', flightSeatReservation.seat?.id, 'view']">{{flightSeatReservation.seat?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span>Flight</span></dt>
                 <dd>
                     <div *ngIf="flightSeatReservation.flight">

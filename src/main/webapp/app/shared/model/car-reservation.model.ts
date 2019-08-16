@@ -2,10 +2,17 @@ import { Moment } from 'moment';
 import { ICar } from 'app/shared/model//car.model';
 import { IReservation } from 'app/shared/model//reservation.model';
 
+export const enum ReservationStatus {
+    RESERVED = 'RESERVED',
+    CONFIRMED = 'CONFIRMED',
+    DELETED = 'DELETED'
+}
+
 export interface ICarReservation {
     id?: number;
     dateFrom?: Moment;
     dateTo?: Moment;
+    status?: ReservationStatus;
     price?: number;
     discount?: number;
     hotelRating?: number;
@@ -20,6 +27,7 @@ export class CarReservation implements ICarReservation {
         public id?: number,
         public dateFrom?: Moment,
         public dateTo?: Moment,
+        public status?: ReservationStatus,
         public price?: number,
         public discount?: number,
         public hotelRating?: number,

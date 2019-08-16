@@ -30,6 +30,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="price" type="double">
                 <constraints nullable="true" />
             </column>

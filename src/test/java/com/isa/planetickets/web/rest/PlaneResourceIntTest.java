@@ -55,6 +55,9 @@ public class PlaneResourceIntTest {
     private static final Integer DEFAULT_COLS_COUNT = 1;
     private static final Integer UPDATED_COLS_COUNT = 2;
 
+    private static final String DEFAULT_UNAVAILABLE_SEATS = "AAAAAAAAAA";
+    private static final String UPDATED_UNAVAILABLE_SEATS = "BBBBBBBBBB";
+
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
 
@@ -105,6 +108,7 @@ public class PlaneResourceIntTest {
             .registration(DEFAULT_REGISTRATION)
             .rowsCount(DEFAULT_ROWS_COUNT)
             .colsCount(DEFAULT_COLS_COUNT)
+            .unavailableSeats(DEFAULT_UNAVAILABLE_SEATS)
             .deleted(DEFAULT_DELETED);
         return plane;
     }
@@ -134,6 +138,7 @@ public class PlaneResourceIntTest {
         assertThat(testPlane.getRegistration()).isEqualTo(DEFAULT_REGISTRATION);
         assertThat(testPlane.getRowsCount()).isEqualTo(DEFAULT_ROWS_COUNT);
         assertThat(testPlane.getColsCount()).isEqualTo(DEFAULT_COLS_COUNT);
+        assertThat(testPlane.getUnavailableSeats()).isEqualTo(DEFAULT_UNAVAILABLE_SEATS);
         assertThat(testPlane.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
@@ -172,6 +177,7 @@ public class PlaneResourceIntTest {
             .andExpect(jsonPath("$.[*].registration").value(hasItem(DEFAULT_REGISTRATION.toString())))
             .andExpect(jsonPath("$.[*].rowsCount").value(hasItem(DEFAULT_ROWS_COUNT)))
             .andExpect(jsonPath("$.[*].colsCount").value(hasItem(DEFAULT_COLS_COUNT)))
+            .andExpect(jsonPath("$.[*].unavailableSeats").value(hasItem(DEFAULT_UNAVAILABLE_SEATS.toString())))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
@@ -191,6 +197,7 @@ public class PlaneResourceIntTest {
             .andExpect(jsonPath("$.registration").value(DEFAULT_REGISTRATION.toString()))
             .andExpect(jsonPath("$.rowsCount").value(DEFAULT_ROWS_COUNT))
             .andExpect(jsonPath("$.colsCount").value(DEFAULT_COLS_COUNT))
+            .andExpect(jsonPath("$.unavailableSeats").value(DEFAULT_UNAVAILABLE_SEATS.toString()))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
@@ -220,6 +227,7 @@ public class PlaneResourceIntTest {
             .registration(UPDATED_REGISTRATION)
             .rowsCount(UPDATED_ROWS_COUNT)
             .colsCount(UPDATED_COLS_COUNT)
+            .unavailableSeats(UPDATED_UNAVAILABLE_SEATS)
             .deleted(UPDATED_DELETED);
 
         restPlaneMockMvc.perform(put("/api/planes")
@@ -236,6 +244,7 @@ public class PlaneResourceIntTest {
         assertThat(testPlane.getRegistration()).isEqualTo(UPDATED_REGISTRATION);
         assertThat(testPlane.getRowsCount()).isEqualTo(UPDATED_ROWS_COUNT);
         assertThat(testPlane.getColsCount()).isEqualTo(UPDATED_COLS_COUNT);
+        assertThat(testPlane.getUnavailableSeats()).isEqualTo(UPDATED_UNAVAILABLE_SEATS);
         assertThat(testPlane.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 

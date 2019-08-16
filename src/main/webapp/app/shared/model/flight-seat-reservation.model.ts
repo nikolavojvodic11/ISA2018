@@ -1,4 +1,3 @@
-import { ISeat } from 'app/shared/model//seat.model';
 import { IFlight } from 'app/shared/model//flight.model';
 import { IIsaUser } from 'app/shared/model//isa-user.model';
 import { IReservation } from 'app/shared/model//reservation.model';
@@ -24,7 +23,6 @@ export interface IFlightSeatReservation {
     roomRating?: number;
     pointsEarned?: number;
     deleted?: boolean;
-    seat?: ISeat;
     flight?: IFlight;
     user?: IIsaUser;
     reservation?: IReservation;
@@ -46,7 +44,6 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public roomRating?: number,
         public pointsEarned?: number,
         public deleted?: boolean,
-        public seat?: ISeat,
         public flight?: IFlight,
         public user?: IIsaUser,
         public reservation?: IReservation

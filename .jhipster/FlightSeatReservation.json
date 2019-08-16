@@ -58,12 +58,6 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "seat",
-            "otherEntityName": "seat",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
             "relationshipName": "flight",
             "otherEntityName": "flight",
             "otherEntityField": "id"

@@ -12,7 +12,6 @@
     <include file="config/liquibase/changelog/20190206024405_added_entity_Airport.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024406_added_entity_Flight.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024407_added_entity_Plane.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190206024408_added_entity_Seat.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024410_added_entity_Car.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024411_added_entity_Hotel.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024412_added_entity_Room.xml" relativeToChangelogFile="false"/>
@@ -32,7 +31,6 @@
     <include file="config/liquibase/changelog/20190206024405_added_entity_constraints_Airport.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024406_added_entity_constraints_Flight.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024407_added_entity_constraints_Plane.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190206024408_added_entity_constraints_Seat.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024410_added_entity_constraints_Car.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024411_added_entity_constraints_Hotel.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190206024412_added_entity_constraints_Room.xml" relativeToChangelogFile="false"/>

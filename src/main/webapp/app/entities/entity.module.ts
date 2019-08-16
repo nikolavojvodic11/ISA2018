@@ -7,7 +7,6 @@ import { PlaneTicketsCompanyLocationModule } from './company-location/company-lo
 import { PlaneTicketsAirportModule } from './airport/airport.module';
 import { PlaneTicketsFlightModule } from './flight/flight.module';
 import { PlaneTicketsPlaneModule } from './plane/plane.module';
-import { PlaneTicketsSeatModule } from './seat/seat.module';
 import { PlaneTicketsCarModule } from './car/car.module';
 import { PlaneTicketsHotelModule } from './hotel/hotel.module';
 import { PlaneTicketsRoomModule } from './room/room.module';
@@ -33,7 +32,6 @@ import { PlaneTicketsCarReservationModule } from './car-reservation/car-reservat
         PlaneTicketsAirportModule,
         PlaneTicketsFlightModule,
         PlaneTicketsPlaneModule,
-        PlaneTicketsSeatModule,
         PlaneTicketsCarModule,
         PlaneTicketsHotelModule,
         PlaneTicketsRoomModule,

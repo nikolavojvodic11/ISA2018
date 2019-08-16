@@ -8,12 +8,6 @@
     -->
     <changeSet id="20190206024421-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="seat_id"
-                                 baseTableName="flight_seat_reservation"
-                                 constraintName="fk_flight_seat_reservation_seat_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="seat"/>
-
         <addForeignKeyConstraint baseColumnNames="flight_id"
                                  baseTableName="flight_seat_reservation"
                                  constraintName="fk_flight_seat_reservation_flight_id"

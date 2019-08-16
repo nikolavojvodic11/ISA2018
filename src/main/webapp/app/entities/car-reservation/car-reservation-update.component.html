@@ -24,6 +24,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="carReservation.status" id="field_status" >
+                        <option value="RESERVED">RESERVED</option>
+                        <option value="CONFIRMED">CONFIRMED</option>
+                        <option value="DELETED">DELETED</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_price">Price</label>
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="carReservation.price" />

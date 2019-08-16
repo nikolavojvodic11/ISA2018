@@ -7,7 +7,7 @@ import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { CarReservationService } from 'app/entities/car-reservation/car-reservation.service';
-import { ICarReservation, CarReservation } from 'app/shared/model/car-reservation.model';
+import { ICarReservation, CarReservation, ReservationStatus } from 'app/shared/model/car-reservation.model';
 
 describe('Service Tests', () => {
     describe('CarReservation Service', () => {
@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new CarReservation(0, currentDate, currentDate, 0, 0, 0, 0, false);
+            elemDefault = new CarReservation(0, currentDate, currentDate, ReservationStatus.RESERVED, 0, 0, 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -75,6 +75,7 @@ describe('Service Tests', () => {
                     {
                         dateFrom: currentDate.format(DATE_TIME_FORMAT),
                         dateTo: currentDate.format(DATE_TIME_FORMAT),
+                        status: 'BBBBBB',
                         price: 1,
                         discount: 1,
                         hotelRating: 1,
@@ -104,6 +105,7 @@ describe('Service Tests', () => {
                     {
                         dateFrom: currentDate.format(DATE_TIME_FORMAT),
                         dateTo: currentDate.format(DATE_TIME_FORMAT),
+                        status: 'BBBBBB',
                         price: 1,
                         discount: 1,
                         hotelRating: 1,

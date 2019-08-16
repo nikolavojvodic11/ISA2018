@@ -1,6 +1,5 @@
 package com.isa.planetickets.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -8,8 +7,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -41,12 +38,12 @@ public class Plane implements Serializable {
     @Column(name = "cols_count")
     private Integer colsCount;
 
+    @Column(name = "unavailable_seats")
+    private String unavailableSeats;
+
     @Column(name = "deleted")
     private Boolean deleted;
 
-    @OneToMany(mappedBy = "plane")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Seat> seats = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("planes")
     private Company company;
@@ -125,6 +122,19 @@ public class Plane implements Serializable {
         this.colsCount = colsCount;
     }
 
+    public String getUnavailableSeats() {
+        return unavailableSeats;
+    }
+
+    public Plane unavailableSeats(String unavailableSeats) {
+        this.unavailableSeats = unavailableSeats;
+        return this;
+    }
+
+    public void setUnavailableSeats(String unavailableSeats) {
+        this.unavailableSeats = unavailableSeats;
+    }
+
     public Boolean isDeleted() {
         return deleted;
     }
@@ -136,31 +146,6 @@ public class Plane implements Serializable {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public Set<Seat> getSeats() {
-        return seats;
-    }
-
-    public Plane seats(Set<Seat> seats) {
-        this.seats = seats;
-        return this;
-    }
-
-    public Plane addSeat(Seat seat) {
-        this.seats.add(seat);
-        seat.setPlane(this);
-        return this;
-    }
-
-    public Plane removeSeat(Seat seat) {
-        this.seats.remove(seat);
-        seat.setPlane(null);
-        return this;
-    }
-
-    public void setSeats(Set<Seat> seats) {
-        this.seats = seats;
     }
 
     public Company getCompany() {
@@ -206,6 +191,7 @@ public class Plane implements Serializable {
             ", registration='" + getRegistration() + "'" +
             ", rowsCount=" + getRowsCount() +
             ", colsCount=" + getColsCount() +
+            ", unavailableSeats='" + getUnavailableSeats() + "'" +
             ", deleted='" + isDeleted() + "'" +
             "}";
     }

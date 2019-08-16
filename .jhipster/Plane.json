@@ -22,17 +22,15 @@
             "fieldType": "Integer"
         },
         {
+            "fieldName": "unavailableSeats",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "deleted",
             "fieldType": "Boolean"
         }
     ],
     "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "seat",
-            "otherEntityName": "seat",
-            "otherEntityRelationshipName": "plane"
-        },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "company",

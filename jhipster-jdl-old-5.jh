@@ -53,7 +53,12 @@ entity Plane {
     registration String
     rowsCount Integer
     colsCount Integer
-    unavailableSeats String
+    deleted Boolean
+}
+
+entity Seat {
+	row Integer
+    col Integer
     deleted Boolean
 }
 
@@ -172,8 +177,7 @@ entity FlightSeatReservation {
 
 entity CarReservation {
 	dateFrom Instant
-    dateTo Instant
-    status ReservationStatus
+    dateTo Instant  
     price Double
     discount Integer
     hotelRating Integer
@@ -205,6 +209,10 @@ relationship ManyToOne {
 	Flight{departureAirport} to Airport
     Flight{arrivalAirport} to Airport
     Flight{plane} to Plane
+}
+
+relationship OneToMany {
+	Plane{seat} to Seat{plane}
 }
 
 relationship OneToMany {
@@ -263,6 +271,7 @@ relationship ManyToOne {
 }
 
 relationship ManyToOne {
+    FlightSeatReservation{seat} to Seat
     FlightSeatReservation{flight} to Flight
     FlightSeatReservation{user} to IsaUser
 }

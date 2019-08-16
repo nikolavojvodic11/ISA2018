@@ -42,6 +42,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="unavailable_seats" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="deleted" type="boolean">
                 <constraints nullable="true" />
             </column>
