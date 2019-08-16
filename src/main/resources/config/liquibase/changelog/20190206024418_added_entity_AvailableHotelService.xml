@@ -34,7 +34,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="hotel_service_reservation_id" type="bigint">
+            <column name="hotel_service_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

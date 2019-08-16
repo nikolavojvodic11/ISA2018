@@ -34,7 +34,7 @@ public class AvailableHotelService implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("")
-    private HotelService hotelServiceReservation;
+    private HotelService hotelService;
 
     @ManyToOne
     @JsonIgnoreProperties("availableHotelServices")
@@ -88,17 +88,17 @@ public class AvailableHotelService implements Serializable {
         this.deleted = deleted;
     }
 
-    public HotelService getHotelServiceReservation() {
-        return hotelServiceReservation;
+    public HotelService getHotelService() {
+        return hotelService;
     }
 
-    public AvailableHotelService hotelServiceReservation(HotelService hotelService) {
-        this.hotelServiceReservation = hotelService;
+    public AvailableHotelService hotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
         return this;
     }
 
-    public void setHotelServiceReservation(HotelService hotelService) {
-        this.hotelServiceReservation = hotelService;
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
     }
 
     public Hotel getHotel() {

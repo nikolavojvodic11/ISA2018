@@ -26,10 +26,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_hotelServiceReservation">Hotel Service Reservation</label>
-                    <select class="form-control" id="field_hotelServiceReservation" name="hotelServiceReservation" [(ngModel)]="availableHotelService.hotelServiceReservation" >
+                    <label class="form-control-label" for="field_hotelService">Hotel Service</label>
+                    <select class="form-control" id="field_hotelService" name="hotelService" [(ngModel)]="availableHotelService.hotelService" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="hotelServiceOption.id === availableHotelService.hotelServiceReservation?.id ? availableHotelService.hotelServiceReservation : hotelServiceOption" *ngFor="let hotelServiceOption of hotelservices; trackBy: trackHotelServiceById">{{hotelServiceOption.id}}</option>
+                        <option [ngValue]="hotelServiceOption.id === availableHotelService.hotelService?.id ? availableHotelService.hotelService : hotelServiceOption" *ngFor="let hotelServiceOption of hotelservices; trackBy: trackHotelServiceById">{{hotelServiceOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">

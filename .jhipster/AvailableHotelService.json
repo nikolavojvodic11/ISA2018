@@ -17,7 +17,7 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "hotelServiceReservation",
+            "relationshipName": "hotelService",
             "otherEntityName": "hotelService",
             "otherEntityField": "id"
         },

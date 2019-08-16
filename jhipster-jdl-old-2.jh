@@ -239,7 +239,7 @@ relationship OneToMany {
 }
 
 relationship ManyToOne {
-	AvailableHotelService{hotelService} to HotelService
+	AvailableHotelService{hotelServiceReservation} to HotelService
 }
 
 relationship OneToMany {

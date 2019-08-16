@@ -18,7 +18,7 @@
             <th><span>Price</span></th>
             <th><span>Discount</span></th>
             <th><span>Deleted</span></th>
-            <th><span>Hotel Service Reservation</span></th>
+            <th><span>Hotel Service</span></th>
             <th><span>Hotel</span></th>
             <th></th>
             </tr>
@@ -30,8 +30,8 @@
                 <td>{{availableHotelService.discount}}</td>
                 <td>{{availableHotelService.deleted}}</td>
                 <td>
-                    <div *ngIf="availableHotelService.hotelServiceReservation">
-                        <a [routerLink]="['../hotel-service', availableHotelService.hotelServiceReservation?.id, 'view' ]" >{{availableHotelService.hotelServiceReservation?.id}}</a>
+                    <div *ngIf="availableHotelService.hotelService">
+                        <a [routerLink]="['../hotel-service', availableHotelService.hotelService?.id, 'view' ]" >{{availableHotelService.hotelService?.id}}</a>
                     </div>
                 </td>
                 <td>

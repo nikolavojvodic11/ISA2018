@@ -17,10 +17,10 @@
                 <dd>
                     <span>{{availableHotelService.deleted}}</span>
                 </dd>
-                <dt><span>Hotel Service Reservation</span></dt>
+                <dt><span>Hotel Service</span></dt>
                 <dd>
-                    <div *ngIf="availableHotelService.hotelServiceReservation">
-                        <a [routerLink]="['/hotel-service', availableHotelService.hotelServiceReservation?.id, 'view']">{{availableHotelService.hotelServiceReservation?.id}}</a>
+                    <div *ngIf="availableHotelService.hotelService">
+                        <a [routerLink]="['/hotel-service', availableHotelService.hotelService?.id, 'view']">{{availableHotelService.hotelService?.id}}</a>
                     </div>
                 </dd>
                 <dt><span>Hotel</span></dt>
