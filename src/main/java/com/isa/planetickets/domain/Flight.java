@@ -69,10 +69,6 @@ public class Flight implements Serializable {
     @JsonIgnoreProperties("")
     private Plane plane;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
-    private Company company;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -261,19 +257,6 @@ public class Flight implements Serializable {
 
     public void setPlane(Plane plane) {
         this.plane = plane;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public Flight company(Company company) {
-        this.company = company;
-        return this;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

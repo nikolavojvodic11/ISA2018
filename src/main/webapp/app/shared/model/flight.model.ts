@@ -2,7 +2,6 @@ import { Moment } from 'moment';
 import { IFlightStop } from 'app/shared/model//flight-stop.model';
 import { IAirport } from 'app/shared/model//airport.model';
 import { IPlane } from 'app/shared/model//plane.model';
-import { ICompany } from 'app/shared/model//company.model';
 
 export interface IFlight {
     id?: number;
@@ -19,7 +18,6 @@ export interface IFlight {
     departureAirport?: IAirport;
     arrivalAirport?: IAirport;
     plane?: IPlane;
-    company?: ICompany;
 }
 
 export class Flight implements IFlight {
@@ -37,8 +35,7 @@ export class Flight implements IFlight {
         public flightStops?: IFlightStop[],
         public departureAirport?: IAirport,
         public arrivalAirport?: IAirport,
-        public plane?: IPlane,
-        public company?: ICompany
+        public plane?: IPlane
     ) {
         this.deleted = this.deleted || false;
     }

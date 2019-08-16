@@ -80,13 +80,6 @@
                         <option [ngValue]="planeOption.id === flight.plane?.id ? flight.plane : planeOption" *ngFor="let planeOption of planes; trackBy: trackPlaneById">{{planeOption.id}}</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_company">Company</label>
-                    <select class="form-control" id="field_company" name="company" [(ngModel)]="flight.company" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="companyOption.id === flight.company?.id ? flight.company : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
-                    </select>
-                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

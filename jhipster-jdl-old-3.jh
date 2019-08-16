@@ -214,6 +214,7 @@ relationship ManyToOne {
 	Flight{departureAirport} to Airport
     Flight{arrivalAirport} to Airport
     Flight{plane} to Plane
+    Flight{company} to Company
 }
 
 relationship OneToMany {

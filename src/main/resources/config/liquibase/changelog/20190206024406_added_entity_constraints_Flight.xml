@@ -26,11 +26,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="plane"/>
 
-        <addForeignKeyConstraint baseColumnNames="company_id"
-                                 baseTableName="flight"
-                                 constraintName="fk_flight_company_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="company"/>
-
     </changeSet>
 </databaseChangeLog>

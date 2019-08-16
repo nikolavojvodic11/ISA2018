@@ -62,12 +62,6 @@
             "relationshipName": "plane",
             "otherEntityName": "plane",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "company",
-            "otherEntityName": "company",
-            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190206024406",

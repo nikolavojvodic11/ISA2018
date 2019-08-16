@@ -12,8 +12,6 @@ import { IAirport } from 'app/shared/model/airport.model';
 import { AirportService } from 'app/entities/airport';
 import { IPlane } from 'app/shared/model/plane.model';
 import { PlaneService } from 'app/entities/plane';
-import { ICompany } from 'app/shared/model/company.model';
-import { CompanyService } from 'app/entities/company';
 
 @Component({
     selector: 'jhi-flight-update',
@@ -26,8 +24,6 @@ export class FlightUpdateComponent implements OnInit {
     airports: IAirport[];
 
     planes: IPlane[];
-
-    companies: ICompany[];
     departureTime: string;
     arrivalTime: string;
 
@@ -36,7 +32,6 @@ export class FlightUpdateComponent implements OnInit {
         protected flightService: FlightService,
         protected airportService: AirportService,
         protected planeService: PlaneService,
-        protected companyService: CompanyService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -56,12 +51,6 @@ export class FlightUpdateComponent implements OnInit {
         this.planeService.query().subscribe(
             (res: HttpResponse<IPlane[]>) => {
                 this.planes = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.companyService.query().subscribe(
-            (res: HttpResponse<ICompany[]>) => {
-                this.companies = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -104,10 +93,6 @@ export class FlightUpdateComponent implements OnInit {
     }
 
     trackPlaneById(index: number, item: IPlane) {
-        return item.id;
-    }
-
-    trackCompanyById(index: number, item: ICompany) {
         return item.id;
     }
 }

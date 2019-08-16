@@ -59,12 +59,6 @@
                         <a [routerLink]="['/plane', flight.plane?.id, 'view']">{{flight.plane?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Company</span></dt>
-                <dd>
-                    <div *ngIf="flight.company">
-                        <a [routerLink]="['/company', flight.company?.id, 'view']">{{flight.company?.id}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

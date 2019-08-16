@@ -27,7 +27,6 @@
             <th><span>Departure Airport</span></th>
             <th><span>Arrival Airport</span></th>
             <th><span>Plane</span></th>
-            <th><span>Company</span></th>
             <th></th>
             </tr>
             </thead>
@@ -56,11 +55,6 @@
                 <td>
                     <div *ngIf="flight.plane">
                         <a [routerLink]="['../plane', flight.plane?.id, 'view' ]" >{{flight.plane?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="flight.company">
-                        <a [routerLink]="['../company', flight.company?.id, 'view' ]" >{{flight.company?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
