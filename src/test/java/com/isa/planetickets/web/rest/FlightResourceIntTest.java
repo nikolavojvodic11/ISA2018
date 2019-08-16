@@ -54,9 +54,6 @@ public class FlightResourceIntTest {
     private static final Integer DEFAULT_FLIGHT_DISTANCE = 1;
     private static final Integer UPDATED_FLIGHT_DISTANCE = 2;
 
-    private static final Integer DEFAULT_STOPS_COUNT = 1;
-    private static final Integer UPDATED_STOPS_COUNT = 2;
-
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
@@ -115,7 +112,6 @@ public class FlightResourceIntTest {
             .arrivalTime(DEFAULT_ARRIVAL_TIME)
             .flightDuration(DEFAULT_FLIGHT_DURATION)
             .flightDistance(DEFAULT_FLIGHT_DISTANCE)
-            .stopsCount(DEFAULT_STOPS_COUNT)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
             .code(DEFAULT_CODE)
@@ -147,7 +143,6 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getArrivalTime()).isEqualTo(DEFAULT_ARRIVAL_TIME);
         assertThat(testFlight.getFlightDuration()).isEqualTo(DEFAULT_FLIGHT_DURATION);
         assertThat(testFlight.getFlightDistance()).isEqualTo(DEFAULT_FLIGHT_DISTANCE);
-        assertThat(testFlight.getStopsCount()).isEqualTo(DEFAULT_STOPS_COUNT);
         assertThat(testFlight.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testFlight.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testFlight.getCode()).isEqualTo(DEFAULT_CODE);
@@ -188,7 +183,6 @@ public class FlightResourceIntTest {
             .andExpect(jsonPath("$.[*].arrivalTime").value(hasItem(DEFAULT_ARRIVAL_TIME.toString())))
             .andExpect(jsonPath("$.[*].flightDuration").value(hasItem(DEFAULT_FLIGHT_DURATION)))
             .andExpect(jsonPath("$.[*].flightDistance").value(hasItem(DEFAULT_FLIGHT_DISTANCE)))
-            .andExpect(jsonPath("$.[*].stopsCount").value(hasItem(DEFAULT_STOPS_COUNT)))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
@@ -210,7 +204,6 @@ public class FlightResourceIntTest {
             .andExpect(jsonPath("$.arrivalTime").value(DEFAULT_ARRIVAL_TIME.toString()))
             .andExpect(jsonPath("$.flightDuration").value(DEFAULT_FLIGHT_DURATION))
             .andExpect(jsonPath("$.flightDistance").value(DEFAULT_FLIGHT_DISTANCE))
-            .andExpect(jsonPath("$.stopsCount").value(DEFAULT_STOPS_COUNT))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
@@ -242,7 +235,6 @@ public class FlightResourceIntTest {
             .arrivalTime(UPDATED_ARRIVAL_TIME)
             .flightDuration(UPDATED_FLIGHT_DURATION)
             .flightDistance(UPDATED_FLIGHT_DISTANCE)
-            .stopsCount(UPDATED_STOPS_COUNT)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
             .code(UPDATED_CODE)
@@ -261,7 +253,6 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getArrivalTime()).isEqualTo(UPDATED_ARRIVAL_TIME);
         assertThat(testFlight.getFlightDuration()).isEqualTo(UPDATED_FLIGHT_DURATION);
         assertThat(testFlight.getFlightDistance()).isEqualTo(UPDATED_FLIGHT_DISTANCE);
-        assertThat(testFlight.getStopsCount()).isEqualTo(UPDATED_STOPS_COUNT);
         assertThat(testFlight.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testFlight.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testFlight.getCode()).isEqualTo(UPDATED_CODE);

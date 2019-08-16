@@ -38,6 +38,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="flight_number" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="seat_row" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="seat_col" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="price" type="double">
                 <constraints nullable="true" />
             </column>
@@ -70,7 +82,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="friend_request_id" type="bigint">
+            <column name="user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

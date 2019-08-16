@@ -19,6 +19,9 @@
             <th><span>Last Name</span></th>
             <th><span>Passport Number</span></th>
             <th><span>Status</span></th>
+            <th><span>Flight Number</span></th>
+            <th><span>Seat Row</span></th>
+            <th><span>Seat Col</span></th>
             <th><span>Price</span></th>
             <th><span>Discount</span></th>
             <th><span>Hotel Rating</span></th>
@@ -27,7 +30,7 @@
             <th><span>Deleted</span></th>
             <th><span>Seat</span></th>
             <th><span>Flight</span></th>
-            <th><span>Friend Request</span></th>
+            <th><span>User</span></th>
             <th><span>Reservation</span></th>
             <th></th>
             </tr>
@@ -39,6 +42,9 @@
                 <td>{{flightSeatReservation.lastName}}</td>
                 <td>{{flightSeatReservation.passportNumber}}</td>
                 <td>{{flightSeatReservation.status}}</td>
+                <td>{{flightSeatReservation.flightNumber}}</td>
+                <td>{{flightSeatReservation.seatRow}}</td>
+                <td>{{flightSeatReservation.seatCol}}</td>
                 <td>{{flightSeatReservation.price}}</td>
                 <td>{{flightSeatReservation.discount}}</td>
                 <td>{{flightSeatReservation.hotelRating}}</td>
@@ -56,8 +62,8 @@
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="flightSeatReservation.friendRequest">
-                        <a [routerLink]="['../friend-request', flightSeatReservation.friendRequest?.id, 'view' ]" >{{flightSeatReservation.friendRequest?.id}}</a>
+                    <div *ngIf="flightSeatReservation.user">
+                        <a [routerLink]="['../isa-user', flightSeatReservation.user?.id, 'view' ]" >{{flightSeatReservation.user?.id}}</a>
                     </div>
                 </td>
                 <td>

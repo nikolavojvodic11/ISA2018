@@ -55,7 +55,6 @@ public class CacheConfiguration {
             cm.createCache(com.isa.planetickets.domain.Plane.class.getName(), jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.Plane.class.getName() + ".seats", jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.Seat.class.getName(), jcacheConfiguration);
-            cm.createCache(com.isa.planetickets.domain.FlightStop.class.getName(), jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.Car.class.getName(), jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.Car.class.getName() + ".images", jcacheConfiguration);
             cm.createCache(com.isa.planetickets.domain.Hotel.class.getName(), jcacheConfiguration);

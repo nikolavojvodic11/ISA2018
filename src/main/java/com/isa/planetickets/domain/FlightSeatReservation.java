@@ -38,6 +38,15 @@ public class FlightSeatReservation implements Serializable {
     @Column(name = "status")
     private ReservationStatus status;
 
+    @Column(name = "flight_number")
+    private Integer flightNumber;
+
+    @Column(name = "seat_row")
+    private Integer seatRow;
+
+    @Column(name = "seat_col")
+    private String seatCol;
+
     @Column(name = "price")
     private Double price;
 
@@ -66,7 +75,7 @@ public class FlightSeatReservation implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("")
-    private FriendRequest friendRequest;
+    private IsaUser user;
 
     @ManyToOne
     @JsonIgnoreProperties("flightSeatReservations")
@@ -131,6 +140,45 @@ public class FlightSeatReservation implements Serializable {
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
+    }
+
+    public Integer getFlightNumber() {
+        return flightNumber;
+    }
+
+    public FlightSeatReservation flightNumber(Integer flightNumber) {
+        this.flightNumber = flightNumber;
+        return this;
+    }
+
+    public void setFlightNumber(Integer flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public Integer getSeatRow() {
+        return seatRow;
+    }
+
+    public FlightSeatReservation seatRow(Integer seatRow) {
+        this.seatRow = seatRow;
+        return this;
+    }
+
+    public void setSeatRow(Integer seatRow) {
+        this.seatRow = seatRow;
+    }
+
+    public String getSeatCol() {
+        return seatCol;
+    }
+
+    public FlightSeatReservation seatCol(String seatCol) {
+        this.seatCol = seatCol;
+        return this;
+    }
+
+    public void setSeatCol(String seatCol) {
+        this.seatCol = seatCol;
     }
 
     public Double getPrice() {
@@ -237,17 +285,17 @@ public class FlightSeatReservation implements Serializable {
         this.flight = flight;
     }
 
-    public FriendRequest getFriendRequest() {
-        return friendRequest;
+    public IsaUser getUser() {
+        return user;
     }
 
-    public FlightSeatReservation friendRequest(FriendRequest friendRequest) {
-        this.friendRequest = friendRequest;
+    public FlightSeatReservation user(IsaUser isaUser) {
+        this.user = isaUser;
         return this;
     }
 
-    public void setFriendRequest(FriendRequest friendRequest) {
-        this.friendRequest = friendRequest;
+    public void setUser(IsaUser isaUser) {
+        this.user = isaUser;
     }
 
     public Reservation getReservation() {
@@ -292,6 +340,9 @@ public class FlightSeatReservation implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", passportNumber='" + getPassportNumber() + "'" +
             ", status='" + getStatus() + "'" +
+            ", flightNumber=" + getFlightNumber() +
+            ", seatRow=" + getSeatRow() +
+            ", seatCol='" + getSeatCol() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             ", hotelRating=" + getHotelRating() +

@@ -1,6 +1,6 @@
 import { ISeat } from 'app/shared/model//seat.model';
 import { IFlight } from 'app/shared/model//flight.model';
-import { IFriendRequest } from 'app/shared/model//friend-request.model';
+import { IIsaUser } from 'app/shared/model//isa-user.model';
 import { IReservation } from 'app/shared/model//reservation.model';
 
 export const enum ReservationStatus {
@@ -15,6 +15,9 @@ export interface IFlightSeatReservation {
     lastName?: string;
     passportNumber?: string;
     status?: ReservationStatus;
+    flightNumber?: number;
+    seatRow?: number;
+    seatCol?: string;
     price?: number;
     discount?: number;
     hotelRating?: number;
@@ -23,7 +26,7 @@ export interface IFlightSeatReservation {
     deleted?: boolean;
     seat?: ISeat;
     flight?: IFlight;
-    friendRequest?: IFriendRequest;
+    user?: IIsaUser;
     reservation?: IReservation;
 }
 
@@ -34,6 +37,9 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public lastName?: string,
         public passportNumber?: string,
         public status?: ReservationStatus,
+        public flightNumber?: number,
+        public seatRow?: number,
+        public seatCol?: string,
         public price?: number,
         public discount?: number,
         public hotelRating?: number,
@@ -42,7 +48,7 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public deleted?: boolean,
         public seat?: ISeat,
         public flight?: IFlight,
-        public friendRequest?: IFriendRequest,
+        public user?: IIsaUser,
         public reservation?: IReservation
     ) {
         this.deleted = this.deleted || false;

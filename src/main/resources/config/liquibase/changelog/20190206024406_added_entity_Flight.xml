@@ -38,10 +38,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="stops_count" type="integer">
-                <constraints nullable="true" />
-            </column>
-
             <column name="price" type="double">
                 <constraints nullable="true" />
             </column>

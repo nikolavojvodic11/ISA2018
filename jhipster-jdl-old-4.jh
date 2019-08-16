@@ -42,6 +42,7 @@ entity Flight {
     arrivalTime Instant
     flightDuration Integer
     flightDistance Integer
+    stopsCount Integer
     price Double
     discount Integer
     code String
@@ -59,6 +60,11 @@ entity Plane {
 entity Seat {
 	row Integer
     col Integer
+    deleted Boolean
+}
+
+entity FlightStop {
+	stopNumber Integer
     deleted Boolean
 }
 
@@ -164,9 +170,6 @@ entity FlightSeatReservation {
     lastName String
     passportNumber String
     status ReservationStatus
-    flightNumber Integer
-    seatRow Integer
-    seatCol String
     price Double
     discount Integer
     hotelRating Integer
@@ -204,7 +207,9 @@ relationship OneToMany {
 relationship ManyToOne {
 	CompanyLocation{city} to City
 }
-
+relationship OneToMany {
+	Flight{flightStop} to FlightStop{flight}
+}
 relationship ManyToOne {
 	Flight{departureAirport} to Airport
     Flight{arrivalAirport} to Airport
@@ -214,7 +219,9 @@ relationship ManyToOne {
 relationship OneToMany {
 	Plane{seat} to Seat{plane}
 }
-
+relationship ManyToOne {
+	FlightStop{airport} to Airport
+}
 relationship OneToMany {
 	CompanyLocation{car} to Car{companyLocation}
     CompanyLocation{hotel} to Hotel{companyLocation}
@@ -273,7 +280,7 @@ relationship ManyToOne {
 relationship ManyToOne {
     FlightSeatReservation{seat} to Seat
     FlightSeatReservation{flight} to Flight
-    FlightSeatReservation{user} to IsaUser
+    FlightSeatReservation{friendRequest} to FriendRequest
 }
 
 

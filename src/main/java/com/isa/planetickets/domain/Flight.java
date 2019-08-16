@@ -1,6 +1,5 @@
 package com.isa.planetickets.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,8 +8,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -39,9 +36,6 @@ public class Flight implements Serializable {
     @Column(name = "flight_distance")
     private Integer flightDistance;
 
-    @Column(name = "stops_count")
-    private Integer stopsCount;
-
     @Column(name = "price")
     private Double price;
 
@@ -54,9 +48,6 @@ public class Flight implements Serializable {
     @Column(name = "deleted")
     private Boolean deleted;
 
-    @OneToMany(mappedBy = "flight")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<FlightStop> flightStops = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("")
     private Airport departureAirport;
@@ -130,19 +121,6 @@ public class Flight implements Serializable {
         this.flightDistance = flightDistance;
     }
 
-    public Integer getStopsCount() {
-        return stopsCount;
-    }
-
-    public Flight stopsCount(Integer stopsCount) {
-        this.stopsCount = stopsCount;
-        return this;
-    }
-
-    public void setStopsCount(Integer stopsCount) {
-        this.stopsCount = stopsCount;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -193,31 +171,6 @@ public class Flight implements Serializable {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public Set<FlightStop> getFlightStops() {
-        return flightStops;
-    }
-
-    public Flight flightStops(Set<FlightStop> flightStops) {
-        this.flightStops = flightStops;
-        return this;
-    }
-
-    public Flight addFlightStop(FlightStop flightStop) {
-        this.flightStops.add(flightStop);
-        flightStop.setFlight(this);
-        return this;
-    }
-
-    public Flight removeFlightStop(FlightStop flightStop) {
-        this.flightStops.remove(flightStop);
-        flightStop.setFlight(null);
-        return this;
-    }
-
-    public void setFlightStops(Set<FlightStop> flightStops) {
-        this.flightStops = flightStops;
     }
 
     public Airport getDepartureAirport() {
@@ -288,7 +241,6 @@ public class Flight implements Serializable {
             ", arrivalTime='" + getArrivalTime() + "'" +
             ", flightDuration=" + getFlightDuration() +
             ", flightDistance=" + getFlightDistance() +
-            ", stopsCount=" + getStopsCount() +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             ", code='" + getCode() + "'" +

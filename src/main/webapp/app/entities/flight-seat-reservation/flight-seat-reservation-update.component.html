@@ -33,6 +33,21 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_flightNumber">Flight Number</label>
+                    <input type="number" class="form-control" name="flightNumber" id="field_flightNumber"
+                        [(ngModel)]="flightSeatReservation.flightNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_seatRow">Seat Row</label>
+                    <input type="number" class="form-control" name="seatRow" id="field_seatRow"
+                        [(ngModel)]="flightSeatReservation.seatRow" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_seatCol">Seat Col</label>
+                    <input type="text" class="form-control" name="seatCol" id="field_seatCol"
+                        [(ngModel)]="flightSeatReservation.seatCol" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_price">Price</label>
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="flightSeatReservation.price" />
@@ -78,10 +93,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_friendRequest">Friend Request</label>
-                    <select class="form-control" id="field_friendRequest" name="friendRequest" [(ngModel)]="flightSeatReservation.friendRequest" >
+                    <label class="form-control-label" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="flightSeatReservation.user" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="friendRequestOption.id === flightSeatReservation.friendRequest?.id ? flightSeatReservation.friendRequest : friendRequestOption" *ngFor="let friendRequestOption of friendrequests; trackBy: trackFriendRequestById">{{friendRequestOption.id}}</option>
+                        <option [ngValue]="isaUserOption.id === flightSeatReservation.user?.id ? flightSeatReservation.user : isaUserOption" *ngFor="let isaUserOption of isausers; trackBy: trackIsaUserById">{{isaUserOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">

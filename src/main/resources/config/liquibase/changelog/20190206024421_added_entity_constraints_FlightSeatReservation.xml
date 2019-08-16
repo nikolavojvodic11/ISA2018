@@ -20,11 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="flight"/>
 
-        <addForeignKeyConstraint baseColumnNames="friend_request_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="flight_seat_reservation"
-                                 constraintName="fk_flight_seat_reservation_friend_request_id"
+                                 constraintName="fk_flight_seat_reservation_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="friend_request"/>
+                                 referencedTableName="isa_user"/>
 
         <addForeignKeyConstraint baseColumnNames="reservation_id"
                                  baseTableName="flight_seat_reservation"

@@ -21,6 +21,18 @@
                 <dd>
                     <span>{{flightSeatReservation.status}}</span>
                 </dd>
+                <dt><span>Flight Number</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.flightNumber}}</span>
+                </dd>
+                <dt><span>Seat Row</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.seatRow}}</span>
+                </dd>
+                <dt><span>Seat Col</span></dt>
+                <dd>
+                    <span>{{flightSeatReservation.seatCol}}</span>
+                </dd>
                 <dt><span>Price</span></dt>
                 <dd>
                     <span>{{flightSeatReservation.price}}</span>
@@ -57,10 +69,10 @@
                         <a [routerLink]="['/flight', flightSeatReservation.flight?.id, 'view']">{{flightSeatReservation.flight?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Friend Request</span></dt>
+                <dt><span>User</span></dt>
                 <dd>
-                    <div *ngIf="flightSeatReservation.friendRequest">
-                        <a [routerLink]="['/friend-request', flightSeatReservation.friendRequest?.id, 'view']">{{flightSeatReservation.friendRequest?.id}}</a>
+                    <div *ngIf="flightSeatReservation.user">
+                        <a [routerLink]="['/isa-user', flightSeatReservation.user?.id, 'view']">{{flightSeatReservation.user?.id}}</a>
                     </div>
                 </dd>
                 <dt><span>Reservation</span></dt>

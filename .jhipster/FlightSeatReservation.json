@@ -19,6 +19,18 @@
             "fieldValues": "RESERVED,CONFIRMED,DELETED"
         },
         {
+            "fieldName": "flightNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "seatRow",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "seatCol",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "price",
             "fieldType": "Double"
         },
@@ -58,8 +70,8 @@
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "friendRequest",
-            "otherEntityName": "friendRequest",
+            "relationshipName": "user",
+            "otherEntityName": "isaUser",
             "otherEntityField": "id"
         },
         {

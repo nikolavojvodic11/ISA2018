@@ -18,10 +18,6 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "stopsCount",
-            "fieldType": "Integer"
-        },
-        {
             "fieldName": "price",
             "fieldType": "Double"
         },
@@ -39,12 +35,6 @@
         }
     ],
     "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "flightStop",
-            "otherEntityName": "flightStop",
-            "otherEntityRelationshipName": "flight"
-        },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "departureAirport",

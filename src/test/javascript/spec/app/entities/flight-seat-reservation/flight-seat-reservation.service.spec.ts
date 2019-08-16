@@ -21,7 +21,22 @@ describe('Service Tests', () => {
             service = injector.get(FlightSeatReservationService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new FlightSeatReservation(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', ReservationStatus.RESERVED, 0, 0, 0, 0, 0, false);
+            elemDefault = new FlightSeatReservation(
+                0,
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                ReservationStatus.RESERVED,
+                0,
+                0,
+                'AAAAAAA',
+                0,
+                0,
+                0,
+                0,
+                0,
+                false
+            );
         });
 
         describe('Service methods', async () => {
@@ -59,6 +74,9 @@ describe('Service Tests', () => {
                         lastName: 'BBBBBB',
                         passportNumber: 'BBBBBB',
                         status: 'BBBBBB',
+                        flightNumber: 1,
+                        seatRow: 1,
+                        seatCol: 'BBBBBB',
                         price: 1,
                         discount: 1,
                         hotelRating: 1,
@@ -85,6 +103,9 @@ describe('Service Tests', () => {
                         lastName: 'BBBBBB',
                         passportNumber: 'BBBBBB',
                         status: 'BBBBBB',
+                        flightNumber: 1,
+                        seatRow: 1,
+                        seatCol: 'BBBBBB',
                         price: 1,
                         discount: 1,
                         hotelRating: 1,

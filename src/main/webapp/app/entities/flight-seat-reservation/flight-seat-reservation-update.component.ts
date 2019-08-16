@@ -10,8 +10,8 @@ import { ISeat } from 'app/shared/model/seat.model';
 import { SeatService } from 'app/entities/seat';
 import { IFlight } from 'app/shared/model/flight.model';
 import { FlightService } from 'app/entities/flight';
-import { IFriendRequest } from 'app/shared/model/friend-request.model';
-import { FriendRequestService } from 'app/entities/friend-request';
+import { IIsaUser } from 'app/shared/model/isa-user.model';
+import { IsaUserService } from 'app/entities/isa-user';
 import { IReservation } from 'app/shared/model/reservation.model';
 import { ReservationService } from 'app/entities/reservation';
 
@@ -27,7 +27,7 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
 
     flights: IFlight[];
 
-    friendrequests: IFriendRequest[];
+    isausers: IIsaUser[];
 
     reservations: IReservation[];
 
@@ -36,7 +36,7 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
         protected flightSeatReservationService: FlightSeatReservationService,
         protected seatService: SeatService,
         protected flightService: FlightService,
-        protected friendRequestService: FriendRequestService,
+        protected isaUserService: IsaUserService,
         protected reservationService: ReservationService,
         protected activatedRoute: ActivatedRoute
     ) {}
@@ -58,9 +58,9 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.friendRequestService.query().subscribe(
-            (res: HttpResponse<IFriendRequest[]>) => {
-                this.friendrequests = res.body;
+        this.isaUserService.query().subscribe(
+            (res: HttpResponse<IIsaUser[]>) => {
+                this.isausers = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -113,7 +113,7 @@ export class FlightSeatReservationUpdateComponent implements OnInit {
         return item.id;
     }
 
-    trackFriendRequestById(index: number, item: IFriendRequest) {
+    trackIsaUserById(index: number, item: IIsaUser) {
         return item.id;
     }
 

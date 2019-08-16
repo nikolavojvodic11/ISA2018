@@ -53,6 +53,15 @@ public class FlightSeatReservationResourceIntTest {
     private static final ReservationStatus DEFAULT_STATUS = ReservationStatus.RESERVED;
     private static final ReservationStatus UPDATED_STATUS = ReservationStatus.CONFIRMED;
 
+    private static final Integer DEFAULT_FLIGHT_NUMBER = 1;
+    private static final Integer UPDATED_FLIGHT_NUMBER = 2;
+
+    private static final Integer DEFAULT_SEAT_ROW = 1;
+    private static final Integer UPDATED_SEAT_ROW = 2;
+
+    private static final String DEFAULT_SEAT_COL = "AAAAAAAAAA";
+    private static final String UPDATED_SEAT_COL = "BBBBBBBBBB";
+
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
@@ -117,6 +126,9 @@ public class FlightSeatReservationResourceIntTest {
             .lastName(DEFAULT_LAST_NAME)
             .passportNumber(DEFAULT_PASSPORT_NUMBER)
             .status(DEFAULT_STATUS)
+            .flightNumber(DEFAULT_FLIGHT_NUMBER)
+            .seatRow(DEFAULT_SEAT_ROW)
+            .seatCol(DEFAULT_SEAT_COL)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
             .hotelRating(DEFAULT_HOTEL_RATING)
@@ -150,6 +162,9 @@ public class FlightSeatReservationResourceIntTest {
         assertThat(testFlightSeatReservation.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testFlightSeatReservation.getPassportNumber()).isEqualTo(DEFAULT_PASSPORT_NUMBER);
         assertThat(testFlightSeatReservation.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testFlightSeatReservation.getFlightNumber()).isEqualTo(DEFAULT_FLIGHT_NUMBER);
+        assertThat(testFlightSeatReservation.getSeatRow()).isEqualTo(DEFAULT_SEAT_ROW);
+        assertThat(testFlightSeatReservation.getSeatCol()).isEqualTo(DEFAULT_SEAT_COL);
         assertThat(testFlightSeatReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testFlightSeatReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testFlightSeatReservation.getHotelRating()).isEqualTo(DEFAULT_HOTEL_RATING);
@@ -192,6 +207,9 @@ public class FlightSeatReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
             .andExpect(jsonPath("$.[*].passportNumber").value(hasItem(DEFAULT_PASSPORT_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].flightNumber").value(hasItem(DEFAULT_FLIGHT_NUMBER)))
+            .andExpect(jsonPath("$.[*].seatRow").value(hasItem(DEFAULT_SEAT_ROW)))
+            .andExpect(jsonPath("$.[*].seatCol").value(hasItem(DEFAULT_SEAT_COL.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
             .andExpect(jsonPath("$.[*].hotelRating").value(hasItem(DEFAULT_HOTEL_RATING)))
@@ -215,6 +233,9 @@ public class FlightSeatReservationResourceIntTest {
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
             .andExpect(jsonPath("$.passportNumber").value(DEFAULT_PASSPORT_NUMBER.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.flightNumber").value(DEFAULT_FLIGHT_NUMBER))
+            .andExpect(jsonPath("$.seatRow").value(DEFAULT_SEAT_ROW))
+            .andExpect(jsonPath("$.seatCol").value(DEFAULT_SEAT_COL.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
             .andExpect(jsonPath("$.hotelRating").value(DEFAULT_HOTEL_RATING))
@@ -248,6 +269,9 @@ public class FlightSeatReservationResourceIntTest {
             .lastName(UPDATED_LAST_NAME)
             .passportNumber(UPDATED_PASSPORT_NUMBER)
             .status(UPDATED_STATUS)
+            .flightNumber(UPDATED_FLIGHT_NUMBER)
+            .seatRow(UPDATED_SEAT_ROW)
+            .seatCol(UPDATED_SEAT_COL)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
             .hotelRating(UPDATED_HOTEL_RATING)
@@ -268,6 +292,9 @@ public class FlightSeatReservationResourceIntTest {
         assertThat(testFlightSeatReservation.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testFlightSeatReservation.getPassportNumber()).isEqualTo(UPDATED_PASSPORT_NUMBER);
         assertThat(testFlightSeatReservation.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testFlightSeatReservation.getFlightNumber()).isEqualTo(UPDATED_FLIGHT_NUMBER);
+        assertThat(testFlightSeatReservation.getSeatRow()).isEqualTo(UPDATED_SEAT_ROW);
+        assertThat(testFlightSeatReservation.getSeatCol()).isEqualTo(UPDATED_SEAT_COL);
         assertThat(testFlightSeatReservation.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testFlightSeatReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testFlightSeatReservation.getHotelRating()).isEqualTo(UPDATED_HOTEL_RATING);
