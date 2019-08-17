@@ -31,6 +31,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "business",
+            "fieldType": "Boolean"
+        },
+        {
             "fieldName": "price",
             "fieldType": "Double"
         },

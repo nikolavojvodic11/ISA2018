@@ -9,6 +9,7 @@ export interface IFlight {
     flightDuration?: number;
     flightDistance?: number;
     price?: number;
+    businessPrice?: number;
     discount?: number;
     code?: string;
     deleted?: boolean;
@@ -25,6 +26,7 @@ export class Flight implements IFlight {
         public flightDuration?: number,
         public flightDistance?: number,
         public price?: number,
+        public businessPrice?: number,
         public discount?: number,
         public code?: string,
         public deleted?: boolean,

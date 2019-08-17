@@ -7,6 +7,8 @@ export interface IPlane {
     registration?: string;
     rowsCount?: number;
     colsCount?: number;
+    businessRowsCount?: number;
+    businessColsCount?: number;
     unavailableSeats?: string;
     deleted?: boolean;
     company?: ICompany;
@@ -20,6 +22,8 @@ export class Plane implements IPlane {
         public registration?: string,
         public rowsCount?: number,
         public colsCount?: number,
+        public businessRowsCount?: number,
+        public businessColsCount?: number,
         public unavailableSeats?: string,
         public deleted?: boolean,
         public company?: ICompany

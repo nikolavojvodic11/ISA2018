@@ -62,6 +62,9 @@ public class FlightSeatReservationResourceIntTest {
     private static final String DEFAULT_SEAT_COL = "AAAAAAAAAA";
     private static final String UPDATED_SEAT_COL = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_BUSINESS = false;
+    private static final Boolean UPDATED_BUSINESS = true;
+
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
@@ -129,6 +132,7 @@ public class FlightSeatReservationResourceIntTest {
             .flightNumber(DEFAULT_FLIGHT_NUMBER)
             .seatRow(DEFAULT_SEAT_ROW)
             .seatCol(DEFAULT_SEAT_COL)
+            .business(DEFAULT_BUSINESS)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
             .hotelRating(DEFAULT_HOTEL_RATING)
@@ -165,6 +169,7 @@ public class FlightSeatReservationResourceIntTest {
         assertThat(testFlightSeatReservation.getFlightNumber()).isEqualTo(DEFAULT_FLIGHT_NUMBER);
         assertThat(testFlightSeatReservation.getSeatRow()).isEqualTo(DEFAULT_SEAT_ROW);
         assertThat(testFlightSeatReservation.getSeatCol()).isEqualTo(DEFAULT_SEAT_COL);
+        assertThat(testFlightSeatReservation.isBusiness()).isEqualTo(DEFAULT_BUSINESS);
         assertThat(testFlightSeatReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testFlightSeatReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testFlightSeatReservation.getHotelRating()).isEqualTo(DEFAULT_HOTEL_RATING);
@@ -210,6 +215,7 @@ public class FlightSeatReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].flightNumber").value(hasItem(DEFAULT_FLIGHT_NUMBER)))
             .andExpect(jsonPath("$.[*].seatRow").value(hasItem(DEFAULT_SEAT_ROW)))
             .andExpect(jsonPath("$.[*].seatCol").value(hasItem(DEFAULT_SEAT_COL.toString())))
+            .andExpect(jsonPath("$.[*].business").value(hasItem(DEFAULT_BUSINESS.booleanValue())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
             .andExpect(jsonPath("$.[*].hotelRating").value(hasItem(DEFAULT_HOTEL_RATING)))
@@ -236,6 +242,7 @@ public class FlightSeatReservationResourceIntTest {
             .andExpect(jsonPath("$.flightNumber").value(DEFAULT_FLIGHT_NUMBER))
             .andExpect(jsonPath("$.seatRow").value(DEFAULT_SEAT_ROW))
             .andExpect(jsonPath("$.seatCol").value(DEFAULT_SEAT_COL.toString()))
+            .andExpect(jsonPath("$.business").value(DEFAULT_BUSINESS.booleanValue()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
             .andExpect(jsonPath("$.hotelRating").value(DEFAULT_HOTEL_RATING))
@@ -272,6 +279,7 @@ public class FlightSeatReservationResourceIntTest {
             .flightNumber(UPDATED_FLIGHT_NUMBER)
             .seatRow(UPDATED_SEAT_ROW)
             .seatCol(UPDATED_SEAT_COL)
+            .business(UPDATED_BUSINESS)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
             .hotelRating(UPDATED_HOTEL_RATING)
@@ -295,6 +303,7 @@ public class FlightSeatReservationResourceIntTest {
         assertThat(testFlightSeatReservation.getFlightNumber()).isEqualTo(UPDATED_FLIGHT_NUMBER);
         assertThat(testFlightSeatReservation.getSeatRow()).isEqualTo(UPDATED_SEAT_ROW);
         assertThat(testFlightSeatReservation.getSeatCol()).isEqualTo(UPDATED_SEAT_COL);
+        assertThat(testFlightSeatReservation.isBusiness()).isEqualTo(UPDATED_BUSINESS);
         assertThat(testFlightSeatReservation.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testFlightSeatReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testFlightSeatReservation.getHotelRating()).isEqualTo(UPDATED_HOTEL_RATING);

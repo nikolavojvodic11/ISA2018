@@ -115,8 +115,28 @@
                   tableName="plane">
        		<column name="rows_count" type="numeric"/>
        		<column name="cols_count" type="numeric"/>
+       		<column name="business_rows_count" type="numeric"/>
+       		<column name="business_cols_count" type="numeric"/>
        		<column name="deleted" type="boolean"/>
        		<column name="company_id" type="numeric"/>
+       	</loadData>
+       	
+       	<!-- FLIGHTS -->
+       	<loadData encoding="UTF-8"
+                  file="config/liquibase/flights.csv"
+                  separator=";"
+                  tableName="flight">
+       		<column name="departure_time" type="datetime"/>
+       		<column name="arrival_time" type="datetime"/>
+       		<column name="flight_duration" type="numeric"/>
+       		<column name="flight_distance" type="numeric"/>
+       		<column name="price" type="numeric"/>
+       		<column name="business_price" type="numeric"/>
+       		<column name="discount" type="numeric"/>
+       		<column name="deleted" type="boolean"/>
+       		<column name="departure_airport_id" type="numeric"/>
+       		<column name="arrival_airport_id" type="numeric"/>
+       		<column name="plane_id" type="numeric"/>
        	</loadData>
         
     </changeSet>

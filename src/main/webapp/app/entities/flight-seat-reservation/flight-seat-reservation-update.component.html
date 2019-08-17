@@ -48,6 +48,11 @@
                         [(ngModel)]="flightSeatReservation.seatCol" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_business">Business</label>
+                    <input type="checkbox" class="form-control" name="business" id="field_business"
+                        [(ngModel)]="flightSeatReservation.business" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_price">Price</label>
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="flightSeatReservation.price" />

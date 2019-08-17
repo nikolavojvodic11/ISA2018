@@ -17,6 +17,7 @@ export interface IFlightSeatReservation {
     flightNumber?: number;
     seatRow?: number;
     seatCol?: string;
+    business?: boolean;
     price?: number;
     discount?: number;
     hotelRating?: number;
@@ -38,6 +39,7 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public flightNumber?: number,
         public seatRow?: number,
         public seatCol?: string,
+        public business?: boolean,
         public price?: number,
         public discount?: number,
         public hotelRating?: number,
@@ -48,6 +50,7 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public user?: IIsaUser,
         public reservation?: IReservation
     ) {
+        this.business = this.business || false;
         this.deleted = this.deleted || false;
     }
 }

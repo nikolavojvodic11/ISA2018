@@ -42,6 +42,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="business_price" type="double">
+                <constraints nullable="true" />
+            </column>
+
             <column name="discount" type="integer">
                 <constraints nullable="true" />
             </column>

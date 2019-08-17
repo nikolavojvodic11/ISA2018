@@ -22,6 +22,10 @@
             "fieldType": "Double"
         },
         {
+            "fieldName": "businessPrice",
+            "fieldType": "Double"
+        },
+        {
             "fieldName": "discount",
             "fieldType": "Integer"
         },

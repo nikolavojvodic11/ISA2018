@@ -42,6 +42,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="business_rows_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="business_cols_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+
             <column name="unavailable_seats" type="varchar(255)">
                 <constraints nullable="true" />
             </column>

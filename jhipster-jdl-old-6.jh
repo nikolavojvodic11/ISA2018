@@ -43,7 +43,6 @@ entity Flight {
     flightDuration Integer
     flightDistance Integer
     price Double
-    businessPrice Double
     discount Integer
     code String
     deleted Boolean
@@ -54,8 +53,6 @@ entity Plane {
     registration String
     rowsCount Integer
     colsCount Integer
-    businessRowsCount Integer
-    businessColsCount Integer
     unavailableSeats String
     deleted Boolean
 }
@@ -165,7 +162,6 @@ entity FlightSeatReservation {
     flightNumber Integer
     seatRow Integer
     seatCol String
-    business Boolean
     price Double
     discount Integer
     hotelRating Integer

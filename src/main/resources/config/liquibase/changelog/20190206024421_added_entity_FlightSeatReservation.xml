@@ -50,6 +50,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="business" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <column name="price" type="double">
                 <constraints nullable="true" />
             </column>

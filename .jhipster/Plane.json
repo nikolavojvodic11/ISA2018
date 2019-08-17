@@ -22,6 +22,14 @@
             "fieldType": "Integer"
         },
         {
+            "fieldName": "businessRowsCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "businessColsCount",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "unavailableSeats",
             "fieldType": "String"
         },

@@ -38,6 +38,12 @@ public class Plane implements Serializable {
     @Column(name = "cols_count")
     private Integer colsCount;
 
+    @Column(name = "business_rows_count")
+    private Integer businessRowsCount;
+
+    @Column(name = "business_cols_count")
+    private Integer businessColsCount;
+
     @Column(name = "unavailable_seats")
     private String unavailableSeats;
 
@@ -122,6 +128,32 @@ public class Plane implements Serializable {
         this.colsCount = colsCount;
     }
 
+    public Integer getBusinessRowsCount() {
+        return businessRowsCount;
+    }
+
+    public Plane businessRowsCount(Integer businessRowsCount) {
+        this.businessRowsCount = businessRowsCount;
+        return this;
+    }
+
+    public void setBusinessRowsCount(Integer businessRowsCount) {
+        this.businessRowsCount = businessRowsCount;
+    }
+
+    public Integer getBusinessColsCount() {
+        return businessColsCount;
+    }
+
+    public Plane businessColsCount(Integer businessColsCount) {
+        this.businessColsCount = businessColsCount;
+        return this;
+    }
+
+    public void setBusinessColsCount(Integer businessColsCount) {
+        this.businessColsCount = businessColsCount;
+    }
+
     public String getUnavailableSeats() {
         return unavailableSeats;
     }
@@ -191,6 +223,8 @@ public class Plane implements Serializable {
             ", registration='" + getRegistration() + "'" +
             ", rowsCount=" + getRowsCount() +
             ", colsCount=" + getColsCount() +
+            ", businessRowsCount=" + getBusinessRowsCount() +
+            ", businessColsCount=" + getBusinessColsCount() +
             ", unavailableSeats='" + getUnavailableSeats() + "'" +
             ", deleted='" + isDeleted() + "'" +
             "}";

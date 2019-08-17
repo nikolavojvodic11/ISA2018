@@ -39,6 +39,9 @@ public class Flight implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "business_price")
+    private Double businessPrice;
+
     @Column(name = "discount")
     private Integer discount;
 
@@ -132,6 +135,19 @@ public class Flight implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getBusinessPrice() {
+        return businessPrice;
+    }
+
+    public Flight businessPrice(Double businessPrice) {
+        this.businessPrice = businessPrice;
+        return this;
+    }
+
+    public void setBusinessPrice(Double businessPrice) {
+        this.businessPrice = businessPrice;
     }
 
     public Integer getDiscount() {
@@ -242,6 +258,7 @@ public class Flight implements Serializable {
             ", flightDuration=" + getFlightDuration() +
             ", flightDistance=" + getFlightDistance() +
             ", price=" + getPrice() +
+            ", businessPrice=" + getBusinessPrice() +
             ", discount=" + getDiscount() +
             ", code='" + getCode() + "'" +
             ", deleted='" + isDeleted() + "'" +

@@ -47,6 +47,9 @@ public class FlightSeatReservation implements Serializable {
     @Column(name = "seat_col")
     private String seatCol;
 
+    @Column(name = "business")
+    private Boolean business;
+
     @Column(name = "price")
     private Double price;
 
@@ -175,6 +178,19 @@ public class FlightSeatReservation implements Serializable {
 
     public void setSeatCol(String seatCol) {
         this.seatCol = seatCol;
+    }
+
+    public Boolean isBusiness() {
+        return business;
+    }
+
+    public FlightSeatReservation business(Boolean business) {
+        this.business = business;
+        return this;
+    }
+
+    public void setBusiness(Boolean business) {
+        this.business = business;
     }
 
     public Double getPrice() {
@@ -326,6 +342,7 @@ public class FlightSeatReservation implements Serializable {
             ", flightNumber=" + getFlightNumber() +
             ", seatRow=" + getSeatRow() +
             ", seatCol='" + getSeatCol() + "'" +
+            ", business='" + isBusiness() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             ", hotelRating=" + getHotelRating() +
