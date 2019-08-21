@@ -1,1 +1,1 @@
-export * from './tabs/flights-tab/flights-tab.component';
+export * from './homeTabs/flights-tab/flights-tab.component';

@@ -22,7 +22,7 @@ import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 
-import { FlightsTabComponent } from './components/tabs/flights-tab/flights-tab.component';
+import { FlightsTabComponent } from './components/homeTabs/flights-tab/flights-tab.component';
 import { ComponentsModule } from './components/components.module';
 
 @NgModule({

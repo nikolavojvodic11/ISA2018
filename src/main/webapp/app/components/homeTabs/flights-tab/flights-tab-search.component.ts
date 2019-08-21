@@ -10,18 +10,19 @@ export class FlightsTabSearchComponent implements OnInit {
 
     constructor() {
         this.formData = {
-            adultsCount: '1',
-            depatureAirport: null,
-            arrivalAirport: null,
-            departureDate: null,
-            arrivalDate: null
+            adultsCount: null,
+            flightType: null,
+            flightClass: null,
+            departureDate: new Date().toISOString(),
+            arrivalDate: new Date().toISOString(),
+            departureAirport: null,
+            arrivalAirport: null
         };
     }
 
     ngOnInit() {}
 
     search() {
-        console.warn('Send search flights request');
-        console.warn('Search data', this.formData);
+        // console.error('Form data', this.formData);
     }
 }
