@@ -12,6 +12,8 @@
         Load test data
     -->
     <changeSet id="99999999999991" author="jhipster">
+    
+    	<validCheckSum>7:83fb3e039db9e373e9eae516f216a8e7</validCheckSum>
         
         <!-- CITIES -->
         <loadData encoding="UTF-8"

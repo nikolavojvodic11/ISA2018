@@ -12,6 +12,7 @@ import { FlightsTabPassengersComponent } from './homeTabs/flights-tab/flights-ta
 import { HotelsTabComponent } from './homeTabs/hotels-tab/hotels-tab.component';
 
 import { CarRentalsTabComponent } from './homeTabs/car-rentals-tab/car-rentals-tab.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,7 @@ import { CarRentalsTabComponent } from './homeTabs/car-rentals-tab/car-rentals-t
         HotelsTabComponent,
         CarRentalsTabComponent
     ],
-    imports: [CommonModule, PlaneTicketsSharedModule],
+    imports: [CommonModule, RouterModule, PlaneTicketsSharedModule],
     exports: [FlightsTabComponent, HotelsTabComponent, CarRentalsTabComponent]
 })
 export class ComponentsModule {}
