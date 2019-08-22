@@ -78,8 +78,8 @@ describe('Service Tests', () => {
                         status: 'BBBBBB',
                         price: 1,
                         discount: 1,
-                        hotelRating: 1,
-                        roomRating: 1,
+                        carRentalRating: 1,
+                        carRating: 1,
                         deleted: true
                     },
                     elemDefault
@@ -108,8 +108,8 @@ describe('Service Tests', () => {
                         status: 'BBBBBB',
                         price: 1,
                         discount: 1,
-                        hotelRating: 1,
-                        roomRating: 1,
+                        carRentalRating: 1,
+                        carRating: 1,
                         deleted: true
                     },
                     elemDefault

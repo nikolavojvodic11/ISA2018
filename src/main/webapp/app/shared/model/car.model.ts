@@ -12,6 +12,7 @@ export interface ICar {
     manufacturer?: string;
     model?: string;
     registration?: string;
+    color?: string;
     seats?: number;
     type?: CarType;
     price?: number;
@@ -27,6 +28,7 @@ export class Car implements ICar {
         public manufacturer?: string,
         public model?: string,
         public registration?: string,
+        public color?: string,
         public seats?: number,
         public type?: CarType,
         public price?: number,

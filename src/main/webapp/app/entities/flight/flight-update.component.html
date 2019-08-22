@@ -44,6 +44,26 @@
                         [(ngModel)]="flight.businessPrice" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_freeBags">Free Bags</label>
+                    <input type="number" class="form-control" name="freeBags" id="field_freeBags"
+                        [(ngModel)]="flight.freeBags" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_freeCarryOnBags">Free Carry On Bags</label>
+                    <input type="number" class="form-control" name="freeCarryOnBags" id="field_freeCarryOnBags"
+                        [(ngModel)]="flight.freeCarryOnBags" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pricePerAdditionalBag">Price Per Additional Bag</label>
+                    <input type="number" class="form-control" name="pricePerAdditionalBag" id="field_pricePerAdditionalBag"
+                        [(ngModel)]="flight.pricePerAdditionalBag" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_maxBagsAllowed">Max Bags Allowed</label>
+                    <input type="number" class="form-control" name="maxBagsAllowed" id="field_maxBagsAllowed"
+                        [(ngModel)]="flight.maxBagsAllowed" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_discount">Discount</label>
                     <input type="number" class="form-control" name="discount" id="field_discount"
                         [(ngModel)]="flight.discount" />

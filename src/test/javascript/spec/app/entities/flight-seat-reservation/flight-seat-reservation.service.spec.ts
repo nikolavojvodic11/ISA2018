@@ -81,8 +81,8 @@ describe('Service Tests', () => {
                         business: true,
                         price: 1,
                         discount: 1,
-                        hotelRating: 1,
-                        roomRating: 1,
+                        airlineRating: 1,
+                        flightRating: 1,
                         pointsEarned: 1,
                         deleted: true
                     },
@@ -111,8 +111,8 @@ describe('Service Tests', () => {
                         business: true,
                         price: 1,
                         discount: 1,
-                        hotelRating: 1,
-                        roomRating: 1,
+                        airlineRating: 1,
+                        flightRating: 1,
                         pointsEarned: 1,
                         deleted: true
                     },

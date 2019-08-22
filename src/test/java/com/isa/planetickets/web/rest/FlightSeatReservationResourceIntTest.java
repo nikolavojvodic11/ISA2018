@@ -71,11 +71,11 @@ public class FlightSeatReservationResourceIntTest {
     private static final Integer DEFAULT_DISCOUNT = 1;
     private static final Integer UPDATED_DISCOUNT = 2;
 
-    private static final Integer DEFAULT_HOTEL_RATING = 1;
-    private static final Integer UPDATED_HOTEL_RATING = 2;
+    private static final Integer DEFAULT_AIRLINE_RATING = 1;
+    private static final Integer UPDATED_AIRLINE_RATING = 2;
 
-    private static final Integer DEFAULT_ROOM_RATING = 1;
-    private static final Integer UPDATED_ROOM_RATING = 2;
+    private static final Integer DEFAULT_FLIGHT_RATING = 1;
+    private static final Integer UPDATED_FLIGHT_RATING = 2;
 
     private static final Integer DEFAULT_POINTS_EARNED = 1;
     private static final Integer UPDATED_POINTS_EARNED = 2;
@@ -135,8 +135,8 @@ public class FlightSeatReservationResourceIntTest {
             .business(DEFAULT_BUSINESS)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
-            .hotelRating(DEFAULT_HOTEL_RATING)
-            .roomRating(DEFAULT_ROOM_RATING)
+            .airlineRating(DEFAULT_AIRLINE_RATING)
+            .flightRating(DEFAULT_FLIGHT_RATING)
             .pointsEarned(DEFAULT_POINTS_EARNED)
             .deleted(DEFAULT_DELETED);
         return flightSeatReservation;
@@ -172,8 +172,8 @@ public class FlightSeatReservationResourceIntTest {
         assertThat(testFlightSeatReservation.isBusiness()).isEqualTo(DEFAULT_BUSINESS);
         assertThat(testFlightSeatReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testFlightSeatReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
-        assertThat(testFlightSeatReservation.getHotelRating()).isEqualTo(DEFAULT_HOTEL_RATING);
-        assertThat(testFlightSeatReservation.getRoomRating()).isEqualTo(DEFAULT_ROOM_RATING);
+        assertThat(testFlightSeatReservation.getAirlineRating()).isEqualTo(DEFAULT_AIRLINE_RATING);
+        assertThat(testFlightSeatReservation.getFlightRating()).isEqualTo(DEFAULT_FLIGHT_RATING);
         assertThat(testFlightSeatReservation.getPointsEarned()).isEqualTo(DEFAULT_POINTS_EARNED);
         assertThat(testFlightSeatReservation.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
@@ -218,8 +218,8 @@ public class FlightSeatReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].business").value(hasItem(DEFAULT_BUSINESS.booleanValue())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
-            .andExpect(jsonPath("$.[*].hotelRating").value(hasItem(DEFAULT_HOTEL_RATING)))
-            .andExpect(jsonPath("$.[*].roomRating").value(hasItem(DEFAULT_ROOM_RATING)))
+            .andExpect(jsonPath("$.[*].airlineRating").value(hasItem(DEFAULT_AIRLINE_RATING)))
+            .andExpect(jsonPath("$.[*].flightRating").value(hasItem(DEFAULT_FLIGHT_RATING)))
             .andExpect(jsonPath("$.[*].pointsEarned").value(hasItem(DEFAULT_POINTS_EARNED)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
@@ -245,8 +245,8 @@ public class FlightSeatReservationResourceIntTest {
             .andExpect(jsonPath("$.business").value(DEFAULT_BUSINESS.booleanValue()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
-            .andExpect(jsonPath("$.hotelRating").value(DEFAULT_HOTEL_RATING))
-            .andExpect(jsonPath("$.roomRating").value(DEFAULT_ROOM_RATING))
+            .andExpect(jsonPath("$.airlineRating").value(DEFAULT_AIRLINE_RATING))
+            .andExpect(jsonPath("$.flightRating").value(DEFAULT_FLIGHT_RATING))
             .andExpect(jsonPath("$.pointsEarned").value(DEFAULT_POINTS_EARNED))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
@@ -282,8 +282,8 @@ public class FlightSeatReservationResourceIntTest {
             .business(UPDATED_BUSINESS)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
-            .hotelRating(UPDATED_HOTEL_RATING)
-            .roomRating(UPDATED_ROOM_RATING)
+            .airlineRating(UPDATED_AIRLINE_RATING)
+            .flightRating(UPDATED_FLIGHT_RATING)
             .pointsEarned(UPDATED_POINTS_EARNED)
             .deleted(UPDATED_DELETED);
 
@@ -306,8 +306,8 @@ public class FlightSeatReservationResourceIntTest {
         assertThat(testFlightSeatReservation.isBusiness()).isEqualTo(UPDATED_BUSINESS);
         assertThat(testFlightSeatReservation.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testFlightSeatReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
-        assertThat(testFlightSeatReservation.getHotelRating()).isEqualTo(UPDATED_HOTEL_RATING);
-        assertThat(testFlightSeatReservation.getRoomRating()).isEqualTo(UPDATED_ROOM_RATING);
+        assertThat(testFlightSeatReservation.getAirlineRating()).isEqualTo(UPDATED_AIRLINE_RATING);
+        assertThat(testFlightSeatReservation.getFlightRating()).isEqualTo(UPDATED_FLIGHT_RATING);
         assertThat(testFlightSeatReservation.getPointsEarned()).isEqualTo(UPDATED_POINTS_EARNED);
         assertThat(testFlightSeatReservation.isDeleted()).isEqualTo(UPDATED_DELETED);
     }

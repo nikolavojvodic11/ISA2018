@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(CarService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Car(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, CarType.HATCHBACK, 0, 0, false);
+            elemDefault = new Car(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, CarType.HATCHBACK, 0, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -58,6 +58,7 @@ describe('Service Tests', () => {
                         manufacturer: 'BBBBBB',
                         model: 'BBBBBB',
                         registration: 'BBBBBB',
+                        color: 'BBBBBB',
                         seats: 1,
                         type: 'BBBBBB',
                         price: 1,
@@ -82,6 +83,7 @@ describe('Service Tests', () => {
                         manufacturer: 'BBBBBB',
                         model: 'BBBBBB',
                         registration: 'BBBBBB',
+                        color: 'BBBBBB',
                         seats: 1,
                         type: 'BBBBBB',
                         price: 1,

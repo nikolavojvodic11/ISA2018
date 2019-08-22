@@ -50,6 +50,9 @@ public class CarResourceIntTest {
     private static final String DEFAULT_REGISTRATION = "AAAAAAAAAA";
     private static final String UPDATED_REGISTRATION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_COLOR = "AAAAAAAAAA";
+    private static final String UPDATED_COLOR = "BBBBBBBBBB";
+
     private static final Integer DEFAULT_SEATS = 1;
     private static final Integer UPDATED_SEATS = 2;
 
@@ -110,6 +113,7 @@ public class CarResourceIntTest {
             .manufacturer(DEFAULT_MANUFACTURER)
             .model(DEFAULT_MODEL)
             .registration(DEFAULT_REGISTRATION)
+            .color(DEFAULT_COLOR)
             .seats(DEFAULT_SEATS)
             .type(DEFAULT_TYPE)
             .price(DEFAULT_PRICE)
@@ -141,6 +145,7 @@ public class CarResourceIntTest {
         assertThat(testCar.getManufacturer()).isEqualTo(DEFAULT_MANUFACTURER);
         assertThat(testCar.getModel()).isEqualTo(DEFAULT_MODEL);
         assertThat(testCar.getRegistration()).isEqualTo(DEFAULT_REGISTRATION);
+        assertThat(testCar.getColor()).isEqualTo(DEFAULT_COLOR);
         assertThat(testCar.getSeats()).isEqualTo(DEFAULT_SEATS);
         assertThat(testCar.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testCar.getPrice()).isEqualTo(DEFAULT_PRICE);
@@ -181,6 +186,7 @@ public class CarResourceIntTest {
             .andExpect(jsonPath("$.[*].manufacturer").value(hasItem(DEFAULT_MANUFACTURER.toString())))
             .andExpect(jsonPath("$.[*].model").value(hasItem(DEFAULT_MODEL.toString())))
             .andExpect(jsonPath("$.[*].registration").value(hasItem(DEFAULT_REGISTRATION.toString())))
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR.toString())))
             .andExpect(jsonPath("$.[*].seats").value(hasItem(DEFAULT_SEATS)))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
@@ -202,6 +208,7 @@ public class CarResourceIntTest {
             .andExpect(jsonPath("$.manufacturer").value(DEFAULT_MANUFACTURER.toString()))
             .andExpect(jsonPath("$.model").value(DEFAULT_MODEL.toString()))
             .andExpect(jsonPath("$.registration").value(DEFAULT_REGISTRATION.toString()))
+            .andExpect(jsonPath("$.color").value(DEFAULT_COLOR.toString()))
             .andExpect(jsonPath("$.seats").value(DEFAULT_SEATS))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
@@ -233,6 +240,7 @@ public class CarResourceIntTest {
             .manufacturer(UPDATED_MANUFACTURER)
             .model(UPDATED_MODEL)
             .registration(UPDATED_REGISTRATION)
+            .color(UPDATED_COLOR)
             .seats(UPDATED_SEATS)
             .type(UPDATED_TYPE)
             .price(UPDATED_PRICE)
@@ -251,6 +259,7 @@ public class CarResourceIntTest {
         assertThat(testCar.getManufacturer()).isEqualTo(UPDATED_MANUFACTURER);
         assertThat(testCar.getModel()).isEqualTo(UPDATED_MODEL);
         assertThat(testCar.getRegistration()).isEqualTo(UPDATED_REGISTRATION);
+        assertThat(testCar.getColor()).isEqualTo(UPDATED_COLOR);
         assertThat(testCar.getSeats()).isEqualTo(UPDATED_SEATS);
         assertThat(testCar.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCar.getPrice()).isEqualTo(UPDATED_PRICE);

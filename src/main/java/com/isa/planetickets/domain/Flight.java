@@ -42,6 +42,18 @@ public class Flight implements Serializable {
     @Column(name = "business_price")
     private Double businessPrice;
 
+    @Column(name = "free_bags")
+    private Integer freeBags;
+
+    @Column(name = "free_carry_on_bags")
+    private Integer freeCarryOnBags;
+
+    @Column(name = "price_per_additional_bag")
+    private Double pricePerAdditionalBag;
+
+    @Column(name = "max_bags_allowed")
+    private Integer maxBagsAllowed;
+
     @Column(name = "discount")
     private Integer discount;
 
@@ -148,6 +160,58 @@ public class Flight implements Serializable {
 
     public void setBusinessPrice(Double businessPrice) {
         this.businessPrice = businessPrice;
+    }
+
+    public Integer getFreeBags() {
+        return freeBags;
+    }
+
+    public Flight freeBags(Integer freeBags) {
+        this.freeBags = freeBags;
+        return this;
+    }
+
+    public void setFreeBags(Integer freeBags) {
+        this.freeBags = freeBags;
+    }
+
+    public Integer getFreeCarryOnBags() {
+        return freeCarryOnBags;
+    }
+
+    public Flight freeCarryOnBags(Integer freeCarryOnBags) {
+        this.freeCarryOnBags = freeCarryOnBags;
+        return this;
+    }
+
+    public void setFreeCarryOnBags(Integer freeCarryOnBags) {
+        this.freeCarryOnBags = freeCarryOnBags;
+    }
+
+    public Double getPricePerAdditionalBag() {
+        return pricePerAdditionalBag;
+    }
+
+    public Flight pricePerAdditionalBag(Double pricePerAdditionalBag) {
+        this.pricePerAdditionalBag = pricePerAdditionalBag;
+        return this;
+    }
+
+    public void setPricePerAdditionalBag(Double pricePerAdditionalBag) {
+        this.pricePerAdditionalBag = pricePerAdditionalBag;
+    }
+
+    public Integer getMaxBagsAllowed() {
+        return maxBagsAllowed;
+    }
+
+    public Flight maxBagsAllowed(Integer maxBagsAllowed) {
+        this.maxBagsAllowed = maxBagsAllowed;
+        return this;
+    }
+
+    public void setMaxBagsAllowed(Integer maxBagsAllowed) {
+        this.maxBagsAllowed = maxBagsAllowed;
     }
 
     public Integer getDiscount() {
@@ -259,6 +323,10 @@ public class Flight implements Serializable {
             ", flightDistance=" + getFlightDistance() +
             ", price=" + getPrice() +
             ", businessPrice=" + getBusinessPrice() +
+            ", freeBags=" + getFreeBags() +
+            ", freeCarryOnBags=" + getFreeCarryOnBags() +
+            ", pricePerAdditionalBag=" + getPricePerAdditionalBag() +
+            ", maxBagsAllowed=" + getMaxBagsAllowed() +
             ", discount=" + getDiscount() +
             ", code='" + getCode() + "'" +
             ", deleted='" + isDeleted() + "'" +

@@ -34,6 +34,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="color" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="seats" type="integer">
                 <constraints nullable="true" />
             </column>

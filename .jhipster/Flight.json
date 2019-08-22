@@ -26,6 +26,22 @@
             "fieldType": "Double"
         },
         {
+            "fieldName": "freeBags",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "freeCarryOnBags",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pricePerAdditionalBag",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "maxBagsAllowed",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "discount",
             "fieldType": "Integer"
         },

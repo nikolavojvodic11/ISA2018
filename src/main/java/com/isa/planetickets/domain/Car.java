@@ -37,6 +37,9 @@ public class Car implements Serializable {
     @Column(name = "registration")
     private String registration;
 
+    @Column(name = "color")
+    private String color;
+
     @Column(name = "seats")
     private Integer seats;
 
@@ -106,6 +109,19 @@ public class Car implements Serializable {
 
     public void setRegistration(String registration) {
         this.registration = registration;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Car color(String color) {
+        this.color = color;
+        return this;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Integer getSeats() {
@@ -239,6 +255,7 @@ public class Car implements Serializable {
             ", manufacturer='" + getManufacturer() + "'" +
             ", model='" + getModel() + "'" +
             ", registration='" + getRegistration() + "'" +
+            ", color='" + getColor() + "'" +
             ", seats=" + getSeats() +
             ", type='" + getType() + "'" +
             ", price=" + getPrice() +

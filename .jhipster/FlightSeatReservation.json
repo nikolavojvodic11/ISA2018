@@ -43,11 +43,11 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "hotelRating",
+            "fieldName": "airlineRating",
             "fieldType": "Integer"
         },
         {
-            "fieldName": "roomRating",
+            "fieldName": "flightRating",
             "fieldType": "Integer"
         },
         {

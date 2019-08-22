@@ -134,6 +134,10 @@
        		<column name="flight_distance" type="numeric"/>
        		<column name="price" type="numeric"/>
        		<column name="business_price" type="numeric"/>
+       		<column name="free_bags" type="numeric"/>
+       		<column name="free_carry_on_bags" type="numeric"/>
+       		<column name="price_per_additional_bag" type="numeric"/>
+       		<column name="max_bags_allowed" type="numeric"/>
        		<column name="discount" type="numeric"/>
        		<column name="deleted" type="boolean"/>
        		<column name="departure_airport_id" type="numeric"/>

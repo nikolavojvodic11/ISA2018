@@ -42,11 +42,11 @@ public class CarReservation implements Serializable {
     @Column(name = "discount")
     private Integer discount;
 
-    @Column(name = "hotel_rating")
-    private Integer hotelRating;
+    @Column(name = "car_rental_rating")
+    private Integer carRentalRating;
 
-    @Column(name = "room_rating")
-    private Integer roomRating;
+    @Column(name = "car_rating")
+    private Integer carRating;
 
     @Column(name = "deleted")
     private Boolean deleted;
@@ -133,30 +133,30 @@ public class CarReservation implements Serializable {
         this.discount = discount;
     }
 
-    public Integer getHotelRating() {
-        return hotelRating;
+    public Integer getCarRentalRating() {
+        return carRentalRating;
     }
 
-    public CarReservation hotelRating(Integer hotelRating) {
-        this.hotelRating = hotelRating;
+    public CarReservation carRentalRating(Integer carRentalRating) {
+        this.carRentalRating = carRentalRating;
         return this;
     }
 
-    public void setHotelRating(Integer hotelRating) {
-        this.hotelRating = hotelRating;
+    public void setCarRentalRating(Integer carRentalRating) {
+        this.carRentalRating = carRentalRating;
     }
 
-    public Integer getRoomRating() {
-        return roomRating;
+    public Integer getCarRating() {
+        return carRating;
     }
 
-    public CarReservation roomRating(Integer roomRating) {
-        this.roomRating = roomRating;
+    public CarReservation carRating(Integer carRating) {
+        this.carRating = carRating;
         return this;
     }
 
-    public void setRoomRating(Integer roomRating) {
-        this.roomRating = roomRating;
+    public void setCarRating(Integer carRating) {
+        this.carRating = carRating;
     }
 
     public Boolean isDeleted() {
@@ -228,8 +228,8 @@ public class CarReservation implements Serializable {
             ", status='" + getStatus() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
-            ", hotelRating=" + getHotelRating() +
-            ", roomRating=" + getRoomRating() +
+            ", carRentalRating=" + getCarRentalRating() +
+            ", carRating=" + getCarRating() +
             ", deleted='" + isDeleted() + "'" +
             "}";
     }

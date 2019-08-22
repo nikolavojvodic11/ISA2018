@@ -58,11 +58,11 @@ public class CarReservationResourceIntTest {
     private static final Integer DEFAULT_DISCOUNT = 1;
     private static final Integer UPDATED_DISCOUNT = 2;
 
-    private static final Integer DEFAULT_HOTEL_RATING = 1;
-    private static final Integer UPDATED_HOTEL_RATING = 2;
+    private static final Integer DEFAULT_CAR_RENTAL_RATING = 1;
+    private static final Integer UPDATED_CAR_RENTAL_RATING = 2;
 
-    private static final Integer DEFAULT_ROOM_RATING = 1;
-    private static final Integer UPDATED_ROOM_RATING = 2;
+    private static final Integer DEFAULT_CAR_RATING = 1;
+    private static final Integer UPDATED_CAR_RATING = 2;
 
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
@@ -114,8 +114,8 @@ public class CarReservationResourceIntTest {
             .status(DEFAULT_STATUS)
             .price(DEFAULT_PRICE)
             .discount(DEFAULT_DISCOUNT)
-            .hotelRating(DEFAULT_HOTEL_RATING)
-            .roomRating(DEFAULT_ROOM_RATING)
+            .carRentalRating(DEFAULT_CAR_RENTAL_RATING)
+            .carRating(DEFAULT_CAR_RATING)
             .deleted(DEFAULT_DELETED);
         return carReservation;
     }
@@ -145,8 +145,8 @@ public class CarReservationResourceIntTest {
         assertThat(testCarReservation.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testCarReservation.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testCarReservation.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
-        assertThat(testCarReservation.getHotelRating()).isEqualTo(DEFAULT_HOTEL_RATING);
-        assertThat(testCarReservation.getRoomRating()).isEqualTo(DEFAULT_ROOM_RATING);
+        assertThat(testCarReservation.getCarRentalRating()).isEqualTo(DEFAULT_CAR_RENTAL_RATING);
+        assertThat(testCarReservation.getCarRating()).isEqualTo(DEFAULT_CAR_RATING);
         assertThat(testCarReservation.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
@@ -185,8 +185,8 @@ public class CarReservationResourceIntTest {
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
-            .andExpect(jsonPath("$.[*].hotelRating").value(hasItem(DEFAULT_HOTEL_RATING)))
-            .andExpect(jsonPath("$.[*].roomRating").value(hasItem(DEFAULT_ROOM_RATING)))
+            .andExpect(jsonPath("$.[*].carRentalRating").value(hasItem(DEFAULT_CAR_RENTAL_RATING)))
+            .andExpect(jsonPath("$.[*].carRating").value(hasItem(DEFAULT_CAR_RATING)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
     
@@ -206,8 +206,8 @@ public class CarReservationResourceIntTest {
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
-            .andExpect(jsonPath("$.hotelRating").value(DEFAULT_HOTEL_RATING))
-            .andExpect(jsonPath("$.roomRating").value(DEFAULT_ROOM_RATING))
+            .andExpect(jsonPath("$.carRentalRating").value(DEFAULT_CAR_RENTAL_RATING))
+            .andExpect(jsonPath("$.carRating").value(DEFAULT_CAR_RATING))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
@@ -237,8 +237,8 @@ public class CarReservationResourceIntTest {
             .status(UPDATED_STATUS)
             .price(UPDATED_PRICE)
             .discount(UPDATED_DISCOUNT)
-            .hotelRating(UPDATED_HOTEL_RATING)
-            .roomRating(UPDATED_ROOM_RATING)
+            .carRentalRating(UPDATED_CAR_RENTAL_RATING)
+            .carRating(UPDATED_CAR_RATING)
             .deleted(UPDATED_DELETED);
 
         restCarReservationMockMvc.perform(put("/api/car-reservations")
@@ -255,8 +255,8 @@ public class CarReservationResourceIntTest {
         assertThat(testCarReservation.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testCarReservation.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testCarReservation.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
-        assertThat(testCarReservation.getHotelRating()).isEqualTo(UPDATED_HOTEL_RATING);
-        assertThat(testCarReservation.getRoomRating()).isEqualTo(UPDATED_ROOM_RATING);
+        assertThat(testCarReservation.getCarRentalRating()).isEqualTo(UPDATED_CAR_RENTAL_RATING);
+        assertThat(testCarReservation.getCarRating()).isEqualTo(UPDATED_CAR_RATING);
         assertThat(testCarReservation.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 

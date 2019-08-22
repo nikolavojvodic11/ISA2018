@@ -20,8 +20,8 @@ export interface IFlightSeatReservation {
     business?: boolean;
     price?: number;
     discount?: number;
-    hotelRating?: number;
-    roomRating?: number;
+    airlineRating?: number;
+    flightRating?: number;
     pointsEarned?: number;
     deleted?: boolean;
     flight?: IFlight;
@@ -42,8 +42,8 @@ export class FlightSeatReservation implements IFlightSeatReservation {
         public business?: boolean,
         public price?: number,
         public discount?: number,
-        public hotelRating?: number,
-        public roomRating?: number,
+        public airlineRating?: number,
+        public flightRating?: number,
         public pointsEarned?: number,
         public deleted?: boolean,
         public flight?: IFlight,

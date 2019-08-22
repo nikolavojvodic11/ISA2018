@@ -42,11 +42,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="hotel_rating" type="integer">
+            <column name="car_rental_rating" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="room_rating" type="integer">
+            <column name="car_rating" type="integer">
                 <constraints nullable="true" />
             </column>
 

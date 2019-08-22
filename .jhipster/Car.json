@@ -14,6 +14,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "color",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "seats",
             "fieldType": "Integer"
         },

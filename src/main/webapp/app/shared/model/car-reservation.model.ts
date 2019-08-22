@@ -15,8 +15,8 @@ export interface ICarReservation {
     status?: ReservationStatus;
     price?: number;
     discount?: number;
-    hotelRating?: number;
-    roomRating?: number;
+    carRentalRating?: number;
+    carRating?: number;
     deleted?: boolean;
     car?: ICar;
     carReservation?: IReservation;
@@ -30,8 +30,8 @@ export class CarReservation implements ICarReservation {
         public status?: ReservationStatus,
         public price?: number,
         public discount?: number,
-        public hotelRating?: number,
-        public roomRating?: number,
+        public carRentalRating?: number,
+        public carRating?: number,
         public deleted?: boolean,
         public car?: ICar,
         public carReservation?: IReservation

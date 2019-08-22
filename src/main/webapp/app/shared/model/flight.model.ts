@@ -10,6 +10,10 @@ export interface IFlight {
     flightDistance?: number;
     price?: number;
     businessPrice?: number;
+    freeBags?: number;
+    freeCarryOnBags?: number;
+    pricePerAdditionalBag?: number;
+    maxBagsAllowed?: number;
     discount?: number;
     code?: string;
     deleted?: boolean;
@@ -27,6 +31,10 @@ export class Flight implements IFlight {
         public flightDistance?: number,
         public price?: number,
         public businessPrice?: number,
+        public freeBags?: number,
+        public freeCarryOnBags?: number,
+        public pricePerAdditionalBag?: number,
+        public maxBagsAllowed?: number,
         public discount?: number,
         public code?: string,
         public deleted?: boolean,

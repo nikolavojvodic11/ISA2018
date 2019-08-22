@@ -46,6 +46,22 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="free_bags" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="free_carry_on_bags" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="price_per_additional_bag" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="max_bags_allowed" type="integer">
+                <constraints nullable="true" />
+            </column>
+
             <column name="discount" type="integer">
                 <constraints nullable="true" />
             </column>

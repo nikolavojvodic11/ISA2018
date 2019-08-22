@@ -23,11 +23,11 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "hotelRating",
+            "fieldName": "carRentalRating",
             "fieldType": "Integer"
         },
         {
-            "fieldName": "roomRating",
+            "fieldName": "carRating",
             "fieldType": "Integer"
         },
         {

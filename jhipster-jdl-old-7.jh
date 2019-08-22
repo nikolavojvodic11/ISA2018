@@ -44,10 +44,6 @@ entity Flight {
     flightDistance Integer
     price Double
     businessPrice Double
-    freeBags Integer
-    freeCarryOnBags Integer
-    pricePerAdditionalBag Double
-    maxBagsAllowed Integer
     discount Integer
     code String
     deleted Boolean
@@ -68,7 +64,6 @@ entity Car {
 	manufacturer String
     model String
     registration String
-    color String
     seats Integer
     type CarType
     price Double
@@ -173,8 +168,8 @@ entity FlightSeatReservation {
     business Boolean
     price Double
     discount Integer
-    airlineRating Integer
-    flightRating Integer
+    hotelRating Integer
+    roomRating Integer
     pointsEarned Integer
     deleted Boolean
 }
@@ -185,8 +180,8 @@ entity CarReservation {
     status ReservationStatus
     price Double
     discount Integer
-    carRentalRating Integer
-    carRating Integer
+    hotelRating Integer
+    roomRating Integer
     deleted Boolean
 }
 // RELATIONSHIPS

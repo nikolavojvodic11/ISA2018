@@ -60,6 +60,18 @@ public class FlightResourceIntTest {
     private static final Double DEFAULT_BUSINESS_PRICE = 1D;
     private static final Double UPDATED_BUSINESS_PRICE = 2D;
 
+    private static final Integer DEFAULT_FREE_BAGS = 1;
+    private static final Integer UPDATED_FREE_BAGS = 2;
+
+    private static final Integer DEFAULT_FREE_CARRY_ON_BAGS = 1;
+    private static final Integer UPDATED_FREE_CARRY_ON_BAGS = 2;
+
+    private static final Double DEFAULT_PRICE_PER_ADDITIONAL_BAG = 1D;
+    private static final Double UPDATED_PRICE_PER_ADDITIONAL_BAG = 2D;
+
+    private static final Integer DEFAULT_MAX_BAGS_ALLOWED = 1;
+    private static final Integer UPDATED_MAX_BAGS_ALLOWED = 2;
+
     private static final Integer DEFAULT_DISCOUNT = 1;
     private static final Integer UPDATED_DISCOUNT = 2;
 
@@ -117,6 +129,10 @@ public class FlightResourceIntTest {
             .flightDistance(DEFAULT_FLIGHT_DISTANCE)
             .price(DEFAULT_PRICE)
             .businessPrice(DEFAULT_BUSINESS_PRICE)
+            .freeBags(DEFAULT_FREE_BAGS)
+            .freeCarryOnBags(DEFAULT_FREE_CARRY_ON_BAGS)
+            .pricePerAdditionalBag(DEFAULT_PRICE_PER_ADDITIONAL_BAG)
+            .maxBagsAllowed(DEFAULT_MAX_BAGS_ALLOWED)
             .discount(DEFAULT_DISCOUNT)
             .code(DEFAULT_CODE)
             .deleted(DEFAULT_DELETED);
@@ -149,6 +165,10 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getFlightDistance()).isEqualTo(DEFAULT_FLIGHT_DISTANCE);
         assertThat(testFlight.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testFlight.getBusinessPrice()).isEqualTo(DEFAULT_BUSINESS_PRICE);
+        assertThat(testFlight.getFreeBags()).isEqualTo(DEFAULT_FREE_BAGS);
+        assertThat(testFlight.getFreeCarryOnBags()).isEqualTo(DEFAULT_FREE_CARRY_ON_BAGS);
+        assertThat(testFlight.getPricePerAdditionalBag()).isEqualTo(DEFAULT_PRICE_PER_ADDITIONAL_BAG);
+        assertThat(testFlight.getMaxBagsAllowed()).isEqualTo(DEFAULT_MAX_BAGS_ALLOWED);
         assertThat(testFlight.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testFlight.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testFlight.isDeleted()).isEqualTo(DEFAULT_DELETED);
@@ -190,6 +210,10 @@ public class FlightResourceIntTest {
             .andExpect(jsonPath("$.[*].flightDistance").value(hasItem(DEFAULT_FLIGHT_DISTANCE)))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].businessPrice").value(hasItem(DEFAULT_BUSINESS_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].freeBags").value(hasItem(DEFAULT_FREE_BAGS)))
+            .andExpect(jsonPath("$.[*].freeCarryOnBags").value(hasItem(DEFAULT_FREE_CARRY_ON_BAGS)))
+            .andExpect(jsonPath("$.[*].pricePerAdditionalBag").value(hasItem(DEFAULT_PRICE_PER_ADDITIONAL_BAG.doubleValue())))
+            .andExpect(jsonPath("$.[*].maxBagsAllowed").value(hasItem(DEFAULT_MAX_BAGS_ALLOWED)))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT)))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
@@ -212,6 +236,10 @@ public class FlightResourceIntTest {
             .andExpect(jsonPath("$.flightDistance").value(DEFAULT_FLIGHT_DISTANCE))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.businessPrice").value(DEFAULT_BUSINESS_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.freeBags").value(DEFAULT_FREE_BAGS))
+            .andExpect(jsonPath("$.freeCarryOnBags").value(DEFAULT_FREE_CARRY_ON_BAGS))
+            .andExpect(jsonPath("$.pricePerAdditionalBag").value(DEFAULT_PRICE_PER_ADDITIONAL_BAG.doubleValue()))
+            .andExpect(jsonPath("$.maxBagsAllowed").value(DEFAULT_MAX_BAGS_ALLOWED))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
@@ -244,6 +272,10 @@ public class FlightResourceIntTest {
             .flightDistance(UPDATED_FLIGHT_DISTANCE)
             .price(UPDATED_PRICE)
             .businessPrice(UPDATED_BUSINESS_PRICE)
+            .freeBags(UPDATED_FREE_BAGS)
+            .freeCarryOnBags(UPDATED_FREE_CARRY_ON_BAGS)
+            .pricePerAdditionalBag(UPDATED_PRICE_PER_ADDITIONAL_BAG)
+            .maxBagsAllowed(UPDATED_MAX_BAGS_ALLOWED)
             .discount(UPDATED_DISCOUNT)
             .code(UPDATED_CODE)
             .deleted(UPDATED_DELETED);
@@ -263,6 +295,10 @@ public class FlightResourceIntTest {
         assertThat(testFlight.getFlightDistance()).isEqualTo(UPDATED_FLIGHT_DISTANCE);
         assertThat(testFlight.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testFlight.getBusinessPrice()).isEqualTo(UPDATED_BUSINESS_PRICE);
+        assertThat(testFlight.getFreeBags()).isEqualTo(UPDATED_FREE_BAGS);
+        assertThat(testFlight.getFreeCarryOnBags()).isEqualTo(UPDATED_FREE_CARRY_ON_BAGS);
+        assertThat(testFlight.getPricePerAdditionalBag()).isEqualTo(UPDATED_PRICE_PER_ADDITIONAL_BAG);
+        assertThat(testFlight.getMaxBagsAllowed()).isEqualTo(UPDATED_MAX_BAGS_ALLOWED);
         assertThat(testFlight.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testFlight.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testFlight.isDeleted()).isEqualTo(UPDATED_DELETED);

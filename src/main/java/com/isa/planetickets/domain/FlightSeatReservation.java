@@ -56,11 +56,11 @@ public class FlightSeatReservation implements Serializable {
     @Column(name = "discount")
     private Integer discount;
 
-    @Column(name = "hotel_rating")
-    private Integer hotelRating;
+    @Column(name = "airline_rating")
+    private Integer airlineRating;
 
-    @Column(name = "room_rating")
-    private Integer roomRating;
+    @Column(name = "flight_rating")
+    private Integer flightRating;
 
     @Column(name = "points_earned")
     private Integer pointsEarned;
@@ -219,30 +219,30 @@ public class FlightSeatReservation implements Serializable {
         this.discount = discount;
     }
 
-    public Integer getHotelRating() {
-        return hotelRating;
+    public Integer getAirlineRating() {
+        return airlineRating;
     }
 
-    public FlightSeatReservation hotelRating(Integer hotelRating) {
-        this.hotelRating = hotelRating;
+    public FlightSeatReservation airlineRating(Integer airlineRating) {
+        this.airlineRating = airlineRating;
         return this;
     }
 
-    public void setHotelRating(Integer hotelRating) {
-        this.hotelRating = hotelRating;
+    public void setAirlineRating(Integer airlineRating) {
+        this.airlineRating = airlineRating;
     }
 
-    public Integer getRoomRating() {
-        return roomRating;
+    public Integer getFlightRating() {
+        return flightRating;
     }
 
-    public FlightSeatReservation roomRating(Integer roomRating) {
-        this.roomRating = roomRating;
+    public FlightSeatReservation flightRating(Integer flightRating) {
+        this.flightRating = flightRating;
         return this;
     }
 
-    public void setRoomRating(Integer roomRating) {
-        this.roomRating = roomRating;
+    public void setFlightRating(Integer flightRating) {
+        this.flightRating = flightRating;
     }
 
     public Integer getPointsEarned() {
@@ -345,8 +345,8 @@ public class FlightSeatReservation implements Serializable {
             ", business='" + isBusiness() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
-            ", hotelRating=" + getHotelRating() +
-            ", roomRating=" + getRoomRating() +
+            ", airlineRating=" + getAirlineRating() +
+            ", flightRating=" + getFlightRating() +
             ", pointsEarned=" + getPointsEarned() +
             ", deleted='" + isDeleted() + "'" +
             "}";
