@@ -83,9 +83,21 @@ public class CompanyLocationResource {
      */
     @GetMapping("/company-locations")
     @Timed
-    public List<CompanyLocation> getAllCompanyLocations() {
-        log.debug("REST request to get all CompanyLocations");
-        return companyLocationRepository.findAll();
+    public List<CompanyLocation> getAllCompanyLocations(
+    		@RequestParam(name = "companyId", required = false) Long companyId,
+    		@RequestParam(name = "deleted", required = false) Boolean deleted
+    		) {
+    	
+    	log.debug("REST request to get all Company Locations");
+    	
+    	if (companyId != null && deleted == null) {
+    		return companyLocationRepository.findByCompanyId(companyId);
+    	} else if (companyId == null && deleted != null) {
+    		return companyLocationRepository.findByDeleted(deleted);
+    	} else if (companyId != null && deleted != null) {
+    		return companyLocationRepository.findByCompanyIdAndDeleted(companyId, deleted);
+    	}
+    	return companyLocationRepository.findByDeleted(false);
     }
 
     /**

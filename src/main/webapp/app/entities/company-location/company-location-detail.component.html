@@ -1,59 +1,203 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-12">
         <div *ngIf="companyLocation">
-            <h2><span>Company Location</span> {{companyLocation.id}}</h2>
+            <h2>
+                {{companyLocation.company.name + ' - ' + companyLocation.city.name}}
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-info float-right">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span>Address</span></dt>
-                <dd>
-                    <span>{{companyLocation.address}}</span>
-                </dd>
-                <dt><span>Phone</span></dt>
-                <dd>
-                    <span>{{companyLocation.phone}}</span>
-                </dd>
-                <dt><span>Email</span></dt>
-                <dd>
-                    <span>{{companyLocation.email}}</span>
-                </dd>
-                <dt><span>Lat</span></dt>
-                <dd>
-                    <span>{{companyLocation.lat}}</span>
-                </dd>
-                <dt><span>Lng</span></dt>
-                <dd>
-                    <span>{{companyLocation.lng}}</span>
-                </dd>
-                <dt><span>Deleted</span></dt>
-                <dd>
-                    <span>{{companyLocation.deleted}}</span>
-                </dd>
-                <dt><span>City</span></dt>
-                <dd>
-                    <div *ngIf="companyLocation.city">
-                        <a [routerLink]="['/city', companyLocation.city?.id, 'view']">{{companyLocation.city?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span>Company</span></dt>
-                <dd>
-                    <div *ngIf="companyLocation.company">
-                        <a [routerLink]="['/company', companyLocation.company?.id, 'view']">{{companyLocation.company?.id}}</a>
-                    </div>
-                </dd>
-            </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
+            <ngb-tabset>
+                <ngb-tab title="General info">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <dl class="row-md jh-entity-details">
+                                <dt><span>Address</span></dt>
+                                <dd>
+                                    <span>{{companyLocation.address}}</span>
+                                </dd>
+                                <dt><span>Phone</span></dt>
+                                <dd>
+                                    <span>{{companyLocation.phone}}</span>
+                                </dd>
+                                <dt><span>Email</span></dt>
+                                <dd>
+                                    <span>{{companyLocation.email}}</span>
+                                </dd>
+                                <dt><span>Lat</span></dt>
+                                <dd>
+                                    <span>{{companyLocation.lat}}</span>
+                                </dd>
+                                <dt><span>Lng</span></dt>
+                                <dd>
+                                    <span>{{companyLocation.lng}}</span>
+                                </dd>
+                                <dt><span>Deleted</span></dt>
+                                <dd>
+                                    <span>{{companyLocation.deleted}}</span>
+                                </dd>
+                                <dt><span>City</span></dt>
+                                <dd>
+                                    <div *ngIf="companyLocation.city">
+                                        <a [routerLink]="['/city', companyLocation.city?.id, 'view']">{{companyLocation.city?.name}}</a>
+                                    </div>
+                                </dd>
+                                <dt><span>Company</span></dt>
+                                <dd>
+                                    <div *ngIf="companyLocation.company">
+                                        <a [routerLink]="['/company', companyLocation.company?.id, 'view']">{{companyLocation.company?.name}}</a>
+                                    </div>
+                                </dd>
+                            </dl>
 
-            <button type="button"
-                    [routerLink]="['/company-location', companyLocation.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
-            </button>
+                            <button type="button"
+                                    [routerLink]="['/company-location', companyLocation.id, 'edit']"
+                                    class="btn btn-primary">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+                            </button>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Cars">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <div class="table-responsive" *ngIf="cars">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>Manufacturer</span></th>
+                                        <th><span>Model</span></th>
+                                        <th><span>Registration</span></th>
+                                        <th><span>Color</span></th>
+                                        <th><span>Seats</span></th>
+                                        <th><span>Type</span></th>
+                                        <th><span>Price</span></th>
+                                        <th><span>Discount</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let car of cars ;trackBy: trackId">
+                                        <td>{{car.manufacturer}}</td>
+                                        <td>{{car.model}}</td>
+                                        <td>{{car.registration}}</td>
+                                        <td>{{car.color}}</td>
+                                        <td>{{car.seats}}</td>
+                                        <td>{{car.type}}</td>
+                                        <td>{{car.price}}</td>
+                                        <td>{{car.discount}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        [routerLink]="['/car', car.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/car', car.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="All company locations">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <div class="table-responsive" *ngIf="companyLocations">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>Address</span></th>
+                                        <th><span>Phone</span></th>
+                                        <th><span>Email</span></th>
+                                        <th><span>Lat</span></th>
+                                        <th><span>Lng</span></th>
+                                        <th><span>City</span></th>
+                                        <th><span>Company</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let companyLocation of companyLocations ;trackBy: trackId">
+                                        <td>{{companyLocation.address}}</td>
+                                        <td>{{companyLocation.phone}}</td>
+                                        <td>{{companyLocation.email}}</td>
+                                        <td>{{companyLocation.lat}}</td>
+                                        <td>{{companyLocation.lng}}</td>
+                                        <td>
+                                            <div *ngIf="companyLocation.city">
+                                                <a [routerLink]="['../city', companyLocation.city?.id, 'view' ]" >{{companyLocation.city?.name}}</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="companyLocation.company">
+                                                <a [routerLink]="['../company', companyLocation.company?.id, 'view' ]" >{{companyLocation.company?.name}}</a>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        [routerLink]="['/company-location', companyLocation.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/company-location', companyLocation.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', { outlets: { popup: 'company-location/'+ companyLocation.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Ratings">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">Ratings</div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Reports" [disabled]="false">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">Reports</div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
         </div>
     </div>
 </div>

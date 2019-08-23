@@ -11,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,12 +82,31 @@ public class CarResource {
      * GET  /cars : get all the cars.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of cars in body
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
+     * @throws ClassNotFoundException 
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
      */
-    @GetMapping("/cars")
+    @SuppressWarnings("unchecked")
+	@GetMapping("/cars")
     @Timed
-    public List<Car> getAllCars() {
-        log.debug("REST request to get all Cars");
-        return carRepository.findAll();
+    public List<Car> getAllCars(
+    		@RequestParam(name = "companyLocationId", required = false) Long companyLocationId,
+    		@RequestParam(name = "deleted", required = false) Boolean deleted
+    		) {
+    	
+    	log.debug("REST request to get all Cars");
+    	
+    	if (companyLocationId != null && deleted == null) {
+    		return carRepository.findByCompanyLocationId(companyLocationId);
+    	} else if (companyLocationId == null && deleted != null) {
+    		return carRepository.findByDeleted(deleted);
+    	} else if (companyLocationId != null && deleted != null) {
+    		return carRepository.findByCompanyLocationIdAndDeleted(companyLocationId, deleted);
+    	}
+    	return carRepository.findByDeleted(false);        
     }
 
     /**

@@ -45,7 +45,7 @@ export const companyLocationRoute: Routes = [
             companyLocation: CompanyLocationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'CompanyLocations'
         },
         canActivate: [UserRouteAccessService]
