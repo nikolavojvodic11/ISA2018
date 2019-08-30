@@ -2,6 +2,7 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.Flight;
+import com.isa.planetickets.domain.Plane;
 import com.isa.planetickets.repository.FlightRepository;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
@@ -86,6 +87,20 @@ public class FlightResource {
     public List<Flight> getAllFlights() {
         log.debug("REST request to get all Flights");
         return flightRepository.findAll();
+    }
+    
+    /**
+     * GET  /flightsByCompanyId/{companyId} : get all the planes by company id.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of planes in body
+     */
+    @GetMapping("/flightsByCompanyId/{companyId}")
+    @Timed
+    public List<Flight> getFlightsByCompanyId(
+    		@PathVariable Long companyId,
+    		@RequestParam(name = "deleted", required = false) Boolean deleted
+    		) {    	
+    	return flightRepository.findByCompanyId(companyId);
     }
 
     /**

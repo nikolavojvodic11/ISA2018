@@ -1,51 +1,228 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-12">
         <div *ngIf="company">
-            <h2><span>Company</span> {{company.id}}</h2>
+            <h2>
+                {{company.name}}
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-info float-right">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span>Name</span></dt>
-                <dd>
-                    <span>{{company.name}}</span>
-                </dd>
-                <dt><span>Description</span></dt>
-                <dd>
-                    <span>{{company.description}}</span>
-                </dd>
-                <dt><span>Website</span></dt>
-                <dd>
-                    <span>{{company.website}}</span>
-                </dd>
-                <dt><span>Phone</span></dt>
-                <dd>
-                    <span>{{company.phone}}</span>
-                </dd>
-                <dt><span>Email</span></dt>
-                <dd>
-                    <span>{{company.email}}</span>
-                </dd>
-                <dt><span>Type</span></dt>
-                <dd>
-                    <span>{{company.type}}</span>
-                </dd>
-                <dt><span>Deleted</span></dt>
-                <dd>
-                    <span>{{company.deleted}}</span>
-                </dd>
-            </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
 
-            <button type="button"
-                    [routerLink]="['/company', company.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
-            </button>
+            <ngb-tabset>
+                <ngb-tab title="General info">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <dl class="row-md jh-entity-details">
+                                <dt><span>Name</span></dt>
+                                <dd>
+                                    <span>{{company.name}}</span>
+                                </dd>
+                                <dt><span>Description</span></dt>
+                                <dd>
+                                    <span>{{company.description}}</span>
+                                </dd>
+                                <dt><span>Website</span></dt>
+                                <dd>
+                                    <span>{{company.website}}</span>
+                                </dd>
+                                <dt><span>Phone</span></dt>
+                                <dd>
+                                    <span>{{company.phone}}</span>
+                                </dd>
+                                <dt><span>Email</span></dt>
+                                <dd>
+                                    <span>{{company.email}}</span>
+                                </dd>
+                                <dt><span>Type</span></dt>
+                                <dd>
+                                    <span>{{company.type}}</span>
+                                </dd>
+                                <dt><span>Deleted</span></dt>
+                                <dd>
+                                    <span>{{company.deleted}}</span>
+                                </dd>
+                            </dl>
+
+                            <button type="button"
+                                    [routerLink]="['/company', company.id, 'edit']"
+                                    class="btn btn-primary">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+                            </button>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Flights">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <div class="table-responsive" *ngIf="flights">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>ID</span></th>
+                                        <th><span>Departure Time</span></th>
+                                        <th><span>Arrival Time</span></th>
+                                        <th><span>Flight Duration</span></th>
+                                        <th><span>Flight Distance</span></th>
+                                        <th><span>Price</span></th>
+                                        <th><span>Business Price</span></th>
+                                        <th><span>Free Bags</span></th>
+                                        <th><span>Free Carry On Bags</span></th>
+                                        <th><span>Price Per Additional Bag</span></th>
+                                        <th><span>Max Bags Allowed</span></th>
+                                        <th><span>Discount</span></th>
+                                        <th><span>Code</span></th>
+                                        <th><span>Departure Airport</span></th>
+                                        <th><span>Arrival Airport</span></th>
+                                        <th><span>Plane</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let flight of flights ;trackBy: trackId">
+                                        <td><a [routerLink]="['/flight', flight.id, 'view' ]">{{flight.id}}</a></td>
+                                        <td>{{flight.departureTime | date:'medium'}}</td>
+                                        <td>{{flight.arrivalTime | date:'medium'}}</td>
+                                        <td>{{flight.flightDuration}} h</td>
+                                        <td>{{flight.flightDistance}} km</td>
+                                        <td>{{flight.price}} $</td>
+                                        <td>{{flight.businessPrice}} $</td>
+                                        <td>{{flight.freeBags}}</td>
+                                        <td>{{flight.freeCarryOnBags}}</td>
+                                        <td>{{flight.pricePerAdditionalBag}} $</td>
+                                        <td>{{flight.maxBagsAllowed}}</td>
+                                        <td>{{flight.discount}}</td>
+                                        <td>{{flight.code}}</td>
+                                        <td>
+                                            <div *ngIf="flight.departureAirport">
+                                                <a [routerLink]="['../airport', flight.departureAirport?.id, 'view' ]" >
+                                                    ({{flight.departureAirport?.code}}) - {{flight.departureAirport?.city.name}}
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="flight.arrivalAirport">
+                                                <a [routerLink]="['../airport', flight.arrivalAirport?.id, 'view' ]" >
+                                                    ({{flight.arrivalAirport?.code}}) - {{flight.arrivalAirport?.city.name}}
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="flight.plane">
+                                                <a [routerLink]="['../plane', flight.plane?.id, 'view' ]" >
+                                                    {{flight.plane?.manufacturer}} {{flight.plane?.model}} - {{flight.plane?.registration}}
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        [routerLink]="['/flight', flight.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/flight', flight.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', { outlets: { popup: 'flight/'+ flight.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Quick Reservations">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">Quick Reservations</div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Planes">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <div class="table-responsive" *ngIf="planes">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>ID</span></th>
+                                        <th><span>Manufacturer</span></th>
+                                        <th><span>Model</span></th>
+                                        <th><span>Registration</span></th>
+                                        <th><span>Rows Count</span></th>
+                                        <th><span>Cols Count</span></th>
+                                        <th><span>Business Rows Count</span></th>
+                                        <th><span>Business Cols Count</span></th>
+                                        <th><span>Unavailable Seats</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let plane of planes ;trackBy: trackId">
+                                        <td><a [routerLink]="['/plane', plane.id, 'view' ]">{{plane.id}}</a></td>
+                                        <td>{{plane.manufacturer}}</td>
+                                        <td>{{plane.model}}</td>
+                                        <td>{{plane.registration}}</td>
+                                        <td>{{plane.rowsCount}}</td>
+                                        <td>{{plane.colsCount}}</td>
+                                        <td>{{plane.businessRowsCount}}</td>
+                                        <td>{{plane.businessColsCount}}</td>
+                                        <td>{{plane.unavailableSeats}}</td>
+
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        [routerLink]="['/plane', plane.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/plane', plane.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', { outlets: { popup: 'plane/'+ plane.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Reports" [disabled]="false">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">Reports</div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+
         </div>
     </div>
 </div>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
@@ -36,6 +35,11 @@ export class FlightService {
         return this.http
             .get<IFlight>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    findByCompanyId(id: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IFlight[]>(`${this.resourceUrl}ByCompanyId/${id}`, { params: options, observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

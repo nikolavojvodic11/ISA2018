@@ -87,6 +87,23 @@ public class PlaneResource {
         log.debug("REST request to get all Planes");
         return planeRepository.findAll();
     }
+    
+    /**
+     * GET  /planes : get all the planes.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of planes in body
+     */
+    @GetMapping("/planesByCompanyId/{companyId}")
+    @Timed
+    public List<Plane> getPlanesByCompanyId(
+    		@PathVariable Long companyId,
+    		@RequestParam(name = "deleted", required = false) Boolean deleted
+    		) {
+    	if (deleted != null) {
+    		return planeRepository.findByCompanyIdAndDeleted(companyId, deleted);
+    	}
+    	return planeRepository.findByCompanyId(companyId);
+    }
 
     /**
      * GET  /planes/:id : get the "id" plane.

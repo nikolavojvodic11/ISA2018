@@ -1,6 +1,9 @@
 package com.isa.planetickets.repository;
 
 import com.isa.planetickets.domain.Plane;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +14,8 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface PlaneRepository extends JpaRepository<Plane, Long> {
-
+	 
+	List<Plane> findByCompanyIdAndDeleted(Long companyId, Boolean deleted);
+	
+	List<Plane> findByCompanyId(Long companyId);
 }

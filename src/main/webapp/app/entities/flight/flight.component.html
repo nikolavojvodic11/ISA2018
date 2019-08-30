@@ -39,30 +39,36 @@
                 <td><a [routerLink]="['/flight', flight.id, 'view' ]">{{flight.id}}</a></td>
                 <td>{{flight.departureTime | date:'medium'}}</td>
                 <td>{{flight.arrivalTime | date:'medium'}}</td>
-                <td>{{flight.flightDuration}}</td>
-                <td>{{flight.flightDistance}}</td>
-                <td>{{flight.price}}</td>
-                <td>{{flight.businessPrice}}</td>
+                <td>{{flight.flightDuration}} h</td>
+                <td>{{flight.flightDistance}} km</td>
+                <td>{{flight.price}} $</td>
+                <td>{{flight.businessPrice}} $</td>
                 <td>{{flight.freeBags}}</td>
                 <td>{{flight.freeCarryOnBags}}</td>
-                <td>{{flight.pricePerAdditionalBag}}</td>
+                <td>{{flight.pricePerAdditionalBag}} $</td>
                 <td>{{flight.maxBagsAllowed}}</td>
-                <td>{{flight.discount}}</td>
+                <td>{{flight.discount}} %</td>
                 <td>{{flight.code}}</td>
                 <td>{{flight.deleted}}</td>
                 <td>
                     <div *ngIf="flight.departureAirport">
-                        <a [routerLink]="['../airport', flight.departureAirport?.id, 'view' ]" >{{flight.departureAirport?.id}}</a>
+                        <a [routerLink]="['../airport', flight.departureAirport?.id, 'view' ]" >
+                            ({{flight.departureAirport?.code}}) - {{flight.departureAirport?.city.name}}
+                        </a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="flight.arrivalAirport">
-                        <a [routerLink]="['../airport', flight.arrivalAirport?.id, 'view' ]" >{{flight.arrivalAirport?.id}}</a>
+                        <a [routerLink]="['../airport', flight.arrivalAirport?.id, 'view' ]" >
+                            ({{flight.arrivalAirport?.code}}) - {{flight.arrivalAirport?.city.name}}
+                        </a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="flight.plane">
-                        <a [routerLink]="['../plane', flight.plane?.id, 'view' ]" >{{flight.plane?.id}}</a>
+                        <a [routerLink]="['../plane', flight.plane?.id, 'view' ]" >
+                            {{flight.plane?.manufacturer}} {{flight.plane?.model}} - {{flight.plane?.registration}}
+                        </a>
                     </div>
                 </td>
                 <td class="text-right">

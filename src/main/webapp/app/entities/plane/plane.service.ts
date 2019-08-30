@@ -27,6 +27,11 @@ export class PlaneService {
         return this.http.get<IPlane>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
+    findByCompanyId(id: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IPlane[]>(`${this.resourceUrl}ByCompanyId/${id}`, { params: options, observe: 'response' });
+    }
+
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IPlane[]>(this.resourceUrl, { params: options, observe: 'response' });
