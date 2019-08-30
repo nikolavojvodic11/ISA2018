@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { IAvailableHotelService } from 'app/shared/model/available-hotel-service.model';
+import { AvailableHotelService, IAvailableHotelService } from 'app/shared/model/available-hotel-service.model';
+import { IRoom } from '../../shared/model/room.model';
 
 type EntityResponseType = HttpResponse<IAvailableHotelService>;
 type EntityArrayResponseType = HttpResponse<IAvailableHotelService[]>;
@@ -12,6 +13,7 @@ type EntityArrayResponseType = HttpResponse<IAvailableHotelService[]>;
 @Injectable({ providedIn: 'root' })
 export class AvailableHotelServiceService {
     public resourceUrl = SERVER_API_URL + 'api/available-hotel-services';
+    public resourceUrlCamel = SERVER_API_URL + 'api/availableHotelServices';
 
     constructor(protected http: HttpClient) {}
 
@@ -25,6 +27,11 @@ export class AvailableHotelServiceService {
 
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<IAvailableHotelService>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    findByHotelId(id: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IAvailableHotelService[]>(`${this.resourceUrlCamel}ByHotelId/${id}`, { params: options, observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

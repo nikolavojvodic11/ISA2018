@@ -1,57 +1,181 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-12">
         <div *ngIf="hotel">
-            <h2><span>Hotel</span> {{hotel.id}}</h2>
+            <h2>
+                {{hotel.name + ' - ' + hotel.companyLocation.city.name}}
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-info float-right">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span>Name</span></dt>
-                <dd>
-                    <span>{{hotel.name}}</span>
-                </dd>
-                <dt><span>Description</span></dt>
-                <dd>
-                    <span>{{hotel.description}}</span>
-                </dd>
-                <dt><span>Address</span></dt>
-                <dd>
-                    <span>{{hotel.address}}</span>
-                </dd>
-                <dt><span>Stars</span></dt>
-                <dd>
-                    <span>{{hotel.stars}}</span>
-                </dd>
-                <dt><span>Lat</span></dt>
-                <dd>
-                    <span>{{hotel.lat}}</span>
-                </dd>
-                <dt><span>Lng</span></dt>
-                <dd>
-                    <span>{{hotel.lng}}</span>
-                </dd>
-                <dt><span>Deleted</span></dt>
-                <dd>
-                    <span>{{hotel.deleted}}</span>
-                </dd>
-                <dt><span>Company Location</span></dt>
-                <dd>
-                    <div *ngIf="hotel.companyLocation">
-                        <a [routerLink]="['/company-location', hotel.companyLocation?.id, 'view']">{{hotel.companyLocation?.id}}</a>
-                    </div>
-                </dd>
-            </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
+            <ngb-tabset>
+                <ngb-tab title="General info">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <dl class="row-md jh-entity-details">
+                                <dt><span>Name</span></dt>
+                                <dd>
+                                    <span>{{hotel.name}}</span>
+                                </dd>
+                                <dt><span>Description</span></dt>
+                                <dd>
+                                    <span>{{hotel.description}}</span>
+                                </dd>
+                                <dt><span>Address</span></dt>
+                                <dd>
+                                    <span>{{hotel.address}}</span>
+                                </dd>
+                                <dt><span>Stars</span></dt>
+                                <dd>
+                                    <span>{{hotel.stars}}</span>
+                                </dd>
+                                <dt><span>Lat</span></dt>
+                                <dd>
+                                    <span>{{hotel.lat}}</span>
+                                </dd>
+                                <dt><span>Lng</span></dt>
+                                <dd>
+                                    <span>{{hotel.lng}}</span>
+                                </dd>
+                                <dt><span>Deleted</span></dt>
+                                <dd>
+                                    <span>{{hotel.deleted}}</span>
+                                </dd>
+                                <dt><span>Company Location</span></dt>
+                                <dd>
+                                    <div *ngIf="hotel.companyLocation">
+                                        <a [routerLink]="['/company-location', hotel.companyLocation?.id, 'view']">{{hotel.companyLocation?.id}}</a>
+                                    </div>
+                                </dd>
+                            </dl>
 
-            <button type="button"
-                    [routerLink]="['/hotel', hotel.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
-            </button>
+                            <button type="button"
+                                    [routerLink]="['/hotel', hotel.id, 'edit']"
+                                    class="btn btn-primary">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+                            </button>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Rooms">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <div class="table-responsive" *ngIf="rooms">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>ID</span></th>
+                                        <th><span>Beds Count</span></th>
+                                        <th><span>Label</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let room of rooms ;trackBy: trackId">
+                                        <td><a [routerLink]="['/room', room.id, 'view' ]">{{room.id}}</a></td>
+                                        <td>{{room.bedsCount}}</td>
+                                        <td>{{room.label}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        [routerLink]="['/room', room.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/room', room.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', { outlets: { popup: 'room/'+ room.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Available hotel services">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">
+                            <div class="table-responsive" *ngIf="availableHotelServices">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>ID</span></th>
+                                        <th><span>Price</span></th>
+                                        <th><span>Discount</span></th>
+                                        <th><span>Hotel Service</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let availableHotelService of availableHotelServices ;trackBy: trackId">
+                                        <td><a [routerLink]="['/available-hotel-service', availableHotelService.id, 'view' ]">{{availableHotelService.id}}</a></td>
+                                        <td>{{availableHotelService.price}}</td>
+                                        <td>{{availableHotelService.discount}}</td>
+                                        <td>
+                                            <div *ngIf="availableHotelService.hotelService">
+                                                <a [routerLink]="['../hotel-service', availableHotelService.hotelService?.id, 'view' ]" >{{availableHotelService.hotelService?.serviceName}}</a>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        [routerLink]="['/available-hotel-service', availableHotelService.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/available-hotel-service', availableHotelService.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', { outlets: { popup: 'available-hotel-service/'+ availableHotelService.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Ratings">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">Ratings</div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Reports" [disabled]="false">
+                    <ng-template ngbTabContent>
+                        <div class="p-3">Reports</div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
         </div>
     </div>
 </div>

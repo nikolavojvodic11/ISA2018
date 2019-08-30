@@ -2,6 +2,7 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.AvailableHotelService;
+import com.isa.planetickets.domain.Room;
 import com.isa.planetickets.repository.AvailableHotelServiceRepository;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
@@ -86,6 +87,23 @@ public class AvailableHotelServiceResource {
     public List<AvailableHotelService> getAllAvailableHotelServices() {
         log.debug("REST request to get all AvailableHotelServices");
         return availableHotelServiceRepository.findAll();
+    }
+    
+    /**
+     * GET  /availableHotelServicesByHotelId/{hotelId} : get all the service by hotel id.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of rooms in body
+     */
+    @GetMapping("/availableHotelServicesByHotelId/{hotelId}")
+    @Timed
+    public List<AvailableHotelService> getAvailableHotelServicesByHotelId(
+    		@PathVariable Long hotelId,
+    		@RequestParam(name = "deleted", required = false) Boolean deleted
+    		) {  
+    	if (deleted != null && deleted == true) {
+    		return availableHotelServiceRepository.findByHotelIdAndDeleted(hotelId, deleted);
+    	}
+    	return availableHotelServiceRepository.findByHotelId(hotelId);
     }
 
     /**

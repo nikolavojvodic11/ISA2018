@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IRoom } from 'app/shared/model/room.model';
+import { IFlight } from '../../shared/model/flight.model';
 
 type EntityResponseType = HttpResponse<IRoom>;
 type EntityArrayResponseType = HttpResponse<IRoom[]>;
@@ -25,6 +26,11 @@ export class RoomService {
 
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<IRoom>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    findByHotelId(id: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IRoom[]>(`${this.resourceUrl}ByHotelId/${id}`, { params: options, observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

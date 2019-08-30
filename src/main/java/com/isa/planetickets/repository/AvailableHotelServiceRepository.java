@@ -1,6 +1,10 @@
 package com.isa.planetickets.repository;
 
 import com.isa.planetickets.domain.AvailableHotelService;
+import com.isa.planetickets.domain.Room;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +15,10 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface AvailableHotelServiceRepository extends JpaRepository<AvailableHotelService, Long> {
-
+	
+	List<AvailableHotelService> findByHotelId(Long hotelId);
+	
+	//
+	
+	List<AvailableHotelService> findByHotelIdAndDeleted(Long hotelId, Boolean deleted);
 }
