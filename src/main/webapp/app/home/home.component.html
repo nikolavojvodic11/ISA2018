@@ -1,20 +1,25 @@
 <div class="row" style="height: auto">
 
     <div class="col-md-12">
-        <ngb-tabset>
-            <ngb-tab title="Flight">
+        <ngb-tabset #activeTab="ngbTabset">
+            <ngb-tab id="flights-tab" title="Flight">
               <ng-template ngbTabContent>
-                <jhi-flights-tab></jhi-flights-tab>
+                <jhi-flights-tab (setActiveTab)="setActiveTab($event)"></jhi-flights-tab>
               </ng-template>
             </ngb-tab>
-            <ngb-tab title="Hotel">
+            <ngb-tab id="hotels-tab" title="Hotel">
                 <ng-template ngbTabContent>
-                    <jhi-hotels-tab></jhi-hotels-tab>
+                    <jhi-hotels-tab (setActiveTab)="setActiveTab($event)"></jhi-hotels-tab>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="Car" [disabled]="false">
+            <ngb-tab id="cars-tab" title="Car" [disabled]="false">
                 <ng-template ngbTabContent>
-                    <jhi-car-rentals-tab></jhi-car-rentals-tab>
+                    <jhi-car-rentals-tab (setActiveTab)="setActiveTab($event)"></jhi-car-rentals-tab>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab id="my-reservations-tab" title="My Reservations" [disabled]="false" *jhiHasAnyAuthority="'ROLE_USER'">
+                <ng-template ngbTabContent>
+                    <jhi-my-reservations-tab (setActiveTab)="setActiveTab($event)"></jhi-my-reservations-tab>
                 </ng-template>
             </ngb-tab>
         </ngb-tabset>

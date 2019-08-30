@@ -4,6 +4,8 @@ import com.isa.planetickets.PlaneTicketsApp;
 
 import com.isa.planetickets.domain.FriendRequest;
 import com.isa.planetickets.repository.FriendRequestRepository;
+import com.isa.planetickets.repository.IsaUserRepository;
+import com.isa.planetickets.service.UserService;
 import com.isa.planetickets.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -48,6 +50,11 @@ public class FriendRequestResourceIntTest {
 
     @Autowired
     private FriendRequestRepository friendRequestRepository;
+    
+    @Autowired
+    private UserService userService;
+    
+    @Autowired IsaUserRepository isaUserRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -71,7 +78,7 @@ public class FriendRequestResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final FriendRequestResource friendRequestResource = new FriendRequestResource(friendRequestRepository);
+        final FriendRequestResource friendRequestResource = new FriendRequestResource(friendRequestRepository, userService, isaUserRepository);
         this.restFriendRequestMockMvc = MockMvcBuilders.standaloneSetup(friendRequestResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

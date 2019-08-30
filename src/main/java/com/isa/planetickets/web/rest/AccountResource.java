@@ -1,8 +1,9 @@
 package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
+import com.isa.planetickets.domain.IsaUser;
 import com.isa.planetickets.domain.User;
+import com.isa.planetickets.repository.IsaUserRepository;
 import com.isa.planetickets.repository.UserRepository;
 import com.isa.planetickets.security.SecurityUtils;
 import com.isa.planetickets.service.MailService;
@@ -105,6 +106,21 @@ public class AccountResource {
             .map(UserDTO::new)
             .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
     }
+    
+//    /**
+//     * GET  /isaAccount : get the current Isa user.
+//     *
+//     * @return the current user
+//     * @throws RuntimeException 500 (Internal Server Error) if the user couldn't be returned
+//     */
+//    @GetMapping("/isaAccount")
+//    @Timed
+//    public IsaUser getIsaAccount() {
+//    	UserDTO user = userService.getUserWithAuthorities()
+//                .map(UserDTO::new)
+//                .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+//    	return isaUserRepository.findOneByIsaUserId(user.getId());
+//    }
 
     /**
      * POST  /account : update the current user information.

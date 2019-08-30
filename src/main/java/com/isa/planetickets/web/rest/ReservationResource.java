@@ -2,7 +2,10 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.Reservation;
+import com.isa.planetickets.domain.User;
+import com.isa.planetickets.repository.IsaUserRepository;
 import com.isa.planetickets.repository.ReservationRepository;
+import com.isa.planetickets.service.UserService;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -29,9 +32,15 @@ public class ReservationResource {
     private static final String ENTITY_NAME = "reservation";
 
     private final ReservationRepository reservationRepository;
+    
+    private final IsaUserRepository isaUserRepository;
+    
+    private final UserService userService;
 
-    public ReservationResource(ReservationRepository reservationRepository) {
+    public ReservationResource(ReservationRepository reservationRepository, UserService userService, IsaUserRepository isaUserRepository) {
         this.reservationRepository = reservationRepository;
+        this.userService = userService;
+        this.isaUserRepository = isaUserRepository;
     }
 
     /**
@@ -48,6 +57,8 @@ public class ReservationResource {
         if (reservation.getId() != null) {
             throw new BadRequestAlertException("A new reservation cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        Optional<User> user = userService.getUserWithAuthorities();
+        reservation.setUser(isaUserRepository.findByJhiUserId(user.get().getId()));
         Reservation result = reservationRepository.save(reservation);
         return ResponseEntity.created(new URI("/api/reservations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

@@ -1,3 +1,118 @@
 <div>
-  Choose Seats
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <hr>
+            <h2>Seats reservation</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="table-responsive" *ngIf="rows && cols">
+                <h5>Departure flight {{departureFlight.departureAirport.code}}-{{departureFlight.arrivalAirport.code}} - ({{flightSeatReservationsDepartureCurrent.length}}/{{searchFormData.adultsCount}} seats selected)</h5>
+                <div class="plane-seats">
+                    <table class="business-seats">
+                        <thead>
+                        <tr class="text-center">
+                            <th [attr.colspan]="businessRows.length"><span>Business</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let col of businessCols">
+                            <td
+                                *ngFor="let row of businessRows" (click)="onSeatClick('departure', 'business', row, col)"
+                                [ngClass]="isSeatTaken('departure', 'business', row, col) ?
+                                           isCurrentReservationSeat('departure', 'business', row, col) ?
+                                           'reserved-seat-current' : 'reserved-seat' :
+                                           flightSeatReservationsDepartureCurrent.length == searchFormData.adultsCount ? 'seats-lock' : ''"
+                            >
+                                {{col+row}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="economy-seats">
+                        <thead>
+                        <tr class="text-center">
+                            <th [attr.colspan]="rows.length"><span>Economy</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let col of cols">
+                            <td
+                                *ngFor="let row of rows" (click)="onSeatClick('departure', 'economy', row, col)"
+                                [ngClass]="isSeatTaken('departure', 'economy', row, col) ?
+                                           isCurrentReservationSeat('departure', 'economy', row, col) ?
+                                           'reserved-seat-current' : 'reserved-seat' :
+                                           flightSeatReservationsDepartureCurrent.length == searchFormData.adultsCount ? 'seats-lock' : ''"
+                            >
+                                {{col+row}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr>
+            <div class="table-responsive" *ngIf="arrivalFlight">
+                <h5>Arrival flight {{arrivalFlight.departureAirport.code}}-{{arrivalFlight.arrivalAirport.code}} - ({{flightSeatReservationsArrivalCurrent.length}}/{{searchFormData.adultsCount}} seats selected)</h5>
+                <div class="plane-seats">
+                    <table class="business-seats">
+                        <thead>
+                        <tr class="text-center">
+                            <th [attr.colspan]="businessRowsArrival.length"><span>Business</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let col of businessColsArrival">
+                            <td
+                                *ngFor="let row of businessRowsArrival" (click)="onSeatClick('arrival', 'business', row, col)"
+                                [ngClass]="isSeatTaken('arrival', 'business', row, col) ?
+                                           isCurrentReservationSeat('arrival', 'business', row, col) ?
+                                           'reserved-seat-current' : 'reserved-seat' :
+                                           flightSeatReservationsArrivalCurrent.length == searchFormData.adultsCount ? 'seats-lock' : ''"
+                            >
+                                {{col+row}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="economy-seats">
+                        <thead>
+                        <tr class="text-center">
+                            <th [attr.colspan]="rowsArrival.length"><span>Economy</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let col of colsArrival">
+                            <td
+                                *ngFor="let row of rowsArrival" (click)="onSeatClick('arrival', 'economy', row, col)"
+                                [ngClass]="isSeatTaken('arrival', 'economy', row, col) ?
+                                           isCurrentReservationSeat('arrival', 'economy', row, col) ?
+                                           'reserved-seat-current' : 'reserved-seat' :
+                                           flightSeatReservationsArrivalCurrent.length == searchFormData.adultsCount ? 'seats-lock' : ''"
+                            >
+                                {{col+row}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button type="submit"
+                        (click)="proceed($event)"
+                        class="btn btn-info float-right"
+                        [disabled]="((searchFormData.flightType==1 && flightSeatReservationsDepartureCurrent.length != searchFormData.adultsCount) ||
+                                    (searchFormData.flightType==2 && (flightSeatReservationsDepartureCurrent.length != searchFormData.adultsCount || flightSeatReservationsArrivalCurrent.length != searchFormData.adultsCount)))
+                                    ? true : null"
+                >
+                    <span> Next Step &gt; Passengers</span>
+                </button>
+                <button type="submit"
+                        (click)="back($event)"
+                        class="btn btn-default float-right mr-2"
+                >
+                    <span> Previous Step &lt; Flight</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

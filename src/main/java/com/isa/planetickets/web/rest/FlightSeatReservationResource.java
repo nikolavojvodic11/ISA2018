@@ -2,6 +2,7 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.FlightSeatReservation;
+import com.isa.planetickets.domain.enumeration.ReservationStatus;
 import com.isa.planetickets.repository.FlightSeatReservationRepository;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
@@ -100,6 +101,20 @@ public class FlightSeatReservationResource {
         log.debug("REST request to get FlightSeatReservation : {}", id);
         Optional<FlightSeatReservation> flightSeatReservation = flightSeatReservationRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(flightSeatReservation);
+    }
+    
+    /**
+     * GET  /flight-seat-reservations/:id : get the "id" flightSeatReservation.
+     *
+     * @param id the id of the flightSeatReservation to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the flightSeatReservation, or with status 404 (Not Found)
+     */
+    @GetMapping("/flight-seat-reservations-by-flight-id/{id}")
+    @Timed
+    public List<FlightSeatReservation> getFlightSeatReservationByFlightId(@PathVariable Long id) {
+        log.debug("REST request to get FlightSeatReservation : {}", id);
+        List<FlightSeatReservation> flightSeatReservation = flightSeatReservationRepository.findByFlightIdAndDeleted(id, false);
+        return flightSeatReservation;
     }
 
     /**

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -12,6 +12,7 @@ import { LoginModalService, AccountService, Account } from 'app/core';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
+    @ViewChild('activeTab') activeTab;
 
     constructor(
         private accountService: AccountService,
@@ -24,6 +25,10 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+    }
+
+    setActiveTab(tabId) {
+        this.activeTab.select(tabId);
     }
 
     registerAuthenticationSuccess() {

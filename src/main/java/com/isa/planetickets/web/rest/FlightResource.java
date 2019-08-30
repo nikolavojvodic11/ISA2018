@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,7 +88,31 @@ public class FlightResource {
      */
     @GetMapping("/flights")
     @Timed
-    public List<Flight> getAllFlights() {
+    public List<Flight> getAllFlights(
+    		@RequestParam(name = "adultsCount", required = false) Integer adultsCount,
+    		@RequestParam(name = "arrivalAirport", required = false) Long arrivalAirport,
+    		@RequestParam(name = "arrivalDate", required = false) String arrivalDate,
+    		@RequestParam(name = "departureAirport", required = false) Long departureAirport,
+    		@RequestParam(name = "departureDate", required = false) String departureDate,
+    		@RequestParam(name = "flightClass", required = false) Integer flightClass,
+    		@RequestParam(name = "flightType", required = false) Integer flightType
+    		) {
+    	
+    	if (adultsCount != null && arrivalAirport != null && arrivalDate != null && departureAirport != null 
+    			&& departureDate != null && flightClass != null && flightType != null) {
+    		Instant arrivalDateFrom = LocalDate.parse(arrivalDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant().minus(3, ChronoUnit.DAYS); 
+    		Instant arrivalDateTo = LocalDate.parse(arrivalDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant().plus(3, ChronoUnit.DAYS);
+    		Instant departureDateFrom = LocalDate.parse(departureDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant().minus(3, ChronoUnit.DAYS); 
+    		Instant departureDateTo = LocalDate.parse(departureDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant().plus(3, ChronoUnit.DAYS); 
+    		
+    		if (flightType == 1) {
+    			return flightRepository.searchOneWay(arrivalAirport, departureAirport, departureDateFrom, departureDateTo);
+    		} else {
+    			return flightRepository.searchRoundTrip(arrivalAirport, arrivalDateFrom, arrivalDateTo, departureAirport, departureDateFrom, departureDateTo);
+    		}
+    		
+    	}
+    	
         log.debug("REST request to get all Flights");
         return flightRepository.findAll();
     }

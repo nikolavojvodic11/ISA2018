@@ -3,7 +3,9 @@ package com.isa.planetickets.web.rest;
 import com.isa.planetickets.PlaneTicketsApp;
 
 import com.isa.planetickets.domain.Reservation;
+import com.isa.planetickets.repository.IsaUserRepository;
 import com.isa.planetickets.repository.ReservationRepository;
+import com.isa.planetickets.service.UserService;
 import com.isa.planetickets.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -57,6 +59,12 @@ public class ReservationResourceIntTest {
     private ReservationRepository reservationRepository;
 
     @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private IsaUserRepository isaUserRepository;
+    
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -78,7 +86,7 @@ public class ReservationResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ReservationResource reservationResource = new ReservationResource(reservationRepository);
+        final ReservationResource reservationResource = new ReservationResource(reservationRepository, userService, isaUserRepository);
         this.restReservationMockMvc = MockMvcBuilders.standaloneSetup(reservationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -38,7 +38,6 @@ export class HotelDetailComponent implements OnInit {
     getHotelRooms() {
         this.roomService.findByHotelId(this.hotel.id).subscribe(
             (res: HttpResponse<IRoom[]>) => {
-                console.log('rooms', res.body);
                 this.rooms = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -48,7 +47,6 @@ export class HotelDetailComponent implements OnInit {
     getHotelAvailableServices() {
         this.availableHotelServiceService.findByHotelId(this.hotel.id).subscribe(
             (res: HttpResponse<IAvailableHotelService[]>) => {
-                console.log('srv', res.body);
                 this.availableHotelServices = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)

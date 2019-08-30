@@ -2,7 +2,11 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.FriendRequest;
+import com.isa.planetickets.domain.IsaUser;
+import com.isa.planetickets.domain.User;
 import com.isa.planetickets.repository.FriendRequestRepository;
+import com.isa.planetickets.repository.IsaUserRepository;
+import com.isa.planetickets.service.UserService;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -29,9 +33,15 @@ public class FriendRequestResource {
     private static final String ENTITY_NAME = "friendRequest";
 
     private final FriendRequestRepository friendRequestRepository;
+    
+    private final UserService userService;
+    
+    private final IsaUserRepository isaUserRepository;
 
-    public FriendRequestResource(FriendRequestRepository friendRequestRepository) {
+    public FriendRequestResource(FriendRequestRepository friendRequestRepository, UserService userService, IsaUserRepository isaUserRepository) {
         this.friendRequestRepository = friendRequestRepository;
+        this.userService = userService;
+        this.isaUserRepository = isaUserRepository;
     }
 
     /**
@@ -86,6 +96,21 @@ public class FriendRequestResource {
     public List<FriendRequest> getAllFriendRequests() {
         log.debug("REST request to get all FriendRequests");
         return friendRequestRepository.findAll();
+    }
+    
+    /**
+     * GET  /friend-requests-by-user-id : get logged in user friends.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of friendRequests in body
+     */
+    @GetMapping("/friend-requests-by-user")
+    @Timed
+    public List<FriendRequest> getCurrentUserFiends() {
+        log.debug("REST request to get all current user friends");        
+        Optional<User> user = userService.getUserWithAuthorities();
+        IsaUser isaUser = isaUserRepository.findByJhiUserId(user.get().getId());
+        
+        return friendRequestRepository.getUserFriends(isaUser.getId());
     }
 
     /**

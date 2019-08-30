@@ -1,3 +1,102 @@
 <div>
-  Preview flights
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <hr>
+            <h2>Search Results</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="table-responsive" *ngIf="flights">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th><span>Departure Time</span></th>
+                        <th><span>Arrival Time</span></th>
+                        <th><span>Flight Duration</span></th>
+                        <th><span>Flight Distance</span></th>
+                        <th><span>Price</span></th>
+                        <th><span>Business Price</span></th>
+                        <th><span>Free Bags</span></th>
+                        <th><span>Free Carry On Bags</span></th>
+                        <th><span>Price Per Additional Bag</span></th>
+                        <th><span>Max Bags Allowed</span></th>
+                        <th><span>Discount</span></th>
+                        <th><span>Code</span></th>
+                        <th><span>Departure Airport</span></th>
+                        <th><span>Arrival Airport</span></th>
+                        <th><span>Plane</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let flight of flights ;trackBy: trackId">
+                        <td>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input"
+                                       *ngIf="(!departureFlightChoosen && flight.departureAirport.id == searchFormData.departureAirport) || (departureFlightChoosen && departureFlight.id == flight.id)"
+                                       [(ngModel)]="departureFlightChoosen"
+                                       (click)="setDepartureFlight(flight)"
+                                />
+                                <input type="checkbox" class="form-check-input"
+                                       *ngIf="(!arrivalFlightChoosen && flight.departureAirport.id == searchFormData.arrivalAirport) || (arrivalFlightChoosen && arrivalFlight.id == flight.id)"
+                                       [(ngModel)]="arrivalFlightChoosen"
+                                       (click)="setArrivalFlight(flight)"
+                                />
+                            </div>
+                        </td>
+                        <td>{{flight.departureTime | date:'medium'}}</td>
+                        <td>{{flight.arrivalTime | date:'medium'}}</td>
+                        <td>{{flight.flightDuration}} h</td>
+                        <td>{{flight.flightDistance}} km</td>
+                        <td>{{flight.price}} $</td>
+                        <td>{{flight.businessPrice}} $</td>
+                        <td>{{flight.freeBags}}</td>
+                        <td>{{flight.freeCarryOnBags}}</td>
+                        <td>{{flight.pricePerAdditionalBag}} $</td>
+                        <td>{{flight.maxBagsAllowed}}</td>
+                        <td>{{flight.discount}}</td>
+                        <td>{{flight.code}}</td>
+                        <td>
+                            <div *ngIf="flight.departureAirport">
+                                <a [routerLink]="['../airport', flight.departureAirport?.id, 'view' ]" >
+                                    ({{flight.departureAirport?.code}}) - {{flight.departureAirport?.city.name}}
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="flight.arrivalAirport">
+                                <a [routerLink]="['../airport', flight.arrivalAirport?.id, 'view' ]" >
+                                    ({{flight.arrivalAirport?.code}}) - {{flight.arrivalAirport?.city.name}}
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="flight.plane">
+                                <a [routerLink]="['../plane', flight.plane?.id, 'view' ]" >
+                                    {{flight.plane?.manufacturer}} {{flight.plane?.model}} - {{flight.plane?.registration}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3">
+                <button type="submit"
+                        (click)="proceed($event)"
+                        class="btn btn-info float-right"
+                        [disabled]="((searchFormData.flightType==1 && !departureFlightChoosen) ||
+                                    (searchFormData.flightType==2 && (!departureFlightChoosen || !arrivalFlightChoosen)))
+                                    ? true : null"
+                >
+                    <span> Next Step &gt; Seats</span>
+                </button>
+                <button type="submit"
+                        (click)="back($event)"
+                        class="btn btn-default float-right mr-2"
+                >
+                    <span> Previous Step &lt; Flight</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

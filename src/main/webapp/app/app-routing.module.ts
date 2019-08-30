@@ -14,6 +14,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
                     path: 'admin',
                     loadChildren: './admin/admin.module#PlaneTicketsAdminModule'
                 }
+                // {
+                //     path: 'reservation',
+                //     loadChildren: './reservationPage/reservationPage.module#PlaneTicketsReservationPageModule'
+                // }
             ],
             { useHash: true, enableTracing: DEBUG_INFO_ENABLED }
         )

@@ -1,0 +1,52 @@
+.plane-seats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plane-seats > table {
+    border-collapse: separate;
+    border-spacing: 5px 5px;
+    text-align: center;
+}
+
+.business-seats td {
+    background-color: lightsalmon;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.economy-seats td {
+    background-color: lightsteelblue;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.business-seats td:hover:not(.reserved-seat) {
+    background-color: lightgrey;
+}
+
+.economy-seats td:hover {
+    background-color: lightgrey;
+}
+
+.reserved-seat {
+    background-color: gray !important;
+    cursor: not-allowed !important;
+}
+
+.reserved-seat-current {
+    background-color: limegreen !important;
+    cursor: not-allowed !important;
+}
+
+.seats-lock {
+    background-color: gray !important;
+    cursor: not-allowed !important;
+}

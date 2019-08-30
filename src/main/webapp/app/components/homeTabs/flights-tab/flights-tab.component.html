@@ -1,7 +1,45 @@
 <div>
-  <jhi-flights-tab-search *ngIf="currentStep === 1"></jhi-flights-tab-search>
-  <jhi-flights-tab-preview *ngIf="currentStep === 2"></jhi-flights-tab-preview>
-  <jhi-flights-tab-seats *ngIf="currentStep === 3"></jhi-flights-tab-seats>
-  <jhi-flights-tab-invite *ngIf="currentStep === 4"></jhi-flights-tab-invite>
-  <jhi-flights-tab-passengers *ngIf="currentStep === 5"></jhi-flights-tab-passengers>
+  <jhi-flights-tab-search
+      *ngIf="currentStep === 1"
+      (searchClick)="onSearchButtonClick($event)">
+  </jhi-flights-tab-search>
+  <jhi-flights-tab-preview
+      *ngIf="currentStep === 2"
+      [searchFormData]="searchFormData"
+      (nextStep)="onFlightProceedClick($event)"
+  >
+  </jhi-flights-tab-preview>
+  <jhi-flights-tab-seats
+      *ngIf="currentStep === 3"
+      [searchFormData]="searchFormData"
+      [departureFlight]="departureFlight"
+      [arrivalFlight]="arrivalFlight"
+      [reservation]="reservation"
+      (setFlightSeatReservations)="setFlightSeatReservations($event)"
+      (nextStep)="nextStep($event)"
+  >
+  </jhi-flights-tab-seats>
+  <jhi-flights-tab-invite
+      *ngIf="currentStep === 4"
+      [searchFormData]="searchFormData"
+      [departureFlight]="departureFlight"
+      [arrivalFlight]="arrivalFlight"
+      [reservation]="reservation"
+      [flightSeatReservationsDeparture]="flightSeatReservationsDeparture"
+      [flightSeatReservationsArrival]="flightSeatReservationsArrival"
+      (setFlightSeatReservations)="setFlightSeatReservations($event)"
+      (nextStep)="nextStep($event)"
+  >
+  </jhi-flights-tab-invite>
+  <jhi-flights-tab-passengers
+      *ngIf="currentStep === 5"
+      [searchFormData]="searchFormData"
+      [departureFlight]="departureFlight"
+      [arrivalFlight]="arrivalFlight"
+      [reservation]="reservation"
+      [flightSeatReservationsDeparture]="flightSeatReservationsDeparture"
+      [flightSeatReservationsArrival]="flightSeatReservationsArrival"
+      (finishReservation)="finishFlightReservation($event)"
+      (continueToHotelBooking)="continueToHotelBooking($event)"
+  ></jhi-flights-tab-passengers>
 </div>

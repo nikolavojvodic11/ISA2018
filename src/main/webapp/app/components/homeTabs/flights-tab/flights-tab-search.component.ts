@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AirportService } from '../../../entities/airport';
 import { JhiAlertService } from 'ng-jhipster';
 import { IAirport } from '../../../shared/model/airport.model';
@@ -16,6 +16,8 @@ export class FlightsTabSearchComponent implements OnInit {
     formData: Object;
     airports: IAirport[];
     companies: ICompany[];
+    @Input() searchFormData: object;
+    @Output() searchClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
     constructor(
         protected airportService: AirportService,
@@ -23,13 +25,13 @@ export class FlightsTabSearchComponent implements OnInit {
         protected jhiAlertService: JhiAlertService
     ) {
         this.formData = {
-            adultsCount: null,
-            flightType: null,
-            flightClass: null,
-            departureDate: new Date().toISOString(),
-            arrivalDate: new Date().toISOString(),
-            departureAirport: null,
-            arrivalAirport: null
+            adultsCount: 1,
+            flightType: 1,
+            flightClass: 1,
+            departureDate: '2019-08-19', //new Date().toISOString(),
+            arrivalDate: '2019-08-26', //new Date().toISOString(),
+            departureAirport: 3, //null,
+            arrivalAirport: 1 //null
         };
     }
 
@@ -56,8 +58,9 @@ export class FlightsTabSearchComponent implements OnInit {
         );
     }
 
-    search() {
-        // console.error('Form data', this.formData);
+    search(event) {
+        event.data = this.formData;
+        this.searchClick.emit(event);
     }
 
     protected onError(errorMessage: string) {

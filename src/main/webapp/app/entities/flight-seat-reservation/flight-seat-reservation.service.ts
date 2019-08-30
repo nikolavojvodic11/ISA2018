@@ -27,6 +27,10 @@ export class FlightSeatReservationService {
         return this.http.get<IFlightSeatReservation>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
+    findByFlightId(id: number): Observable<EntityArrayResponseType> {
+        return this.http.get<IFlightSeatReservation[]>(`${this.resourceUrl}-by-flight-id/${id}`, { observe: 'response' });
+    }
+
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IFlightSeatReservation[]>(this.resourceUrl, { params: options, observe: 'response' });
