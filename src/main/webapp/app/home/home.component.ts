@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     }
 
     setActiveTab(tabId) {
+        console.log('SET ACTIVE TAB', tabId);
         this.activeTab.select(tabId);
     }
 

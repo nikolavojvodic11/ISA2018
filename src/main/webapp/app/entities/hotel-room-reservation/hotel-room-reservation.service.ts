@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IHotelRoomReservation } from 'app/shared/model/hotel-room-reservation.model';
+import { IRoom } from '../../shared/model/room.model';
 
 type EntityResponseType = HttpResponse<IHotelRoomReservation>;
 type EntityArrayResponseType = HttpResponse<IHotelRoomReservation[]>;
@@ -36,6 +37,11 @@ export class HotelRoomReservationService {
         return this.http
             .get<IHotelRoomReservation>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    findByHotelIdAndReserved(id: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IHotelRoomReservation[]>(`api/roomReservationsByHotelId/${id}`, { params: options, observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

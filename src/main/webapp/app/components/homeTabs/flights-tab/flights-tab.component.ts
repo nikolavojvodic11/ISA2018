@@ -6,6 +6,7 @@ import { AccountService } from '../../../core';
 import { JhiAlertService } from 'ng-jhipster';
 import { IReservation } from '../../../shared/model/reservation.model';
 import { IFlightSeatReservation } from '../../../shared/model/flight-seat-reservation.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-flights-tab',
@@ -23,11 +24,21 @@ export class FlightsTabComponent implements OnInit {
     flightSeatReservationsArrival: IFlightSeatReservation[];
     flightSeatReservationAssignmentToInvitedUserComplete: boolean = false;
 
-    constructor(protected accountService: AccountService, protected jhiAlertService: JhiAlertService) {
+    constructor(
+        protected accountService: AccountService,
+        protected jhiAlertService: JhiAlertService,
+        protected route: ActivatedRoute,
+        protected router: Router
+    ) {
         this.currentStep = FlightReservationSteps.SEARCH;
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (this.route.snapshot.queryParamMap.get('activeTab')) {
+            this.setActiveTab.emit(this.route.snapshot.queryParamMap.get('activeTab'));
+            this.router.navigate([], { replaceUrl: true });
+        }
+    }
 
     public onSearchButtonClick(event: MouseEvent): void {
         // @ts-ignore
@@ -73,6 +84,7 @@ export class FlightsTabComponent implements OnInit {
     continueToHotelBooking(event) {
         localStorage.setItem('reservation', JSON.stringify(this.reservation));
         localStorage.setItem('flightSeatReservations', JSON.stringify(this.flightSeatReservationsDeparture));
+        localStorage.setItem('flightSearchFormData', JSON.stringify(this.searchFormData));
         this.setActiveTab.emit('hotels-tab');
     }
 

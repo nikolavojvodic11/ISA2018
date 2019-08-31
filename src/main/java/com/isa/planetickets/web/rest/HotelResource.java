@@ -83,7 +83,15 @@ public class HotelResource {
      */
     @GetMapping("/hotels")
     @Timed
-    public List<Hotel> getAllHotels() {
+    public List<Hotel> getAllHotels(
+    		@RequestParam(name = "adultsCount", required = false) Integer adultsCount,
+    		@RequestParam(name = "city", required = false) Long city,
+    		@RequestParam(name = "checkInDate", required = false) String checkInDate,
+    		@RequestParam(name = "checkOutDate", required = false) String checkOutDate
+    		) {
+    	if (city != null) {
+    		return hotelRepository.findByCityId(city);
+    	}
         log.debug("REST request to get all Hotels");
         return hotelRepository.findAll();
     }
