@@ -55,6 +55,7 @@ export class HotelDetailComponent implements OnInit {
         this.roomService.findByHotelId(this.hotel.id).subscribe(
             (res: HttpResponse<IRoom[]>) => {
                 this.rooms = res.body;
+                // this.createCheckboxModel();
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -94,6 +95,8 @@ export class HotelDetailComponent implements OnInit {
             hotelRoomReservation.discount = 0;
             hotelRoomReservation.room = this.rooms[index];
 
+            console.error(hotelRoomReservation);
+
             this.saveRoomReservation(hotelRoomReservation);
         }
     }
@@ -119,7 +122,7 @@ export class HotelDetailComponent implements OnInit {
 
     isRoomReserved(roomId) {
         for (let reservation of this.hotelRoomReservations) {
-            if (reservation.room.id) {
+            if (reservation.room.id === roomId) {
                 return true;
             }
         }

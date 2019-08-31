@@ -52,7 +52,7 @@ public class HotelRoomReservation implements Serializable {
     private Boolean deleted;
 
     @ManyToOne
-    @JsonIgnoreProperties("")
+    @JsonIgnoreProperties("room")
     private Room room;
 
     @ManyToOne

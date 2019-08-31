@@ -64,7 +64,7 @@
                 <ngb-tab title="Rooms">
                     <ng-template ngbTabContent>
                         <div class="p-3">
-                            <div *ngIf="isReservationUncomplete()">Choose room(s) for [1] person</div>
+<!--                            <div *ngIf="isReservationUncomplete()">Choose room(s) for [1] person</div>-->
                             <div class="table-responsive" *ngIf="rooms">
                                 <table class="table table-striped">
                                     <thead>
@@ -87,7 +87,7 @@
                                         </td>
                                         <td>
                                             {{room.label}}
-                                            <span *ngIf="isRoomReserved(room.id)" class="badge badge-error ml-3">RESERVED</span>
+                                            <span *ngIf="isRoomReserved(room.id) && isReservationUncomplete()" class="badge badge-error ml-3">RESERVED</span>
                                         </td>
                                         <td>{{room.bedsCount}}</td>
 

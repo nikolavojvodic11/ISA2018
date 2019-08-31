@@ -2,6 +2,7 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.Company;
+import com.isa.planetickets.domain.enumeration.CompanyType;
 import com.isa.planetickets.repository.CompanyRepository;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
@@ -83,8 +84,14 @@ public class CompanyResource {
      */
     @GetMapping("/companies")
     @Timed
-    public List<Company> getAllCompanies() {
+    public List<Company> getAllCompanies(
+    		@RequestParam(name = "type", required = false) CompanyType type) {
         log.debug("REST request to get all Companies");
+        System.out.println(type);
+        if (type != null) {
+        	System.out.println("TYPE");
+        	companyRepository.findByType(type);
+        }
         return companyRepository.findAll();
     }
 

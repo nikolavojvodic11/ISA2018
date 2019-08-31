@@ -2,6 +2,7 @@ package com.isa.planetickets.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.isa.planetickets.domain.CarReservation;
+import com.isa.planetickets.domain.HotelRoomReservation;
 import com.isa.planetickets.repository.CarReservationRepository;
 import com.isa.planetickets.web.rest.errors.BadRequestAlertException;
 import com.isa.planetickets.web.rest.util.HeaderUtil;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,6 +103,23 @@ public class CarReservationResource {
         log.debug("REST request to get CarReservation : {}", id);
         Optional<CarReservation> carReservation = carReservationRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(carReservation);
+    }
+    
+    /**
+     * GET  /roomsByHotelId/{hotelId} : get all the rooms by hotel id.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of rooms in body
+     */
+    @GetMapping("/carReservationsByCompanyLocationId/{companyLocationId}")
+    @Timed
+    public List<CarReservation> getCarReservationsByCompanyLocationId(
+    		@PathVariable Long companyLocationId,
+    		@RequestParam(name = "checkInDate", required = false) String checkInDate,
+    		@RequestParam(name = "checkOutDate", required = false) String checkOutDate
+    		) {  
+    	Instant dateFrom = LocalDate.parse(checkInDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant();
+    	Instant dateTo = LocalDate.parse(checkOutDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant();
+    	return carReservationRepository.findByCompanyLocationIdAndReserved(companyLocationId, dateFrom, dateTo);
     }
 
     /**

@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { ICarReservation } from 'app/shared/model/car-reservation.model';
+import { IHotelRoomReservation } from '../../shared/model/hotel-room-reservation.model';
+import { ICar } from '../../shared/model/car.model';
 
 type EntityResponseType = HttpResponse<ICarReservation>;
 type EntityArrayResponseType = HttpResponse<ICarReservation[]>;
@@ -36,6 +38,11 @@ export class CarReservationService {
         return this.http
             .get<ICarReservation>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
+    findByCompanyLocationAndReserved(id: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<ICar[]>(`api/carReservationsByCompanyLocationId/${id}`, { params: options, observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

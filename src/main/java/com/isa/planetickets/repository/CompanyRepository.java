@@ -1,6 +1,11 @@
 package com.isa.planetickets.repository;
 
 import com.isa.planetickets.domain.Company;
+import com.isa.planetickets.domain.CompanyLocation;
+import com.isa.planetickets.domain.enumeration.CompanyType;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
-
+	List<Company> findByType(CompanyType type);
 }

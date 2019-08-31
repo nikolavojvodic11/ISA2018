@@ -85,17 +85,18 @@ public class CompanyLocationResource {
     @Timed
     public List<CompanyLocation> getAllCompanyLocations(
     		@RequestParam(name = "companyId", required = false) Long companyId,
-    		@RequestParam(name = "deleted", required = false) Boolean deleted
+    		@RequestParam(name = "deleted", required = false) Boolean deleted,
+    		@RequestParam(name = "city", required = false) Long city
     		) {
     	
     	log.debug("REST request to get all Company Locations");
     	
-    	if (companyId != null && deleted == null) {
-    		return companyLocationRepository.findByCompanyId(companyId);
-    	} else if (companyId == null && deleted != null) {
-    		return companyLocationRepository.findByDeleted(deleted);
-    	} else if (companyId != null && deleted != null) {
-    		return companyLocationRepository.findByCompanyIdAndDeleted(companyId, deleted);
+    	if ( city != null && companyId == null ) {
+    		return companyLocationRepository.findByCity(city);   		
+    	} else if ( city == null && companyId != null ) {
+    		return companyLocationRepository.findByCompany(city);
+    	} else if ( city != null && companyId != null ) {
+    		return companyLocationRepository.findByCityAndCompany(city, companyId);
     	}
     	return companyLocationRepository.findByDeleted(false);
     }

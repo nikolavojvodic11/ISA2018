@@ -2,84 +2,69 @@
     <div class="row justify-content-center">
         <div class="col-12">
 
-            <!--    SEARCH CARD    -->
-<!--            <div class="card mt-2 p-3">-->
-<!--                <h4>Search flights</h4>-->
-<!--                <hr class="mt-0 mb-1"/>-->
-<!--                <form name="searchFlightsForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">-->
-<!--                    &lt;!&ndash;                  <h5 id="jhi-flight-heading">Search for flights</h5>&ndash;&gt;-->
-<!--                    <div>-->
-<!--                        &lt;!&ndash; <jhi-alert-error></jhi-alert-error> &ndash;&gt;-->
-<!--                        <div class="d-flex">-->
-<!--                            <div class="form-group mr-2">-->
-<!--                                <label class="form-control-label" for="field_departureTime">Departure Date</label>-->
-<!--                                <div class="d-flex">-->
-<!--                                    <input id="field_departureTime" type="datetime-local" class="form-control" name="departureTime" [(ngModel)]="formData.departureDate"-->
-<!--                                    />-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="form-group mr-4">-->
-<!--                                <label class="form-control-label" for="field_arrivalTime">Arrival Date</label>-->
-<!--                                <div class="d-flex">-->
-<!--                                    <input id="field_arrivalTime" type="datetime-local" class="form-control" name="arrivalTime" [(ngModel)]="formData.arrivalDate"-->
-<!--                                    />-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="form-group mr-2">-->
-<!--                                <label class="form-control-label" for="field_departureAirport">Departure Airport</label>-->
-<!--                                <select class="form-control" id="field_departureAirport" name="departureAirport" [(ngModel)]="formData.departureAirport" >-->
-<!--                                    <option [ngValue]="null">Select...</option>-->
-<!--                                    <option [ngValue]="airportOption.id" *ngFor="let airportOption of airports; trackBy: trackAirportById">{{airportOption.code + ' - ' + airportOption.name + ' (' + airportOption.city.name + ')'}}</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="form-group mr-2">-->
-<!--                                <label class="form-control-label" for="field_arrivalAirport">Arrival Airport</label>-->
-<!--                                <select class="form-control" id="field_arrivalAirport" name="arrivalAirport" [(ngModel)]="formData.arrivalAirport" >-->
-<!--                                    <option [ngValue]="null">Select...</option>-->
-<!--                                    <option [ngValue]="airportOption.id" *ngFor="let airportOption of airports; trackBy: trackAirportById">{{airportOption.code + ' - ' + airportOption.name + ' (' + airportOption.city.name + ')'}}</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
+            <div class="card mt-2 p-3">
+                <h4>Search car rentals</h4>
+                <hr class="mt-0 mb-1"/>
+                <form name="searchFlightsForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+                    <!--                  <h5 id="jhi-flight-heading">Search for flights</h5>-->
+                    <div>
+                        <!-- <jhi-alert-error></jhi-alert-error> -->
+                        <div class="d-flex">
+                            <div class="form-group mr-2">
+                                <label class="form-control-label" for="field_checkInDate">Check-in Date</label>
+                                <div class="d-flex">
+                                    <input id="field_checkInDate" type="date" class="form-control" name="checkInDate" [(ngModel)]="searchFormData.checkInDate"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mr-4">
+                                <label class="form-control-label" for="field_checkOutDate">Check-out Date</label>
+                                <div class="d-flex">
+                                    <input id="field_checkOutDate" type="date" class="form-control" name="checkOutDate" [(ngModel)]="searchFormData.checkOutDate"
+                                    />
+                                </div>
+                            </div>
 
-<!--                        <div class="d-flex">-->
-<!--                            <div class="form-group mr-4">-->
-<!--                                <label class="form-control-label" for="field_adultsCount">Number of adults</label>-->
-<!--                                <select class="form-control" id="field_adultsCount" name="adultsCount" [(ngModel)]="formData.adultsCount" >-->
-<!--                                    <option [ngValue]="null">Select...</option>-->
-<!--                                    <option [ngValue]="1">1</option>-->
-<!--                                    <option [ngValue]="2">2</option>-->
-<!--                                    <option [ngValue]="3">3</option>-->
-<!--                                    <option [ngValue]="4">4</option>-->
-<!--                                    <option [ngValue]="5">5</option>-->
-<!--                                    <option [ngValue]="6">6</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="form-group mr-4">-->
-<!--                                <label class="form-control-label" for="field_flightType">Flight Type</label>-->
-<!--                                <select class="form-control" id="field_flightType" name="flightType" [(ngModel)]="formData.flightType" >-->
-<!--                                    <option [ngValue]="null">Select...</option>-->
-<!--                                    <option [ngValue]="1">One way</option>-->
-<!--                                    <option [ngValue]="2">Round trip</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="form-group mr-4">-->
-<!--                                <label class="form-control-label" for="field_flightClass">Flight Type</label>-->
-<!--                                <select class="form-control" id="field_flightClass" name="flightClass" [(ngModel)]="formData.flightClass" >-->
-<!--                                    <option [ngValue]="null">Select...</option>-->
-<!--                                    <option [ngValue]="1">Economy</option>-->
-<!--                                    <option [ngValue]="2">Business</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="form-group justify-bottom ml-4">-->
-<!--                                <label class="form-control-label" for="save-entity">&nbsp;</label>-->
-<!--                                <button type="submit" id="save-entity" [disabled]="false" class="form-control btn btn-primary">-->
-<!--                                    <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span>Search</span>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="form-group mr-4">
+                                <label class="form-control-label" for="field_adultsCount">Number of adults</label>
+                                <select class="form-control" id="field_adultsCount" name="adultsCount" [(ngModel)]="searchFormData.adultsCount" >
+                                    <option [ngValue]="null">Select...</option>
+                                    <option [ngValue]="1">1</option>
+                                    <option [ngValue]="2">2</option>
+                                    <option [ngValue]="3">3</option>
+                                    <option [ngValue]="4">4</option>
+                                    <option [ngValue]="5">5</option>
+                                    <option [ngValue]="6">6</option>
+                                </select>
+                            </div>
+                            <div class="form-group mr-2">
+                                <label class="form-control-label" for="field_city">City</label>
+                                <select class="form-control" id="field_city" name="city" [(ngModel)]="searchFormData.city" >
+                                    <option [ngValue]="null">Select...</option>
+                                    <option [ngValue]="city.id" *ngFor="let city of cities; trackBy: cityId">{{city.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group mr-2">
+                                <label class="form-control-label" for="field_company">City</label>
+                                <select class="form-control" id="field_company" name="comapanyId" [(ngModel)]="searchFormData.companyId" >
+                                    <option [ngValue]="null">Select...</option>
+                                    <option [ngValue]="company.id" *ngFor="let company of companies; trackBy: companyId">{{company.name}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group justify-bottom ml-4">
+                                <label class="form-control-label" for="save-entity">&nbsp;</label>
+                                <button type="submit" id="save-entity" [disabled]="false" class="form-control btn btn-primary">
+                                    <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span>Search</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             <!--    AIRLINES CARD    -->
             <div class="card mt-2 p-3">
