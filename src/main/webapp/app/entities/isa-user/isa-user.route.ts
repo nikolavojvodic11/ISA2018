@@ -33,7 +33,7 @@ export const isaUserRoute: Routes = [
         path: 'isa-user',
         component: IsaUserComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'IsaUsers'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const isaUserRoute: Routes = [
             isaUser: IsaUserResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'IsaUsers'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const isaUserRoute: Routes = [
             isaUser: IsaUserResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'IsaUsers'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const isaUserRoute: Routes = [
             isaUser: IsaUserResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'IsaUsers'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const isaUserPopupRoute: Routes = [
             isaUser: IsaUserResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'IsaUsers'
         },
         canActivate: [UserRouteAccessService],

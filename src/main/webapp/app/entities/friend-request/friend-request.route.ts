@@ -33,7 +33,7 @@ export const friendRequestRoute: Routes = [
         path: 'friend-request',
         component: FriendRequestComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'FriendRequests'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const friendRequestRoute: Routes = [
             friendRequest: FriendRequestResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'FriendRequests'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const friendRequestRoute: Routes = [
             friendRequest: FriendRequestResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'FriendRequests'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const friendRequestRoute: Routes = [
             friendRequest: FriendRequestResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'FriendRequests'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const friendRequestPopupRoute: Routes = [
             friendRequest: FriendRequestResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'FriendRequests'
         },
         canActivate: [UserRouteAccessService],

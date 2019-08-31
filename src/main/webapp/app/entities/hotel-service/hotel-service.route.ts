@@ -33,7 +33,7 @@ export const hotelServiceRoute: Routes = [
         path: 'hotel-service',
         component: HotelServiceComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServices'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const hotelServiceRoute: Routes = [
             hotelService: HotelServiceResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServices'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const hotelServiceRoute: Routes = [
             hotelService: HotelServiceResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServices'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const hotelServiceRoute: Routes = [
             hotelService: HotelServiceResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServices'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const hotelServicePopupRoute: Routes = [
             hotelService: HotelServiceResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServices'
         },
         canActivate: [UserRouteAccessService],

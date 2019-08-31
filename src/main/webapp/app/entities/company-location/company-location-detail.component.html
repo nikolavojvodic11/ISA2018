@@ -57,7 +57,9 @@
 
                             <button type="button"
                                     [routerLink]="['/company-location', companyLocation.id, 'edit']"
-                                    class="btn btn-primary">
+                                    class="btn btn-primary"
+                                    *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
+                            >
                                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
                             </button>
                         </div>
@@ -113,7 +115,9 @@
                                                 </button>
                                                 <button type="submit"
                                                         [routerLink]="['/car', car.id, 'edit']"
-                                                        class="btn btn-primary btn-sm">
+                                                        class="btn btn-primary btn-sm"
+                                                        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
+                                                >
                                                     <fa-icon [icon]="'pencil-alt'"></fa-icon>
                                                     <span class="d-none d-md-inline">Edit</span>
                                                 </button>
@@ -121,7 +125,9 @@
                                                         [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/delete'} }]"
                                                         replaceUrl="true"
                                                         queryParamsHandling="merge"
-                                                        class="btn btn-danger btn-sm">
+                                                        class="btn btn-danger btn-sm"
+                                                        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
+                                                >
                                                     <fa-icon [icon]="'times'"></fa-icon>
                                                     <span class="d-none d-md-inline">Delete</span>
                                                 </button>
@@ -178,7 +184,9 @@
                                                 </button>
                                                 <button type="submit"
                                                         [routerLink]="['/company-location', companyLocation.id, 'edit']"
-                                                        class="btn btn-primary btn-sm">
+                                                        class="btn btn-primary btn-sm"
+                                                        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
+                                                >
                                                     <fa-icon [icon]="'pencil-alt'"></fa-icon>
                                                     <span class="d-none d-md-inline">Edit</span>
                                                 </button>
@@ -186,7 +194,9 @@
                                                         [routerLink]="['/', { outlets: { popup: 'company-location/'+ companyLocation.id + '/delete'} }]"
                                                         replaceUrl="true"
                                                         queryParamsHandling="merge"
-                                                        class="btn btn-danger btn-sm">
+                                                        class="btn btn-danger btn-sm"
+                                                        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
+                                                >
                                                     <fa-icon [icon]="'times'"></fa-icon>
                                                     <span class="d-none d-md-inline">Delete</span>
                                                 </button>

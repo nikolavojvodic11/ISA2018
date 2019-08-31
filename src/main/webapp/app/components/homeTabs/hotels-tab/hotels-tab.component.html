@@ -91,7 +91,9 @@
                                     </button>
                                     <button type="submit"
                                             [routerLink]="['/hotel', hotel.id, 'edit']"
-                                            class="btn btn-primary btn-sm">
+                                            class="btn btn-primary btn-sm"
+                                            *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_HOTEL_ADMIN']"
+                                    >
                                         <fa-icon [icon]="'pencil-alt'"></fa-icon>
                                         <span class="d-none d-md-inline">Edit</span>
                                     </button>
@@ -99,7 +101,9 @@
                                             [routerLink]="['/', { outlets: { popup: 'hotel/'+ hotel.id + '/delete'} }]"
                                             replaceUrl="true"
                                             queryParamsHandling="merge"
-                                            class="btn btn-danger btn-sm">
+                                            class="btn btn-danger btn-sm"
+                                            *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_HOTEL_ADMIN']"
+                                    >
                                         <fa-icon [icon]="'times'"></fa-icon>
                                         <span class="d-none d-md-inline">Delete</span>
                                     </button>

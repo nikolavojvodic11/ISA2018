@@ -33,7 +33,7 @@ export const roomRoute: Routes = [
         path: 'room',
         component: RoomComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Rooms'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const roomRoute: Routes = [
             room: RoomResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Rooms'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const roomRoute: Routes = [
             room: RoomResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Rooms'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const roomRoute: Routes = [
             room: RoomResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Rooms'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const roomPopupRoute: Routes = [
             room: RoomResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Rooms'
         },
         canActivate: [UserRouteAccessService],

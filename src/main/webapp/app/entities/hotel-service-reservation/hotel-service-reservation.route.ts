@@ -33,7 +33,7 @@ export const hotelServiceReservationRoute: Routes = [
         path: 'hotel-service-reservation',
         component: HotelServiceReservationComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServiceReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const hotelServiceReservationRoute: Routes = [
             hotelServiceReservation: HotelServiceReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServiceReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const hotelServiceReservationRoute: Routes = [
             hotelServiceReservation: HotelServiceReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServiceReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const hotelServiceReservationRoute: Routes = [
             hotelServiceReservation: HotelServiceReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServiceReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const hotelServiceReservationPopupRoute: Routes = [
             hotelServiceReservation: HotelServiceReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelServiceReservations'
         },
         canActivate: [UserRouteAccessService],

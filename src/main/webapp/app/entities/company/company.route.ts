@@ -33,7 +33,7 @@ export const companyRoute: Routes = [
         path: 'company',
         component: CompanyComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Companies'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const companyRoute: Routes = [
             company: CompanyResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'Companies'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const companyRoute: Routes = [
             company: CompanyResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Companies'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const companyRoute: Routes = [
             company: CompanyResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Companies'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const companyPopupRoute: Routes = [
             company: CompanyResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Companies'
         },
         canActivate: [UserRouteAccessService],

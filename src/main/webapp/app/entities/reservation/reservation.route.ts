@@ -33,7 +33,7 @@ export const reservationRoute: Routes = [
         path: 'reservation',
         component: ReservationComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Reservations'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const reservationRoute: Routes = [
             reservation: ReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Reservations'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const reservationRoute: Routes = [
             reservation: ReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Reservations'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const reservationRoute: Routes = [
             reservation: ReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Reservations'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const reservationPopupRoute: Routes = [
             reservation: ReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Reservations'
         },
         canActivate: [UserRouteAccessService],

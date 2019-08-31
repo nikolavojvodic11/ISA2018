@@ -33,7 +33,7 @@ export const carReservationRoute: Routes = [
         path: 'car-reservation',
         component: CarReservationComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'CarReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const carReservationRoute: Routes = [
             carReservation: CarReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'CarReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const carReservationRoute: Routes = [
             carReservation: CarReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'CarReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const carReservationRoute: Routes = [
             carReservation: CarReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'CarReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const carReservationPopupRoute: Routes = [
             carReservation: CarReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'CarReservations'
         },
         canActivate: [UserRouteAccessService],

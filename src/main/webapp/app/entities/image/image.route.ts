@@ -33,7 +33,7 @@ export const imageRoute: Routes = [
         path: 'image',
         component: ImageComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Images'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const imageRoute: Routes = [
             image: ImageResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Images'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const imageRoute: Routes = [
             image: ImageResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Images'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const imageRoute: Routes = [
             image: ImageResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Images'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const imagePopupRoute: Routes = [
             image: ImageResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Images'
         },
         canActivate: [UserRouteAccessService],

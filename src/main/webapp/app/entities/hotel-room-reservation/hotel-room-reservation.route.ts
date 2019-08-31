@@ -33,7 +33,7 @@ export const hotelRoomReservationRoute: Routes = [
         path: 'hotel-room-reservation',
         component: HotelRoomReservationComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelRoomReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const hotelRoomReservationRoute: Routes = [
             hotelRoomReservation: HotelRoomReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelRoomReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const hotelRoomReservationRoute: Routes = [
             hotelRoomReservation: HotelRoomReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelRoomReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const hotelRoomReservationRoute: Routes = [
             hotelRoomReservation: HotelRoomReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelRoomReservations'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const hotelRoomReservationPopupRoute: Routes = [
             hotelRoomReservation: HotelRoomReservationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'HotelRoomReservations'
         },
         canActivate: [UserRouteAccessService],

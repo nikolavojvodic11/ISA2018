@@ -33,7 +33,7 @@ export const carRoute: Routes = [
         path: 'car',
         component: CarComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Cars'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const carRoute: Routes = [
             car: CarResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Cars'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const carRoute: Routes = [
             car: CarResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Cars'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const carPopupRoute: Routes = [
             car: CarResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN'],
             pageTitle: 'Cars'
         },
         canActivate: [UserRouteAccessService],
