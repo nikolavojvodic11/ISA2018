@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { FlightReservationSteps } from 'app/constants/FlightReservationSteps';
 import { IFlight } from '../../../shared/model/flight.model';
@@ -71,6 +71,14 @@ export class FlightsTabComponent implements OnInit {
 
     nextStep(event) {
         if (this.currentStep === FlightReservationSteps.SEATS) {
+            // if ((this.searchFormData['flightType'] === 1 && this.flightSeatReservationsDeparture.length === this.searchFormData['adultsCount']) ||
+            //     (this.searchFormData['flightType'] === 2 && this.flightSeatReservationsDeparture.length + this.flightSeatReservationsArrival.length === this.searchFormData['adultsCount']*2)
+            // ) {
+            //     console.log("PASS")
+            //     this.currentStep = FlightReservationSteps.PASSENGERS;
+            // } else {
+            //     this.currentStep = FlightReservationSteps.INVITE;
+            // }
             this.currentStep = FlightReservationSteps.INVITE;
         } else if (this.currentStep === FlightReservationSteps.INVITE) {
             this.currentStep = FlightReservationSteps.PASSENGERS;

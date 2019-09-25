@@ -1,7 +1,9 @@
 package com.isa.planetickets.web.rest;
 
 import com.isa.planetickets.config.Constants;
+import com.isa.planetickets.domain.IsaUser;
 import com.isa.planetickets.domain.User;
+import com.isa.planetickets.repository.IsaUserRepository;
 import com.isa.planetickets.repository.UserRepository;
 import com.isa.planetickets.security.AuthoritiesConstants;
 import com.isa.planetickets.service.MailService;
@@ -65,12 +67,16 @@ public class UserResource {
     private final UserRepository userRepository;
 
     private final MailService mailService;
+    
+    private final IsaUserRepository isaUserRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, IsaUserRepository isaUserRepository) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.isaUserRepository = isaUserRepository;
+        
     }
 
     /**
@@ -100,6 +106,14 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
+            IsaUser isaUser = new IsaUser();
+            isaUser.setJhiUser(newUser);
+            isaUser.setDeleted(false);
+            isaUser.setFirstLogin(true);
+            isaUser.setPasswordChanged(false);
+            isaUser.setPointsUsed(0);
+            isaUser.setPhone("000000000");
+            isaUserRepository.save(isaUser);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "A user is created with identifier " + newUser.getLogin(), newUser.getLogin()))

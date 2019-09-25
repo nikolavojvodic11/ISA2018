@@ -87,6 +87,10 @@ export class HotelDetailComponent implements OnInit {
 
             let hotelRoomReservation = new HotelRoomReservation();
             hotelRoomReservation.reservation = <IReservation>this.reservation;
+            delete hotelRoomReservation.reservation.hotelRoomReservations;
+            delete hotelRoomReservation.reservation.hotelServiceReservations;
+            delete hotelRoomReservation.reservation.carReservations;
+            delete hotelRoomReservation.reservation.flightSeatReservations;
             hotelRoomReservation.status = ReservationStatus.RESERVED;
             hotelRoomReservation.price = 0;
             hotelRoomReservation.deleted = false;

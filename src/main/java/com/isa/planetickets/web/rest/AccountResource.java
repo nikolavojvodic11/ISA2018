@@ -38,12 +38,14 @@ public class AccountResource {
     private final UserService userService;
 
     private final MailService mailService;
+    private final IsaUserRepository isaUserRepository;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, IsaUserRepository isaUserRepository) {
 
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.isaUserRepository = isaUserRepository;
     }
 
     /**
@@ -62,6 +64,14 @@ public class AccountResource {
             throw new InvalidPasswordException();
         }
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+        IsaUser isaUser = new IsaUser();
+        isaUser.setJhiUser(user);
+        isaUser.setDeleted(false);
+        isaUser.setFirstLogin(true);
+        isaUser.setPasswordChanged(false);
+        isaUser.setPointsUsed(0);
+        isaUser.setPhone("000000000");
+        isaUserRepository.save(isaUser);
         mailService.sendActivationEmail(user);
     }
 

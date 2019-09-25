@@ -1,8 +1,546 @@
 <div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" *ngIf="dataLoaded">
         <div class="col-12">
+            <jhi-alert></jhi-alert>
 
-            <h1>My Reservations</h1>
+            <br/>
+            <h2 *ngIf="pendingReservations.length == 0 && confirmedReservations.length == 0">You have no reservations yet</h2>
+
+<!--            PENDING RESERVATIONS -->
+            <ng-container *ngIf="pendingReservations.length > 0">
+                <br/>
+                <h2>Pending reservations</h2>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th><span>Type</span></th>
+                            <th><span>Discount</span></th>
+                            <th><span>Total</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ng-container *ngFor="let reservation of pendingReservations ;trackBy: trackId">
+                            <tr class="table-primary">
+                                <td>{{reservation.type}}</td>
+                                <td>{{reservation.discount}}</td>
+                                <td>{{reservation.total}}</td>
+                            </tr>
+
+                            <!-- PENDING FLIGHT RESERVATIONS -->
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <h3>Flight reservations</h3>
+                                    <div class="table-responsive" *ngIf="reservation.flightReservations">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th><span>Flight</span></th>
+                                                <th><span>Departure time</span></th>
+                                                <th><span>Arrival time</span></th>
+                                                <th><span>First Name</span></th>
+                                                <th><span>Last Name</span></th>
+                                                <th><span>Status</span></th>
+                                                <th><span>Seat</span></th>
+                                                <th><span>Business</span></th>
+                                                <th><span>Price</span></th>
+                                                <th><span>Discount</span></th>
+                                                <th><span>Points Earned</span></th>
+
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let flightSeatReservation of reservation.flightReservations ;trackBy: trackId">
+                                                <td>
+                                                    {{flightSeatReservation.flight?.departureAirport.code}}
+                                                    -
+                                                    {{flightSeatReservation.flight?.arrivalAirport.code}}
+                                                </td>
+                                                <td>{{flightSeatReservation.flight?.departureTime}}</td>
+                                                <td>{{flightSeatReservation.flight?.arrivalTime}}</td>
+                                                <td>{{flightSeatReservation.firstName}}</td>
+                                                <td>{{flightSeatReservation.lastName}}</td>
+                                                <td>
+                                                    {{flightSeatReservation.status}}
+                                                </td>
+                                                <td>{{flightSeatReservation.seatCol}}{{flightSeatReservation.seatRow}}</td>
+                                                <td>{{flightSeatReservation.business}}</td>
+                                                <td>{{flightSeatReservation.price}}</td>
+                                                <td>{{flightSeatReservation.discount}}</td>
+                                                <td>{{flightSeatReservation.pointsEarned}}</td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button
+                                                            *ngIf="flightSeatReservation.status == 'RESERVED' && flightSeatReservation.user.jhiUser.login == user.login"
+                                                            (click)="confirmFlightReservation(flightSeatReservation)"
+                                                            class="btn btn-success btn-sm"
+                                                        >
+                                                            <span class="d-none d-md-inline">Confirm</span>
+                                                        </button>
+<!--                                                        <button type="submit"-->
+<!--                                                                [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"-->
+<!--                                                                class="btn btn-primary btn-sm">-->
+<!--                                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+<!--                                                            <span class="d-none d-md-inline">Edit</span>-->
+<!--                                                        </button>-->
+<!--                                                        <button type="submit"-->
+<!--                                                                [routerLink]="['/', { outlets: { popup: 'flight-seat-reservation/'+ flightSeatReservation.id + '/delete'} }]"-->
+<!--                                                                replaceUrl="true"-->
+<!--                                                                queryParamsHandling="merge"-->
+<!--                                                                class="btn btn-danger btn-sm">-->
+<!--                                                            <fa-icon [icon]="'times'"></fa-icon>-->
+<!--                                                            <span class="d-none d-md-inline">Delete</span>-->
+<!--                                                        </button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- /PENDING FLIGHT RESERVATIONS -->
+
+                            <!-- PENDING HOTEL RESERVATIONS -->
+                            <tr *ngIf="reservation.hotelReservations">
+                                <td></td>
+                                <td colspan="2">
+                                    <h3>Hotel reservations</h3>
+                                    <div class="table-responsive" *ngIf="reservation.hotelReservations">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th><span>Date From</span></th>
+                                                <th><span>Date To</span></th>
+                                                <th><span>Status</span></th>
+                                                <th><span>Price</span></th>
+                                                <th><span>Discount</span></th>
+                                                <th><span>Beds Count</span></th>
+                                                <th><span>Room no.</span></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let hotelRoomReservation of reservation.hotelReservations ;trackBy: trackId">
+                                                <td>{{hotelRoomReservation.dateFrom | date:'medium'}}</td>
+                                                <td>{{hotelRoomReservation.dateTo | date:'medium'}}</td>
+                                                <td>{{hotelRoomReservation.status}}</td>
+                                                <td>{{hotelRoomReservation.price}}</td>
+                                                <td>{{hotelRoomReservation.discount}}</td>
+                                                <td>{{hotelRoomReservation.room.bedsCount}}</td>
+                                                <td>{{hotelRoomReservation.room.label}}</td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button
+                                                            *ngIf="hotelRoomReservation.status == 'RESERVED' && hotelRoomReservation.reservation.user.jhiUser.login == user.login"
+                                                            (click)="confirmHotelReservation(hotelRoomReservation)"
+                                                            class="btn btn-success btn-sm"
+                                                        >
+                                                            <span class="d-none d-md-inline">Confirm</span>
+                                                        </button>
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"-->
+                                                        <!--                                                                class="btn btn-primary btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Edit</span>-->
+                                                        <!--                                                        </button>-->
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/', { outlets: { popup: 'flight-seat-reservation/'+ flightSeatReservation.id + '/delete'} }]"-->
+                                                        <!--                                                                replaceUrl="true"-->
+                                                        <!--                                                                queryParamsHandling="merge"-->
+                                                        <!--                                                                class="btn btn-danger btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'times'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Delete</span>-->
+                                                        <!--                                                        </button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- /PENDING HOTEL RESERVATIONS -->
+
+                            <!-- PENDING CAR RESERVATIONS -->
+                            <tr *ngIf="reservation.carReservations">
+                                <td></td>
+                                <td colspan="2">
+                                    <h3>Car reservations</h3>
+                                    <div class="table-responsive" *ngIf="reservation.carReservations">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th><span>Date From</span></th>
+                                                <th><span>Date To</span></th>
+                                                <th><span>Status</span></th>
+                                                <th><span>Price</span></th>
+                                                <th><span>Discount</span></th>
+                                                <th><span>Car</span></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let carReservation of reservation.carReservations ;trackBy: trackId">
+                                                <td>{{carReservation.dateFrom | date:'medium'}}</td>
+                                                <td>{{carReservation.dateTo | date:'medium'}}</td>
+                                                <td>{{carReservation.status}}</td>
+                                                <td>{{carReservation.price}}</td>
+                                                <td>{{carReservation.discount}}</td>
+                                                <td>{{carReservation.car.manufacturer}} - {{carReservation.car.model}}</td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button
+                                                            *ngIf="carReservation.status == 'RESERVED' && carReservation.carReservation.user.jhiUser.login == user.login"
+                                                            (click)="confirmCarReservation(carReservation)"
+                                                            class="btn btn-success btn-sm"
+                                                        >
+                                                            <span class="d-none d-md-inline">Confirm</span>
+                                                        </button>
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"-->
+                                                        <!--                                                                class="btn btn-primary btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Edit</span>-->
+                                                        <!--                                                        </button>-->
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/', { outlets: { popup: 'flight-seat-reservation/'+ flightSeatReservation.id + '/delete'} }]"-->
+                                                        <!--                                                                replaceUrl="true"-->
+                                                        <!--                                                                queryParamsHandling="merge"-->
+                                                        <!--                                                                class="btn btn-danger btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'times'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Delete</span>-->
+                                                        <!--                                                        </button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- /PENDING CAR RESERVATIONS -->
+
+                        </ng-container>
+
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+            <!-- /PENDING RESERVATIONS -->
+
+            <!-- CONFIRMED RESERVATIONS -->
+            <ng-container *ngIf="confirmedReservations.length > 0">
+                <br/>
+                <h2>Confirmed reservations</h2>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th><span>Type</span></th>
+                            <th><span>Discount</span></th>
+                            <th><span>Total</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ng-container *ngFor="let reservation of confirmedReservations ;trackBy: trackId">
+                            <tr class="table-primary">
+                                <td>{{reservation.type}}</td>
+                                <td>{{reservation.discount}}</td>
+                                <td>{{reservation.total}}</td>
+                            </tr>
+
+                            <!-- CONFIRMED FLIGHT RESERVATIONS -->
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <h3>Flight reservations</h3>
+                                    <div class="table-responsive" *ngIf="reservation.flightReservations">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th><span>Flight</span></th>
+                                                <th><span>Departure time</span></th>
+                                                <th><span>Arrival time</span></th>
+                                                <th><span>First Name</span></th>
+                                                <th><span>Last Name</span></th>
+                                                <th><span>Status</span></th>
+                                                <th><span>Seat</span></th>
+                                                <th><span>Business</span></th>
+                                                <th><span>Price</span></th>
+                                                <th><span>Discount</span></th>
+                                                <th><span>Points Earned</span></th>
+                                                <th><span>Airline Rating</span></th>
+                                                <th><span>Flight Rating</span></th>
+
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let flightSeatReservation of reservation.flightReservations ;trackBy: trackId">
+                                                <td>
+                                                    {{flightSeatReservation.flight?.departureAirport.code}}
+                                                    -
+                                                    {{flightSeatReservation.flight?.arrivalAirport.code}}
+                                                </td>
+                                                <td>{{flightSeatReservation.flight?.departureTime}}</td>
+                                                <td>{{flightSeatReservation.flight?.arrivalTime}}</td>
+                                                <td>{{flightSeatReservation.firstName}}</td>
+                                                <td>{{flightSeatReservation.lastName}}</td>
+                                                <td>
+                                                    {{flightSeatReservation.status}}
+                                                </td>
+                                                <td>{{flightSeatReservation.seatCol}}{{flightSeatReservation.seatRow}}</td>
+                                                <td>{{flightSeatReservation.business}}</td>
+                                                <td>{{flightSeatReservation.price}}</td>
+                                                <td>{{flightSeatReservation.discount}}</td>
+                                                <td>{{flightSeatReservation.pointsEarned}}</td>
+                                                <td>
+                                                    <select class="form-control" id="field_airlineRating1"
+                                                            [disabled]="flightSeatReservation.airlineRating || (getDateFromString(flightSeatReservation.flight.arrivalTime) > getCurrentDate())"
+                                                            name="airlineRating" [(ngModel)]="flightSeatReservation.airlineRating"
+                                                            (change)="rateFlight(flightSeatReservation)" style="width: 60px"
+                                                    >
+                                                        <option [ngValue]="1">1</option>
+                                                        <option [ngValue]="2">2</option>
+                                                        <option [ngValue]="3">3</option>
+                                                        <option [ngValue]="4">4</option>
+                                                        <option [ngValue]="5">5</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" id="field_flightRating1"
+                                                            [disabled]="flightSeatReservation.flightRating || (getDateFromString(flightSeatReservation.flight.arrivalTime) > getCurrentDate()) "
+                                                            name="flightRating" [(ngModel)]="flightSeatReservation.flightRating"
+                                                            (change)="rateFlight(flightSeatReservation)" style="width: 60px"
+                                                    >
+                                                        <option [ngValue]="1">1</option>
+                                                        <option [ngValue]="2">2</option>
+                                                        <option [ngValue]="3">3</option>
+                                                        <option [ngValue]="4">4</option>
+                                                        <option [ngValue]="5">5</option>
+                                                    </select>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button
+                                                            *ngIf="flightSeatReservation.status == 'RESERVED' && flightSeatReservation.user.jhiUser.login == user.login"
+                                                            (click)="confirmFlightReservation(flightSeatReservation)"
+                                                            class="btn btn-success btn-sm"
+                                                        >
+                                                            <span class="d-none d-md-inline">Confirm</span>
+                                                        </button>
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"-->
+                                                        <!--                                                                class="btn btn-primary btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Edit</span>-->
+                                                        <!--                                                        </button>-->
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/', { outlets: { popup: 'flight-seat-reservation/'+ flightSeatReservation.id + '/delete'} }]"-->
+                                                        <!--                                                                replaceUrl="true"-->
+                                                        <!--                                                                queryParamsHandling="merge"-->
+                                                        <!--                                                                class="btn btn-danger btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'times'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Delete</span>-->
+                                                        <!--                                                        </button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- /CONFIRMED FLIGHT RESERVATIONS -->
+
+                            <!-- CONFIRMED HOTEL RESERVATIONS -->
+                            <tr *ngIf="reservation.hotelReservations">
+                                <td></td>
+                                <td colspan="2">
+                                    <h3>Hotel reservations</h3>
+                                    <div class="table-responsive" *ngIf="reservation.hotelReservations">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th><span>Date From</span></th>
+                                                <th><span>Date To</span></th>
+                                                <th><span>Status</span></th>
+                                                <th><span>Price</span></th>
+                                                <th><span>Discount</span></th>
+                                                <th><span>Beds Count</span></th>
+                                                <th><span>Room no.</span></th>
+                                                <th><span>Hotel Rating</span></th>
+                                                <th><span>Room Rating</span></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let hotelRoomReservation of reservation.hotelReservations ;trackBy: trackId">
+                                                <td>{{hotelRoomReservation.dateFrom | date:'medium'}}</td>
+                                                <td>{{hotelRoomReservation.dateTo | date:'medium'}}</td>
+                                                <td>{{hotelRoomReservation.status}}</td>
+                                                <td>{{hotelRoomReservation.price}}</td>
+                                                <td>{{hotelRoomReservation.discount}}</td>
+                                                <td>{{hotelRoomReservation.room.bedsCount}}</td>
+                                                <td>{{hotelRoomReservation.room.label}}</td>
+                                                <td>
+                                                    <select class="form-control" id="field_roomRating1"
+                                                            [disabled]="hotelRoomReservation.roomRating || (getDateFromString(hotelRoomReservation.dateTo) > getCurrentDate())"
+                                                            name="roomRating" [(ngModel)]="hotelRoomReservation.roomRating"
+                                                            (change)="rateHotel(hotelRoomReservation)" style="width: 60px"
+                                                    >
+                                                        <option [ngValue]="1">1</option>
+                                                        <option [ngValue]="2">2</option>
+                                                        <option [ngValue]="3">3</option>
+                                                        <option [ngValue]="4">4</option>
+                                                        <option [ngValue]="5">5</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" id="field_hotelRating1"
+                                                            [disabled]="hotelRoomReservation.hotelRating || (getDateFromString(hotelRoomReservation.dateTo) > getCurrentDate()) "
+                                                            name="hotelRating" [(ngModel)]="hotelRoomReservation.hotelRating"
+                                                            (change)="rateHotel(hotelRoomReservation)" style="width: 60px"
+                                                    >
+                                                        <option [ngValue]="1">1</option>
+                                                        <option [ngValue]="2">2</option>
+                                                        <option [ngValue]="3">3</option>
+                                                        <option [ngValue]="4">4</option>
+                                                        <option [ngValue]="5">5</option>
+                                                    </select>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button
+                                                            *ngIf="hotelRoomReservation.status == 'RESERVED' && hotelRoomReservation.reservation.user.jhiUser.login == user.login"
+                                                            (click)="confirmHotelReservation(hotelRoomReservation)"
+                                                            class="btn btn-success btn-sm"
+                                                        >
+                                                            <span class="d-none d-md-inline">Confirm</span>
+                                                        </button>
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"-->
+                                                        <!--                                                                class="btn btn-primary btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Edit</span>-->
+                                                        <!--                                                        </button>-->
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/', { outlets: { popup: 'flight-seat-reservation/'+ flightSeatReservation.id + '/delete'} }]"-->
+                                                        <!--                                                                replaceUrl="true"-->
+                                                        <!--                                                                queryParamsHandling="merge"-->
+                                                        <!--                                                                class="btn btn-danger btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'times'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Delete</span>-->
+                                                        <!--                                                        </button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- /CONFIRMED HOTEL RESERVATIONS -->
+
+                            <!-- CONFIRMED CAR RESERVATIONS -->
+                            <tr *ngIf="reservation.carReservations">
+                                <td></td>
+                                <td colspan="2">
+                                    <h3>Car reservations</h3>
+                                    <div class="table-responsive" *ngIf="reservation.carReservations">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th><span>Date From</span></th>
+                                                <th><span>Date To</span></th>
+                                                <th><span>Status</span></th>
+                                                <th><span>Price</span></th>
+                                                <th><span>Discount</span></th>
+                                                <th><span>Car</span></th>
+                                                <th><span>Car Rental Rating</span></th>
+                                                <th><span>Car Rating</span></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let carReservation of reservation.carReservations ;trackBy: trackId">
+                                                <td>{{carReservation.dateFrom | date:'medium'}}</td>
+                                                <td>{{carReservation.dateTo | date:'medium'}}</td>
+                                                <td>{{carReservation.status}}</td>
+                                                <td>{{carReservation.price}}</td>
+                                                <td>{{carReservation.discount}}</td>
+                                                <td>{{carReservation.car.manufacturer}} - {{carReservation.car.model}}</td>
+                                                <td>
+                                                    <select class="form-control" id="field_carRating1"
+                                                            [disabled]="carReservation.carRating || (getDateFromString(carReservation.dateTo) > getCurrentDate())"
+                                                            name="carRating" [(ngModel)]="carReservation.carRating"
+                                                            (change)="rateCarRental(carReservation)" style="width: 60px"
+                                                    >
+                                                        <option [ngValue]="1">1</option>
+                                                        <option [ngValue]="2">2</option>
+                                                        <option [ngValue]="3">3</option>
+                                                        <option [ngValue]="4">4</option>
+                                                        <option [ngValue]="5">5</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" id="field_carRentalRating1"
+                                                            [disabled]="carReservation.carRentalRating || (getDateFromString(carReservation.dateTo) > getCurrentDate()) "
+                                                            name="carRentalRating" [(ngModel)]="carReservation.carRentalRating"
+                                                            (change)="rateCarRental(carReservation)" style="width: 60px"
+                                                    >
+                                                        <option [ngValue]="1">1</option>
+                                                        <option [ngValue]="2">2</option>
+                                                        <option [ngValue]="3">3</option>
+                                                        <option [ngValue]="4">4</option>
+                                                        <option [ngValue]="5">5</option>
+                                                    </select>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">
+                                                        <button
+                                                            *ngIf="carReservation.status == 'RESERVED' && carReservation.carReservation.user.jhiUser.login == user.login"
+                                                            (click)="confirmCarReservation(carReservation)"
+                                                            class="btn btn-success btn-sm"
+                                                        >
+                                                            <span class="d-none d-md-inline">Confirm</span>
+                                                        </button>
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/flight-seat-reservation', flightSeatReservation.id, 'edit']"-->
+                                                        <!--                                                                class="btn btn-primary btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Edit</span>-->
+                                                        <!--                                                        </button>-->
+                                                        <!--                                                        <button type="submit"-->
+                                                        <!--                                                                [routerLink]="['/', { outlets: { popup: 'flight-seat-reservation/'+ flightSeatReservation.id + '/delete'} }]"-->
+                                                        <!--                                                                replaceUrl="true"-->
+                                                        <!--                                                                queryParamsHandling="merge"-->
+                                                        <!--                                                                class="btn btn-danger btn-sm">-->
+                                                        <!--                                                            <fa-icon [icon]="'times'"></fa-icon>-->
+                                                        <!--                                                            <span class="d-none d-md-inline">Delete</span>-->
+                                                        <!--                                                        </button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- /COMPLETED CAR RESERVATIONS -->
+
+                        </ng-container>
+
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+            <!-- /CONFIRMED RESERVATIONS -->
 
         </div>
     </div>

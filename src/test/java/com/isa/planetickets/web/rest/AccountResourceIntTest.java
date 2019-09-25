@@ -5,6 +5,7 @@ import com.isa.planetickets.config.Constants;
 import com.isa.planetickets.domain.Authority;
 import com.isa.planetickets.domain.User;
 import com.isa.planetickets.repository.AuthorityRepository;
+import com.isa.planetickets.repository.IsaUserRepository;
 import com.isa.planetickets.repository.UserRepository;
 import com.isa.planetickets.security.AuthoritiesConstants;
 import com.isa.planetickets.service.MailService;
@@ -74,6 +75,9 @@ public class AccountResourceIntTest {
 
     @Mock
     private MailService mockMailService;
+    
+    @Autowired
+    private IsaUserRepository isaUserRepository;
 
     private MockMvc restMvc;
 
@@ -84,10 +88,10 @@ public class AccountResourceIntTest {
         MockitoAnnotations.initMocks(this);
         doNothing().when(mockMailService).sendActivationEmail(any());
         AccountResource accountResource =
-            new AccountResource(userRepository, userService, mockMailService);
+            new AccountResource(userRepository, userService, mockMailService, isaUserRepository);
 
         AccountResource accountUserMockResource =
-            new AccountResource(userRepository, mockUserService, mockMailService);
+            new AccountResource(userRepository, mockUserService, mockMailService, isaUserRepository);
         this.restMvc = MockMvcBuilders.standaloneSetup(accountResource)
             .setMessageConverters(httpMessageConverters)
             .setControllerAdvice(exceptionTranslator)

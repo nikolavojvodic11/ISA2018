@@ -3,6 +3,7 @@ package com.isa.planetickets.web.rest;
 import com.isa.planetickets.PlaneTicketsApp;
 import com.isa.planetickets.domain.Authority;
 import com.isa.planetickets.domain.User;
+import com.isa.planetickets.repository.IsaUserRepository;
 import com.isa.planetickets.repository.UserRepository;
 import com.isa.planetickets.security.AuthoritiesConstants;
 import com.isa.planetickets.service.MailService;
@@ -94,6 +95,9 @@ public class UserResourceIntTest {
 
     @Autowired
     private CacheManager cacheManager;
+    
+    @Autowired
+    private IsaUserRepository isaUserRepository;
 
     private MockMvc restUserMockMvc;
 
@@ -103,7 +107,7 @@ public class UserResourceIntTest {
     public void setup() {
         cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).clear();
         cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).clear();
-        UserResource userResource = new UserResource(userService, userRepository, mailService);
+        UserResource userResource = new UserResource(userService, userRepository, mailService, isaUserRepository);
 
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
