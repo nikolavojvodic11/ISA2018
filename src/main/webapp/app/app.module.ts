@@ -17,6 +17,7 @@ import { PlaneTicketsAppRoutingModule } from './app-routing.module';
 import { PlaneTicketsHomeModule } from './home/home.module';
 import { PlaneTicketsAccountModule } from './account/account.module';
 import { PlaneTicketsEntityModule } from './entities/entity.module';
+import { AgmCoreModule } from '@agm/core';
 
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -24,7 +25,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
 
 import { FlightsTabComponent } from './components/homeTabs/flights-tab/flights-tab.component';
 import { ComponentsModule } from './components/components.module';
-
+// AIzaSyBbA_kK-U7BFhec2ag7hH-b53Nl4s-7LVQ
 @NgModule({
     imports: [
         BrowserModule,

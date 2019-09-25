@@ -32,6 +32,10 @@ export class FriendRequestService {
         return this.http.get<IFriendRequest[]>(`${this.resourceUrl}-by-user`, { observe: 'response' });
     }
 
+    getCurrentUserRequests(): Observable<EntityArrayResponseType> {
+        return this.http.get<IFriendRequest[]>(`${this.resourceUrl}-by-user-not-accepted`, { observe: 'response' });
+    }
+
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IFriendRequest[]>(this.resourceUrl, { params: options, observe: 'response' });

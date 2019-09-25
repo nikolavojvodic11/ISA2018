@@ -1,0 +1,157 @@
+<div>
+    <div class="row justify-content-center">
+        <div class="col-12" *ngIf="dataLoaded">
+            <jhi-alert-error></jhi-alert-error>
+
+            <div id="friends-wrapper">
+
+                <div class="registered-users">
+                    <h2>Registered Users</h2>
+                    <br/>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><span>Username</span></th>
+                                <th><span>First Name</span></th>
+                                <th><span>Last Name</span></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let user of otherUsers; index as i ;trackBy: trackId">
+                                <td>{{user.jhiUser.login}}</td>
+                                <td>{{user.jhiUser.firstName}}</td>
+                                <td>{{user.jhiUser.lastName}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                class="btn btn-info btn-sm"
+                                                (click)="sendFriendRequest(user)"
+                                        >
+                                            <fa-icon [icon]="'user-plus'"></fa-icon>
+                                            <span class="d-none d-md-inline">Add Friend</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="requests">
+                    <h2>Pending Requests {{pendingRequests.length}}</h2>
+                    <br/>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><span>Username</span></th>
+                                <th><span>First Name</span></th>
+                                <th><span>Last Name</span></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let friendRequest of pendingRequests; index as i ;trackBy: trackId">
+                                <td>
+                                    {{friendRequest.sender.id === this.user.id?
+                                    friendRequest.reciver.jhiUser.login : friendRequest.sender.jhiUser.login}}
+                                </td>
+                                <td>
+                                    {{friendRequest.sender.id === this.user.id?
+                                    friendRequest.reciver.jhiUser.firstName : friendRequest.sender.jhiUser.firstName}}
+                                </td>
+                                <td>
+                                    {{friendRequest.sender.id === this.user.id?
+                                    friendRequest.reciver.jhiUser.lastName : friendRequest.sender.jhiUser.lastName}}
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                class="btn btn-warning btn-sm"
+                                                (click)="cancelFriendRequest(friendRequest)"
+                                                *ngIf="friendRequest.sender.id == user.id"
+                                        >
+                                            <fa-icon [icon]="'times'"></fa-icon>
+                                            <span class="d-none d-md-inline">Cancel</span>
+                                        </button>
+                                        <button type="submit"
+                                                class="btn btn-success btn-sm"
+                                                (click)="acceptFriendRequest(friendRequest)"
+                                                *ngIf="friendRequest.reciver.id == user.id"
+                                        >
+                                            <fa-icon [icon]="'check'"></fa-icon>
+                                            <span class="d-none d-md-inline">Accept</span>
+                                        </button>
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm"
+                                                (click)="denyFriendRequest(friendRequest)"
+                                                *ngIf="friendRequest.reciver.id == user.id"
+                                        >
+                                            <fa-icon [icon]="'times'"></fa-icon>
+                                            <span class="d-none d-md-inline">Deny</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br/>
+                    <h2>Friends {{friends.length}}</h2>
+                    <br/>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><span>Username</span></th>
+                                <th><span>First Name</span></th>
+                                <th><span>Last Name</span></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let friendRequest of friends; index as i ;trackBy: trackId">
+                                <td>
+                                    {{friendRequest.sender.id === this.user.id?
+                                    friendRequest.reciver.jhiUser.login : friendRequest.sender.jhiUser.login}}
+                                </td>
+                                <td>
+                                    {{friendRequest.sender.id === this.user.id?
+                                    friendRequest.reciver.jhiUser.firstName : friendRequest.sender.jhiUser.firstName}}
+                                </td>
+                                <td>
+                                    {{friendRequest.sender.id === this.user.id?
+                                    friendRequest.reciver.jhiUser.lastName : friendRequest.sender.jhiUser.lastName}}
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm"
+                                                (click)="denyFriendRequest(friendRequest)"
+                                                *ngIf="friendRequest.reciver.id == user.id"
+                                        >
+                                            <fa-icon [icon]="'user-times'"></fa-icon>
+                                            <span class="d-none d-md-inline">Remove</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

@@ -1,0 +1,13 @@
+#friends-wrapper {
+    display: flex;
+}
+
+.registered-users {
+    width: 50%;
+    padding-right: 20px;
+}
+
+.requests {
+    width: 50%;
+    padding-left: 20px;
+}

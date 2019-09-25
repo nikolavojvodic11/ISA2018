@@ -20,11 +20,20 @@ import org.springframework.stereotype.Repository;
 public interface FriendRequestRepository extends JpaRepository<FriendRequest, Long> {
 
 	@Query("SELECT f FROM FriendRequest f "
-			+ "WHERE (f.sender.id = :userId OR f.reciver.id = :userId)"
+			+ "WHERE (f.sender.id = :userId OR f.reciver.id = :userId) "
 			+ "AND f.accepted = true "
 			+ "AND f.deleted = false"
 			)
     public List<FriendRequest> getUserFriends(
+    		@Param("userId") Long userId
+    		);
+	
+	@Query("SELECT f FROM FriendRequest f "
+			+ "WHERE (f.sender.id = :userId OR f.reciver.id = :userId) "
+			+ "AND (f.accepted = false OR f.accepted is null) "
+			+ "AND f.deleted = false"
+			)
+    public List<FriendRequest> getUserRequests(
     		@Param("userId") Long userId
     		);
 }

@@ -20,6 +20,8 @@ import { PlaneTicketsHotelServiceReservationModule } from './hotel-service-reser
 import { PlaneTicketsHotelRoomReservationModule } from './hotel-room-reservation/hotel-room-reservation.module';
 import { PlaneTicketsFlightSeatReservationModule } from './flight-seat-reservation/flight-seat-reservation.module';
 import { PlaneTicketsCarReservationModule } from './car-reservation/car-reservation.module';
+import { AgmCoreModule } from '@agm/core';
+
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -44,7 +46,8 @@ import { PlaneTicketsCarReservationModule } from './car-reservation/car-reservat
         PlaneTicketsHotelServiceReservationModule,
         PlaneTicketsHotelRoomReservationModule,
         PlaneTicketsFlightSeatReservationModule,
-        PlaneTicketsCarReservationModule,
+        PlaneTicketsCarReservationModule
+
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

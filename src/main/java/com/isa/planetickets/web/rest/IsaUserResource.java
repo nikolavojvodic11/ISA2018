@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,8 +83,13 @@ public class IsaUserResource {
      */
     @GetMapping("/isa-users")
     @Timed
-    public List<IsaUser> getAllIsaUsers() {
+    public List<IsaUser> getAllIsaUsers(@RequestParam(name = "jhiUserId", required = false) Long jhiUserId) {
         log.debug("REST request to get all IsaUsers");
+        if (jhiUserId != null) {
+        	List<IsaUser> user = new ArrayList<IsaUser>();
+        	user.add(isaUserRepository.findByJhiUserId(jhiUserId));
+        	return user;
+        }
         return isaUserRepository.findAll();
     }
 

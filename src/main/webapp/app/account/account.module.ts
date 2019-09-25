@@ -13,6 +13,7 @@ import {
     SettingsComponent,
     accountState
 } from './';
+import { FriendsComponent } from './friends/friends.component';
 
 @NgModule({
     imports: [PlaneTicketsSharedModule, RouterModule.forChild(accountState)],
@@ -23,7 +24,8 @@ import {
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
-        SettingsComponent
+        SettingsComponent,
+        FriendsComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

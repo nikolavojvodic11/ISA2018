@@ -112,6 +112,21 @@ public class FriendRequestResource {
         
         return friendRequestRepository.getUserFriends(isaUser.getId());
     }
+    
+    /**
+     * GET  /friend-requests-by-user-id : get logged in user friends.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of friendRequests in body
+     */
+    @GetMapping("/friend-requests-by-user-not-accepted")
+    @Timed
+    public List<FriendRequest> getCurrentUserRequests() {
+        log.debug("REST request to get all current user requests");        
+        Optional<User> user = userService.getUserWithAuthorities();
+        IsaUser isaUser = isaUserRepository.findByJhiUserId(user.get().getId());
+        
+        return friendRequestRepository.getUserRequests(isaUser.getId());
+    }
 
     /**
      * GET  /friend-requests/:id : get the "id" friendRequest.
