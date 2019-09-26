@@ -42,9 +42,9 @@ export class CompanyLocationDetailComponent implements OnInit {
             if (localStorage.getItem('reservation')) {
                 this.reservation = JSON.parse(localStorage.getItem('reservation'));
                 this.carSearchFormData = JSON.parse(localStorage.getItem('carSearchFormData'));
+                this.getCarReservations();
             }
             this.getCompanyLocationCars();
-            this.getCarReservations();
         });
         this.getAllCompanyLocations();
     }

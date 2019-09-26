@@ -43,10 +43,10 @@ export class HotelDetailComponent implements OnInit {
             if (localStorage.getItem('reservation')) {
                 this.reservation = JSON.parse(localStorage.getItem('reservation'));
                 this.hotelSearchFormData = JSON.parse(localStorage.getItem('hotelSearchFormData'));
+                this.getHotelRoomReservations();
             }
 
             this.getHotelRooms();
-            this.getHotelRoomReservations();
             this.getHotelAvailableServices();
         });
     }

@@ -103,7 +103,7 @@ public class HotelRoomReservationResource {
     		@PathVariable Long hotelId,
     		@RequestParam(name = "checkInDate", required = false) String checkInDate,
     		@RequestParam(name = "checkOutDate", required = false) String checkOutDate
-    		) {  
+    		) {
     	Instant dateFrom = LocalDate.parse(checkInDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant();
     	Instant dateTo = LocalDate.parse(checkOutDate.substring(0,10)).atStartOfDay(ZoneOffset.UTC).toInstant();
     	return hotelRoomReservationRepository.findByHotelIdAndReserved(hotelId, dateFrom, dateTo);

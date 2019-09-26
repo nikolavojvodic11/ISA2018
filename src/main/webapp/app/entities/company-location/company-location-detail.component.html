@@ -15,53 +15,61 @@
             <ngb-tabset>
                 <ngb-tab title="General info">
                     <ng-template ngbTabContent>
-                        <div class="p-3">
-                            <dl class="row-md jh-entity-details">
-                                <dt><span>Address</span></dt>
-                                <dd>
-                                    <span>{{companyLocation.address}}</span>
-                                </dd>
-                                <dt><span>Phone</span></dt>
-                                <dd>
-                                    <span>{{companyLocation.phone}}</span>
-                                </dd>
-                                <dt><span>Email</span></dt>
-                                <dd>
-                                    <span>{{companyLocation.email}}</span>
-                                </dd>
-                                <dt><span>Lat</span></dt>
-                                <dd>
-                                    <span>{{companyLocation.lat}}</span>
-                                </dd>
-                                <dt><span>Lng</span></dt>
-                                <dd>
-                                    <span>{{companyLocation.lng}}</span>
-                                </dd>
-                                <dt><span>Deleted</span></dt>
-                                <dd>
-                                    <span>{{companyLocation.deleted}}</span>
-                                </dd>
-                                <dt><span>City</span></dt>
-                                <dd>
-                                    <div *ngIf="companyLocation.city">
-                                        <a [routerLink]="['/city', companyLocation.city?.id, 'view']">{{companyLocation.city?.name}}</a>
-                                    </div>
-                                </dd>
-                                <dt><span>Company</span></dt>
-                                <dd>
-                                    <div *ngIf="companyLocation.company">
-                                        <a [routerLink]="['/company', companyLocation.company?.id, 'view']">{{companyLocation.company?.name}}</a>
-                                    </div>
-                                </dd>
-                            </dl>
+                        <div class="p-3 d-flex">
+                            <div class="mr-5">
+                                <dl class="row-md jh-entity-details">
+                                    <dt><span>Address</span></dt>
+                                    <dd>
+                                        <span>{{companyLocation.address}}</span>
+                                    </dd>
+                                    <dt><span>Phone</span></dt>
+                                    <dd>
+                                        <span>{{companyLocation.phone}}</span>
+                                    </dd>
+                                    <dt><span>Email</span></dt>
+                                    <dd>
+                                        <span>{{companyLocation.email}}</span>
+                                    </dd>
+                                    <dt><span>Lat</span></dt>
+                                    <dd>
+                                        <span>{{companyLocation.lat}}</span>
+                                    </dd>
+                                    <dt><span>Lng</span></dt>
+                                    <dd>
+                                        <span>{{companyLocation.lng}}</span>
+                                    </dd>
+                                    <dt><span>Deleted</span></dt>
+                                    <dd>
+                                        <span>{{companyLocation.deleted}}</span>
+                                    </dd>
+                                    <dt><span>City</span></dt>
+                                    <dd>
+                                        <div *ngIf="companyLocation.city">
+                                            <a [routerLink]="['/city', companyLocation.city?.id, 'view']">{{companyLocation.city?.name}}</a>
+                                        </div>
+                                    </dd>
+                                    <dt><span>Company</span></dt>
+                                    <dd>
+                                        <div *ngIf="companyLocation.company">
+                                            <a [routerLink]="['/company', companyLocation.company?.id, 'view']">{{companyLocation.company?.name}}</a>
+                                        </div>
+                                    </dd>
+                                </dl>
 
-                            <button type="button"
-                                    [routerLink]="['/company-location', companyLocation.id, 'edit']"
-                                    class="btn btn-primary"
-                                    *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
-                            >
-                                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
-                            </button>
+                                <button type="button"
+                                        [routerLink]="['/company-location', companyLocation.id, 'edit']"
+                                        class="btn btn-primary"
+                                        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AIRLINE_ADMIN', 'ROLE_HOTEL_ADMIN', 'ROLE_CAR_RENTAL_ADMIN']"
+                                >
+                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+                                </button>
+                            </div>
+
+                            <div>
+                                <agm-map [latitude]="companyLocation.lat" [longitude]="companyLocation.lng" [zoom]="15" style="height: 500px; width: 500px;">
+                                    <agm-marker [latitude]="companyLocation.lat" [longitude]="companyLocation.lng"></agm-marker>
+                                </agm-map>
+                            </div>
                         </div>
                     </ng-template>
                 </ngb-tab>
@@ -96,7 +104,7 @@
                                         </td>
                                         <td>
                                             {{car.manufacturer}}
-                                            <span *ngIf="isCarReserved(car.id) && isReservationUncomplete()" class="badge badge-error ml-3">RESERVED</span>
+                                            <span *ngIf="isReservationUncomplete() && isCarReserved(car.id)" class="badge badge-error ml-3">RESERVED</span>
                                         </td>
                                         <td>{{car.model}}</td>
                                         <td>{{car.registration}}</td>
@@ -221,7 +229,7 @@
                 </ngb-tab>
             </ngb-tabset>
 
-            <div class="mt-3">
+            <div class="mt-3" *ngIf="isReservationUncomplete()">
                 <button type="submit"
                         (click)="finishReservationProcess($event)"
                         class="btn btn-success float-right"
