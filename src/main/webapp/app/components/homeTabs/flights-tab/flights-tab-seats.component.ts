@@ -98,7 +98,10 @@ export class FlightsTabSeatsComponent implements OnInit {
                 }
                 this.getReservedSeats();
             },
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => {
+                this.onError(res.message);
+                this.getReservedSeats();
+            }
         );
     }
 

@@ -49,6 +49,12 @@ public class FlightSeatReservationResource {
         if (flightSeatReservation.getId() != null) {
             throw new BadRequestAlertException("A new flightSeatReservation cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (flightSeatReservation.getFlight() == null || flightSeatReservation.getSeatRow() == null || flightSeatReservation.getSeatCol() == null ) {
+        	throw new BadRequestAlertException("Flight, Seat Row and Seat Col are required", ENTITY_NAME, "idexists");
+        }
+        if (flightSeatReservationRepository.isSeatTaken(flightSeatReservation.getFlight().getId(), flightSeatReservation.getSeatRow(), flightSeatReservation.getSeatCol()).size() > 0) {
+        	throw new BadRequestAlertException("Seat is taken", ENTITY_NAME, "idexists");
+        }
         FlightSeatReservation result = flightSeatReservationRepository.save(flightSeatReservation);
         return ResponseEntity.created(new URI("/api/flight-seat-reservations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
