@@ -25,6 +25,7 @@ export class CompanyLocationDetailComponent implements OnInit {
     reservation: IReservation;
     checkboxes: boolean[] = [];
     carSearchFormData: object;
+    reservationSuccess: boolean;
 
     constructor(
         protected activatedRoute: ActivatedRoute,
@@ -63,6 +64,8 @@ export class CompanyLocationDetailComponent implements OnInit {
         this.carReservationService.findByCompanyLocationAndReserved(this.companyLocation.id, this.carSearchFormData).subscribe(
             (res: HttpResponse<ICarReservation[]>) => {
                 this.carReservations = res.body;
+                this.reservationSuccess = undefined;
+                this.createCheckboxModel();
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -102,13 +105,19 @@ export class CompanyLocationDetailComponent implements OnInit {
         this.carReservationService.create(carReservation).subscribe(
             (res: HttpResponse<ICarReservation>) => {
                 console.warn('CREATE RESERVATION SUCCESS');
+                if (this.reservationSuccess !== false) {
+                    this.reservationSuccess = true;
+                }
             },
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => {
+                this.onError(res.message);
+                this.reservationSuccess = false;
+                this.getCarReservations();
+            }
         );
     }
 
     finishReservationProcess(event) {
-        this.saveCarReservations();
         this.router.navigate(['/'], { queryParams: { activeTab: 'my-reservations-tab' } });
     }
 
@@ -139,6 +148,7 @@ export class CompanyLocationDetailComponent implements OnInit {
     }
 
     createCheckboxModel() {
+        this.checkboxes = [];
         for (let car of this.cars) {
             this.checkboxes.push(false);
         }

@@ -51,6 +51,12 @@ public class CarReservationResource {
         if (carReservation.getId() != null) {
             throw new BadRequestAlertException("A new carReservation cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (carReservation.getDateFrom() == null || carReservation.getDateTo() == null || carReservation.getCar() == null) {
+        	throw new BadRequestAlertException("Car, check in and check out dates are required", ENTITY_NAME, "idexists");
+        }
+        if (carReservationRepository.isCarTaken(carReservation.getCar().getId(), carReservation.getDateFrom(), carReservation.getDateTo()).size() > 0) {
+        	throw new BadRequestAlertException("Car is reserved", ENTITY_NAME, "idexists");
+        }
         CarReservation result = carReservationRepository.save(carReservation);
         return ResponseEntity.created(new URI("/api/car-reservations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
