@@ -52,6 +52,13 @@ public class HotelRoomReservationResource {
         if (hotelRoomReservation.getId() != null) {
             throw new BadRequestAlertException("A new hotelRoomReservation cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        
+        if (hotelRoomReservation.getDateFrom() == null || hotelRoomReservation.getDateTo() == null || hotelRoomReservation.getRoom() == null) {
+        	throw new BadRequestAlertException("Room, check in and check out dates are required", ENTITY_NAME, "idexists");
+        }
+        if (hotelRoomReservationRepository.isHotelRoomTaken(hotelRoomReservation.getRoom().getId(), hotelRoomReservation.getDateFrom(), hotelRoomReservation.getDateTo()).size() > 0) {
+        	throw new BadRequestAlertException("Hotel room is reserved", ENTITY_NAME, "idexists");
+        }
         HotelRoomReservation result = hotelRoomReservationRepository.save(hotelRoomReservation);
         return ResponseEntity.created(new URI("/api/hotel-room-reservations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

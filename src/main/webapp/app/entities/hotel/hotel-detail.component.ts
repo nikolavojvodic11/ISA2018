@@ -26,6 +26,7 @@ export class HotelDetailComponent implements OnInit {
     hotelSearchFormData: object;
     checkboxes: boolean[] = [];
     reservation: IReservation;
+    reservationSuccess: boolean;
 
     constructor(
         protected activatedRoute: ActivatedRoute,
@@ -65,6 +66,8 @@ export class HotelDetailComponent implements OnInit {
         this.hotelRoomReservationService.findByHotelIdAndReserved(this.hotel.id, this.hotelSearchFormData).subscribe(
             (res: HttpResponse<IHotelRoomReservation[]>) => {
                 this.hotelRoomReservations = res.body;
+                this.reservationSuccess = undefined;
+                this.createCheckboxModel();
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -109,18 +112,23 @@ export class HotelDetailComponent implements OnInit {
         this.hotelRoomReservationService.create(hotelRoomReservation).subscribe(
             (res: HttpResponse<IHotelRoomReservation>) => {
                 console.warn('CREATE RESERVATION SUCCESS');
+                if (this.reservationSuccess !== false) {
+                    this.reservationSuccess = true;
+                }
             },
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => {
+                this.onError(res.message);
+                this.reservationSuccess = false;
+                this.getHotelRoomReservations();
+            }
         );
     }
 
     continueToCarRentalTab(event) {
-        this.saveRoomReservations();
         this.router.navigate(['/'], { queryParams: { activeTab: 'cars-tab' } });
     }
 
     finishReservationProcess(event) {
-        this.saveRoomReservations();
         this.router.navigate(['/'], { queryParams: { activeTab: 'my-reservations-tab' } });
     }
 
@@ -151,6 +159,7 @@ export class HotelDetailComponent implements OnInit {
     }
 
     createCheckboxModel() {
+        this.checkboxes = [];
         for (let room of this.rooms) {
             this.checkboxes.push(false);
         }
